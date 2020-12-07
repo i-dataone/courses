@@ -1,8 +1,9 @@
 # Pythonの紹介
+Pythonが誕生したのはハードウェアの処理機能が低い時代で、当時は<!-- 当時には⇒当時は -->
+多くの人が知らない言語でした。時代の進展に伴い、ハードウェアの機能は向上し、ソフトウェアの複雑度も増大しました。企業はより一層の開発効率を求めるため、Pythonは徐々に開発者に支持されています。
 
-Pythonが誕生したのはハードウェアの処理機能が低い時代で、当時には多くの人が知らない言語でした。時代の進展に伴い、ハードウェアの機能は向上し、ソフトウェアの複雑度も増大しました。企業はより一層の開発効率を求めるため、Pythonは徐々に開発者に支持されています。
-
-同じタスクを遂行する為に、C言語で1000行、JAVAで100行のコードが必要な時、Pythonで20行で済みます。Pythonは効率的な仕事、研究の実現に必要な開発言語です。機械学習が普及している現在、この分野を始めるならばPythonは最優先に選択すべき言語です。
+同じタスクを遂行する為に、C言語で1000行、JAVAで100行のコードが必要な時、Pythonでは<!-- で⇒では -->20行で
+済みます。Pythonは効率的な仕事、研究の実現に必要な開発言語です。機械学習が普及している現在、この分野を始めるならばPythonは最優先に選択すべき言語です。
 
 ## Python２系と３系
 
@@ -12,7 +13,7 @@ Pythonが誕生したのはハードウェアの処理機能が低い時代で�
 
 ### Windowsプラットフォーム
 
-Windows開発者は公式サイトに直接ダウンロードできます<https://www.python.org/downloads/>、インストーラーで自動環境変数を設定するのをチェックできます。インストールした後、CommandLineで`python`を実行し、
+Windows開発者は公式サイトで<!-- に⇒で -->直接ダウンロードできます<https://www.python.org/downloads/>。また、<!--"また、"追加-->インストーラーで自動環境変数を設定するのをチェックできます。インストールした後、CommandLineで`python`を実行し、
 
 ```shell
 C:\> python
@@ -26,13 +27,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### Unix/Linuxプラットフォーム
 
-まずソースパッケージをダウンロードします。コンパイル用のパッケージをインストール必要があります。
+まずソースパッケージをダウンロードします。コンパイル用のパッケージをインストールする<!--"する"追加-->必要があります。
 
 ```bash
 yum install -y gcc patch libffi-devel python-devel  zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
 ```
 
-そしてソースを解凍し、`./configure --prefix=/opt/python38`でconfigure操作します。そしてmakeとmake installをコンパイルします。後で必要があればパス変数を変えます。
+そしてソースを解凍し、`./configure --prefix=/opt/python38`でconfigureを<!--"を"追加-->操作します。そしてmakeとmake installをコンパイルします。後で必要があればパス変数を変えます。
 
 ### MacOSプラットフォーム
 
@@ -50,7 +51,7 @@ PCに複数バージョンのPythonがインストールされている場合、
 
 ### pip
 
-pipはpythonに付属するパッケージ管理ツールです。パッケージを使いたい場合、`pip install xxx`で自動ダウンロードできます。しかしpip使うと2系のディレクトリにインストールされます。3系にインストールする場合はpip3を使用してください。
+pipはpythonに付属するパッケージ管理ツールです。パッケージを使いたい場合、`pip install xxx`で自動ダウンロードできます。しかしpipを<!--"を"追加-->使うと2系のディレクトリにインストールされます。3系にインストールする場合はpip3を使用してください。
 
 ### anaconda
 
