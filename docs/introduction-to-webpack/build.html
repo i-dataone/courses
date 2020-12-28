@@ -1,0 +1,35 @@
+<head><title>build</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="ビルド">ビルド</h1>
+<h2 id="ファイルの準備">ファイルの準備</h2>
+<p>プロジェクトフォルダの配下にsrcフォルダを作成し、試しにモジュール（index.jsとsub.js）を作成します。</p>
+<p>index.js：</p>
+<pre><code class="language-js">//sub.js ファイルを読み込む。
+import { hello } from &quot;./sub&quot;; 
+hello();</code></pre>
+<p>sub.js：</p>
+<pre><code class="language-js">//hello関数
+export function hello() {
+  alert(&quot;hello！&quot;);
+}</code></pre>
+<h2 id="packagejsonをカスタマイズ">package.jsonをカスタマイズ</h2>
+<p>モジュールはこのままだと、古いブラウザでは表示されません。
+その為、古いブラウザが解釈できる形に変換（ビルド）する必要があります。</p>
+<p>package.jsonファイルのscriptsにwebpackのビルドコマンドを追加します。
+（package.jsonファイルには最低限scriptsとdevDependencies指定が記述されてあれば使えます。mainやauthorなどは消してしまっても問題ありません。）</p>
+<p>package.json：</p>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;webpack&quot;: &quot;^5.0.0&quot;,
+    &quot;webpack-cli&quot;: &quot;^4.0.0&quot;
+  },
+  &quot;private&quot;: true
+}</code></pre>
+<h2 id="ビルド-1">ビルド</h2>
+<p>前述でpackage.jsonファイルに追記をしたことにより、<code>npm run build</code>とCommandLineで入力することで、内部的にwebpackが呼び出されて、index.js内で必要なsub.jsが統合され、distフォルダーのなかにmain.jsとして出力されます。</p>
+<p>main.js：</p>
+<pre><code class="language-js">(()=&gt;{&quot;use strict&quot;;alert(&quot;hello！&quot;)})();</code></pre>
+<p>出力されたmain.jsをHTMLで読み込むと、バンドルされたコードが実行されます。
+npx webpackコマンドでビルドするという方法もありますが、実際の開発ではnpm scriptsを使う方が便利なので、説明は割愛します。</p>

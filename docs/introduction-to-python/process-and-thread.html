@@ -1,0 +1,155 @@
+<head><title>process-and-thread</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="マルチプロセスとマルチスレッド">マルチプロセスとマルチスレッド</h1>
+<p>以前に作成したすべてのPythonプログラムは、単一のタスクを実行するプロセスです。つまり、スレッドは1つだけです。コンピュータに同時に複数のタスクを処理させたい場合があります。 プログラミングは複雑ですが、コンピュータの利用効率を大幅に向上させることができます。</p>
+<h2 id="マルチプロセス">マルチプロセス</h2>
+<p>multiprocessingモジュールは、プロセスオブジェクトを表すProcessクラスを提供します。
+例：</p>
+<pre><code class="language-python">from multiprocessing import Process
+import os
+
+def runprocess(name):
+    print(&#39;Run child process %s (%s)&#39; % (name, os.getpid()))
+
+if __name__==&#39;__main__&#39;:
+    print(&#39;Parent process %s.&#39; % os.getpid())
+    p = Process(target=runprocess, args=(&#39;process1&#39;,))
+    print(&#39;Child process will start.&#39;)
+    p.start()
+    p.join()
+    print(&#39;Child process end.&#39;)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">Parent process 15584.
+Child process start.
+Run child process process1 (14624)
+Child process end.</code></pre>
+<p>最初のprintは現在のプロセス番号を出力します。idはオペレーティングシステムによって動的に割り当てられ、実行毎に値は必ずしも同じではありません。</p>
+<p><code>Process()</code>関数で子プロセスを生成します。一番目のtargetパラメータは子プロセスが実行する関数を表します。二番目は関数のパラメータを代入します。
+<code>start()</code>関数は子プロセスを起動します。<code>join()</code>関数は子プロセスが終了した後に実行を継続できます（現在の位置でメインプロセスをブロックし、joinの子プロセスの終了後にメインプロセスを実行し続けます）。</p>
+<p>複数のプロセスがある場合、プロセスプールを作成できます。
+例：</p>
+<pre><code class="language-python">import time
+from multiprocessing import Pool
+
+def runprocess(num):
+    print(&quot;Child Process %s&quot; % num)
+    time.sleep(1)
+    print(&#39;process %s end&#39; % num)
+if __name__ == &#39;__main__&#39;:
+    print(&#39;Parent Process start&#39;)
+    start_time = time.time()
+    pool = Pool(3)
+    print(&#39;Child start&#39;)
+    for i in range(3):
+        pool.apply(runprocess, (i+1,))
+    print(&#39;Parent Process done time: %ss&#39; % (time.time() - start_time))</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">Parent Process start
+Child start
+Child Process 1
+process 1 end
+Child Process 2
+process 2 end
+Child Process 3
+process 3 end
+Parent Process done time: 3.1831817626953125s</code></pre>
+<p>例では<code>Pool()</code>で三つの子プロセスを生成しました。プールのデフォルトサイズはCPUコア数です。<code>apply()</code>関数は<code>join()</code>に似ていますので、メインプロセスをブロックし、子プロセスを順番に実行します。startとjoinを省略できます。<code>apply_async()</code>はメインプロセスをブロックせずに子プロセスを実行でき、joinを使うより効率が良いです。</p>
+<h2 id="マルチスレッド">マルチスレッド</h2>
+<p>マルチタスクは、複数のプロセスまたはプロセス内の複数のスレッドで実行できます。Python標準ライブラリは2つのモジュールを提供します：_threadとthreading。_threadは低レベルモジュール、threadingは高レベルモジュールであり、_threadをカプセル化しています。
+例：</p>
+<pre><code class="language-python">import time
+import threading as td
+
+def runthread():
+    print(&#39;Thread %s start:&#39; % td.current_thread().name)
+    n = 0
+    while n &lt; 2:
+        n = n + 1
+        print(&#39;Thread %s count %s&#39; % (td.current_thread().name, n))
+        time.sleep(1)
+    print(&#39;Thread %s end.&#39; % td.current_thread().name)
+if __name__==&#39;__main__&#39;:
+    print(&#39;Thread %s start:&#39; % td.current_thread().name)
+    t = td.Thread(target=runthread, name=&#39;Childthread&#39;)
+    t.start()
+    t.join()
+    print(&#39;Thread %s end.&#39; % td.current_thread().name)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">Thread MainThread start:
+Thread Childthread start:
+Thread Childthread count 1
+Thread Childthread count 2
+Thread Childthread end.
+Thread MainThread end.</code></pre>
+<p>threadingの<code>current_thread()</code>関数は現在のスレッドインスタンスを返します。子スレッドの名前は、作成のときに指定されます。名前が指定されない場合、自動的にThread-*を付けます。スレッドを作成するときに、パラメータdaemonをTrueに設定して、スレッドをバックグラウンドに転送できます。</p>
+<h3 id="カスタムスレッド">カスタムスレッド</h3>
+<p>threadクラスを継承してスレッドをカスタマイズできます。
+例：</p>
+<pre><code class="language-python">from threading import Thread
+import time
+
+class CustomizedThread(Thread):
+    def __init__(self, n):
+        super().__init__()
+        self.n = n
+    def run(self):
+        i=0
+        while i &lt; self.n:
+            print(&#39;Count&#39;, i)
+            i += 1
+            time.sleep(1)
+print(&#39;Main thread start&#39;)
+c = CustomizedThread(3)
+c.start()
+c.join()
+print(&#39;Main thread end&#39;)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">Main thread start
+Count 0
+Count 1
+Count 2
+Main thread end</code></pre>
+<p>CustomizedThreadはスレッドクラスから継承されたメソッドです。スレッドを実行するデフォルトの関数は<code>run()</code>であるため、<code>run()</code>をオーバーライドすることでスレッド実行の内容を変更できます。</p>
+<h3 id="ロック">ロック</h3>
+<p>マルチスレッドでは、変数がすべてのスレッドで共有されるため、どのスレッドでも変更できます。たとえばスレッド1がリスト内のすべての要素を後ろから前へ削除し、スレッド2が要素を前から後ろへ読み取って印刷します。スレッド2はスレッド1がまだ削除してないいくつかの要素を出力します。これはデータが同期されていない状況です。これを回避するために、ロックの概念が導入されました。
+ロックには2つの状態：ロックとロック解除があります。 一つのスレッドが関数（データの共有など）にアクセスする場合はロックを取得する必要があります。別のスレッドがすでにロックを取得している場合は、このスレッドを一時停止（同期的にブロックする）し、ロックしたスレッドがアクセスを終了してロックを解放するまで待機します。 その後、二番目のスレッドを続行します。
+例：</p>
+<pre><code class="language-python">import threading
+import time
+
+class CustomizedThread (threading.Thread):
+    def __init__(self, name, counter, loop):
+        threading.Thread.__init__(self)
+        self.name = name
+        self.counter = counter
+        self.loop = loop
+    def run(self):
+        print (&#39;Thread:&#39; + self.name + &#39; start&#39;)
+        threadLock.acquire()            #ロックを取得する
+        plusminus(self.name, self.counter, self.loop)
+        threadLock.release()            #ロックを解除する
+def plusminus(threadName, num, loop):
+    while loop:
+        global sumup
+        time.sleep(1)
+        sumup= sumup + int(num)
+        loop -=1
+        print(&#39;%s: sum is %d&#39; % (threadName, sumup))
+sumup=0
+threadLock = threading.Lock()
+threads = []
+thread1 = CustomizedThread(&#39;Thread-1&#39;, 1, 2)
+thread2 = CustomizedThread(&#39;Thread-2&#39;, -1, 2)
+thread1.start()
+thread2.start()
+thread1.join()
+thread2.join()
+print (&quot;threads end&quot;)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">Thread:Thread-1 start
+Thread:Thread-2 start
+Thread-1: sum is 1
+Thread-1: sum is 2
+Thread-2: sum is 1
+Thread-2: sum is 0
+threads end</code></pre>
+<p>しかし実際には、ロックが追加されたため、同じメソッドを使用する2つのスレッドが同時に実行されませんでした。</p>

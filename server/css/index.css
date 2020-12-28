@@ -1,35 +1,46 @@
-.content {
-    width: 700px;
-    margin:auto;
+body {
+    max-width: 800px;
+    margin: 90px auto;
     font-family: 'Meiryo UI';
 }
-.content >>> h1 {
+h1 {
     text-indent: 4px;
     text-align:center;
     font-size:48px;
 }
 
-.content >>> h2 {
-    margin: 1em 0;
-    text-indent: 1em;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+h2 {
+    position: relative;
+    margin: 1em 0.5em;
+    border-bottom: 5px solid gray;
     padding:8px 0;
-    background-color: rgb(194, 194, 118);
     color: black;
+    font-size: 32px;
 }
 
-.content >>> h3 {
-    margin: 1em 0 0 0;
-    text-indent: 1em; 
+h2::after {
+    position: absolute;
+    display: block;
+    content: " ";
+    border-bottom: 5px solid rgb(0, 115, 168);
+    bottom: -5px;
+    width: 3em;
 }
 
-.content >>> p {
+h3 {
+    margin-top: 2em; 
+    margin-left: 0.5em;
+    font-size: 24px;
+    border-left: 0.3em solid rgb(0, 115, 168);
+    padding-left: 0.5em;
+}
+
+p {
     margin:1em;
     padding-left:10px;
 }
 
-.content >>> pre{
+pre{
     background-color: #CCCCCC;
     margin: 1em;
     color: black;
@@ -37,26 +48,26 @@
     padding-left: 10px;
 }
 
-.content >>> ul, ol{
+ul, ol{
     margin: 1em;
 }
 
 
-.content >>> li{
+li{
     margin: 1em;
     margin-left:20px;
 }
 
-.content >>> table{
+table{
     border: solid 1px black;
     border-collapse: collapse;
     width:500px;
     margin:30px 0px 30px 60px;
 }
-.content >>> th {
+th {
   border: solid 1px black;
 }
-.content >>> td {
+td {
   border: solid 1px black;
   padding-left:5px;
 }

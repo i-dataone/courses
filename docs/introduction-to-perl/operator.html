@@ -1,0 +1,217 @@
+<head><title>operator</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="演算子">演算子</h1>
+<h2 id="算術演算子">算術演算子</h2>
+<p>算術演算子は普段使用する演算子です。</p>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>a+b</td>
+<td>加算</td>
+</tr>
+<tr>
+<td>-</td>
+<td>a-b</td>
+<td>減算</td>
+</tr>
+<tr>
+<td>*</td>
+<td>a*b</td>
+<td>乗算</td>
+</tr>
+<tr>
+<td>/</td>
+<td>a%</td>
+<td>除算</td>
+</tr>
+<tr>
+<td>%</td>
+<td>a%b</td>
+<td>剰余</td>
+</tr>
+<tr>
+<td>++</td>
+<td>a++</td>
+<td>1を加算</td>
+</tr>
+<tr>
+<td>--</td>
+<td>a--</td>
+<td>1を減算</td>
+</tr>
+</tbody></table>
+<h2 id="比較演算子">比較演算子</h2>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>a==b</td>
+<td>aとbは等しい</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>a!=</td>
+<td>aとbは異なる</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>a&gt;b</td>
+<td>aはbより大きい</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>a&lt;b</td>
+<td>aはbより小さい</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>a&gt;=b</td>
+<td>aはb以上</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>a&lt;=b</td>
+<td>aはb以下</td>
+</tr>
+</tbody></table>
+<h2 id="変数の演算子">変数の演算子</h2>
+<p>算術演算子は変数にも使えます。</p>
+<p>例えば：</p>
+<pre><code class="language-Perl">$a = 5;
+$b = 10;
+$c = $a + $b;
+print&quot;\$c=$c\n&quot;</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-Perl">$c=15</code></pre>
+<p>となります。</p>
+<h2 id="ビット演算子">ビット演算子</h2>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;</td>
+<td>a&amp;2</td>
+<td>ビットAND</td>
+</tr>
+<tr>
+<td>&#124;</td>
+<td>a&#124;2</td>
+<td>ビットOR</td>
+</tr>
+<tr>
+<td>^</td>
+<td>a^2</td>
+<td>ビットXOR</td>
+</tr>
+<tr>
+<td>~</td>
+<td>~a</td>
+<td>ビットNOT</td>
+</tr>
+</tbody></table>
+<p>ビット演算子は二進数のビットに対して順番に行う演算子です。
+ビットANDは二つの同じ位置のヒットを比較して、両方のビットが共に「1」の場合だけ結果を「1」にします。</p>
+<p>ビットORは二つの同じ位置のヒットを比較して、両方のビットの中で「1」がある以上、結果は「1」にします。
+ビットXORは二つの同じ位置のヒットを比較して、両方のビットの値が異なると「1」にします。
+ビットNOTは本来の値の各ヒットを入れ替えます。例えば、1の場合は0にします。</p>
+<p>例えば、a = 60，b = 13の時は次のようになります：</p>
+<pre><code class="language-Perl">$a = 0011 1100
+$b = 0000 1101
+
+$a&amp;$b = 0000 1100
+$a|$b = 0011 1101
+$a^$b = 0011 0001
+~$a  = 1100 0011</code></pre>
+<h3 id="シフト演算子">シフト演算子</h3>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;&lt;</td>
+<td>a&lt;&lt;2</td>
+<td>左シフト</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>a&gt;&gt;2</td>
+<td>右シフト</td>
+</tr>
+</tbody></table>
+<p>シフト演算子はビットを左あるいは右へ移動させるための演算子です。
+例えば、<code>a = 60</code>の時は次のようになります：</p>
+<pre><code class="language-Perl">$a = 0011 1100
+
+$a&lt;&lt;2 = 0001 1000
+$a&gt;&gt;2 = 0001 1110</code></pre>
+<h2 id="論理演算子">論理演算子</h2>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>a &amp;&amp; b</td>
+<td>AND</td>
+</tr>
+<tr>
+<td>&#124;&#124;</td>
+<td>a&#124;&#124;b</td>
+<td>OR</td>
+</tr>
+<tr>
+<td>!</td>
+<td>!a</td>
+<td>NOT</td>
+</tr>
+</tbody></table>
+<h2 id="引用演算子">引用演算子</h2>
+<table>
+<thead>
+<tr>
+<th>記号</th>
+<th>使用例</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>q{ }</td>
+<td>q{a}</td>
+<td>&#39;a&#39;</td>
+</tr>
+<tr>
+<td>qq{ }</td>
+<td>qq{a}</td>
+<td>&quot;a&quot;</td>
+</tr>
+<tr>
+<td>qx{ }</td>
+<td>qx{a}</td>
+<td><code>`</code>ad<code>`</code></td>
+</tr>
+</tbody></table>

@@ -1,7 +1,6 @@
 let fs = require('fs-extra');
 let path = require('path');
 let marked = require('marked');
-const { UV_FS_O_FILEMAP } = require('constants');
 
 createHTMLFiles();
 
@@ -10,7 +9,7 @@ function createHTMLFiles() {
     for (let i = 0; i < articlesFiles.length; i++){
         //記事ファイルの作成
         articlesFilesName = articlesFiles[i];
-        fs.mkdir(`./docs/${articlesFilesName}`, { recursive: true }, (err) => {
+        fs.mkdir(`../docs/${articlesFilesName}`, { recursive: true }, (err) => {
             if (err) throw err;
         });
 
@@ -20,7 +19,7 @@ function createHTMLFiles() {
         for(let j = 0; j < EachFile.length; j++) {
             let eachFileName = EachFile[j].split('.').slice(0, -1).join('.');
 
-            fs.mkdirsSync(`../docs/${articlesFilesName}/${eachFileName}`, { recursive: true }, (err) => {
+            fs.mkdirsSync(`../docs/${articlesFilesName}`, { recursive: true }, (err) => {
                 if (err) throw err;
             });
             
@@ -28,18 +27,10 @@ function createHTMLFiles() {
             let changeToHTML = marked(eachFileContent);
 
 
-            //CSSがあるか
-            // if(fs.stat(`../docs/${articlesFilesName}/${eachFileName}`)){
-            //     console.log(`${eachFileName}.cssはすでに存在します`);
-            // } else {
-            //     const streamCSS = fs.createWriteStream(`../docs/${articlesFilesName}/${eachFileName}/${eachFileName}.css`);
-            //     streamCSS.write('', charset);
-            // }            
-
-            const streamHTML = fs.createWriteStream(`../docs/${articlesFilesName}/${eachFileName}/${eachFileName}.html`);
+            const streamHTML = fs.createWriteStream(`../docs/${articlesFilesName}/${eachFileName}.html`);
             
 
-            streamHTML.write(`<head><title>${eachFileName}</title><link rel="./server/css/index.css"></head>\n`, charset)
+            streamHTML.write(`<head><title>${eachFileName}</title><link rel="stylesheet" href="../../server/css/index.css"></head>\n`, charset)
             streamHTML.write(changeToHTML, charset);
 
         }

@@ -1,0 +1,36 @@
+<head><title>directory</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="perl関数">Perl関数</h1>
+<p>よく使う関数は以下です：</p>
+<ul>
+<li>opendir DIRHANDLE, EXPR  # ディレクトリを開く</li>
+<li>readdir DIRHANDLE 　　　　# ディレクトリを読む</li>
+<li>rewinddir DIRHANDLE      # ディレクトリ先頭にポイントする</li>
+<li>telldir DIRHANDLE        # ディレクトリの位置を返す</li>
+<li>seekdir DIRHANDLE, POS   # ディレクトリのPOS位置をポイントする</li>
+<li>closedir DIRHANDLE       # ディレクトリを閉じる</li>
+</ul>
+<h2 id="ディレクトリの操作">ディレクトリの操作</h2>
+<h3 id="ファイル表示">ファイル表示</h3>
+<p>ファイルを表示するにはglob関数を使います。
+例えば、</p>
+<pre><code class="language-Perl">my $dir = &quot;/tmp/*&quot;;
+my @files = glob($dir);</code></pre>
+<p>と実行する時、結果は<code>/tmp</code>ディレクトリの全てのファイルを表示します。</p>
+<h3 id="ファイルの作成">ファイルの作成</h3>
+<p>ファイル表示するには<code>mkdir</code>関数を使います。</p>
+<p>例えば、</p>
+<pre><code class="language-Perl">my $dir = &quot;/tmp/Perl&quot;;
+mkdir($dir);
+print &quot;ディレクトリ作成成功\n&quot;</code></pre>
+<p>と実行する時、結果は</p>
+<p><code>ディレクトリ作成成功</code></p>
+<p>になります。</p>
+<h3 id="ファイルの切り替える">ファイルの切り替える</h3>
+<p>ファイル表示するのはchdir関数を使います。</p>
+<p>例えば、</p>
+<pre><code class="language-Perl">my $dir = &quot;/Hello&quot;;
+chdir($dir);
+print &quot;ディレクトリの位置は $dir\n です。&quot;</code></pre>
+<p>と実行すると、結果は</p>
+<p><code>ディレクトリの位置は /Hello です。</code></p>
+<p>になります。</p>

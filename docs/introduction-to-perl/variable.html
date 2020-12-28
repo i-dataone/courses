@@ -1,0 +1,82 @@
+<head><title>variable</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="変数">変数</h1>
+<h2 id="変数タイプ">変数タイプ</h2>
+<p>Perlのデータにはスカラー値、配列、ハッシュの三種類があります、それに応じて、変数はスカラー変数、配列変数、ハッシュ変数の三種類があります。</p>
+<p>変数を宣言する時には必ず &#39;my&#39; とつけます。例えば、<code>$var</code>という名前のスカラー変数を宣言するには、<code>my $var;</code>とします。</p>
+<p>変数名はプレフィックスと呼ばれる記号から始まります。プレフィックスは、スカラー変数の場合は<code>$</code>、配列変数の場合は<code>@</code>、ハッシュ変数の場合は<code>%</code>です。</p>
+<h2 id="スカラー変数">スカラー変数</h2>
+<p>スカラー変数の「スカラー」は「単一の値」という意味です。スカラー変数は数値か文字列を格納します。スカラー変数の名前の1 文字目は必ず 「$」マークにします。2 文字目以降は好きなものを使っていいのですが、「_」か英数字にしてください。</p>
+<p>例えば、次のコードを<code>hello.pl</code>という名前のファイルに保存してください。</p>
+<pre><code class="language-Perl">use strict;
+use warnings;
+my $hw = &quot;hello world\n&quot;;
+print $hw;</code></pre>
+<p><code>hello.pl</code>を実行すると、<code>hello world</code>という出力を得ます。</p>
+<p>スカラー変数に格納する文字列は二つの<code>&quot;</code>か<code>&#39;</code>で囲みます。この二つには違いがあります。二つの<code>&quot;</code>で囲まれた文字列には特殊文字が使えます。例えば、タブ記号を表す<code>\t</code>と改行を表す<code>\n</code>を使って</p>
+<pre><code class="language-Perl">my $hw = &quot;he\tll\no&quot;</code></pre>
+<p>とすると、実行結果は</p>
+<pre><code>he  ll
+o</code></pre>
+<p>となります。</p>
+<p>二つの<code>&#39;</code>で囲った場合、特殊文字は使えません。例えば、</p>
+<pre><code class="language-Perl">my $hw = &#39;he\tll\no&#39;</code></pre>
+<p>とすると、実行結果は</p>
+<pre><code>he/tllo/n</code></pre>
+<p>となります。</p>
+<p>ここまではスカラー変数が文字列の場合でした。数値の場合は演算をすることができます。例えば、<code>+, -, *, /, %, ++, --, **, +=, -=, *=</code>等の演算ができます。</p>
+<p>以下の例を見てください：</p>
+<pre><code class="language-Perl">use strict;
+use warnings;
+my $a = 2;
+my $b = 0.3;
+my $c = 123_456_789;
+#数字の中の「_」は無職されます。
+my $aa = 2 * 2;  # 4
+my $bb = 10 % 3; # 1
+my $zz = 2 ** 5; # 32
+$a++;  # 3
+$a--;  # 2
+$a += 5;  # $a = $a + 5 =7</code></pre>
+<h2 id="配列変数">配列変数</h2>
+<p>スカラー変数が単一の値を格納するのに対して、配列変数は複数の値をまとめて管理します。書き方は、次のようにします：</p>
+<pre><code class="language-Perl">my @price = (100,200,300);</code></pre>
+<p>こう書くと、配列変数<code>@price</code>に100, 200, 300という三つの値が格納されます。</p>
+<p>文字列も格納できます。例えば、</p>
+<pre><code class="language-Perl">my @number = (&#39;one&#39;,&#39;two&#39;,&#39;three&#39;);
+my mixing = (100,&#39;two&#39;,300);</code></pre>
+<p>これらの変数は次のように書くこともできます：</p>
+<pre><code class="language-Perl">my @number = (1..50);
+my @number = qw(one two three);</code></pre>
+<h3 id="配列変数の要素を取り出す">配列変数の要素を取り出す</h3>
+<p>配列変数から要素を取り出には、取り出す要素の番号を<code>[]</code>に入れます。要素番号は<code>0</code>から始まります。たとえば、</p>
+<pre><code class="language-Perl">my @number = (10,20,30);
+
+print $number[0];
+print $number[1];
+print $number[2];</code></pre>
+<p>とすると、実行結果は</p>
+<pre><code>10
+20
+30</code></pre>
+<p>となります。配列関数から取り出した変数はスカラー変数になりますから、マークは<code>@</code>から<code>$</code>に転換します。</p>
+<p>また、要素番号には負の値を入れることができます。要素番号-1、-2、-3、...は、末尾から数えて1番目、2番目、3番目、...になります。たとえば前の例では、<code>$number[-1]</code>、<code>$number[-2]</code>、<code>$number[-3]</code>はそれぞれ<code>30</code>、<code>20</code>、<code>10</code>となります。</p>
+<p>以上は配列変数から一つの要素を取り出す場合です。配列変数から範囲を取り出したい場合は、以下のように書きます：</p>
+<pre><code class="language-Perl">print @number[0..1];</code></pre>
+<p>実行結果は</p>
+<pre><code>1020</code></pre>
+<p>となります。</p>
+<p>一番最後の要素には<code>$#配列名</code>という名前が自動的に作られます。もし一番目から最後までの要素を取り出したいなら、以下のように書きます：</p>
+<pre><code class="language-Perl">print @number[1..$#number];</code></pre>
+<p>実行結果は</p>
+<p><code>2030</code></p>
+<p>となります。</p>
+<h2 id="ハッシュ変数">ハッシュ変数</h2>
+<p>ハッシュ変数はキーとスカラー値の組からなるデータを格納する変数です。変数マークは<code>%</code>です。例えば、</p>
+<pre><code class="language-Perl">my @score= (40,60,90);</code></pre>
+<p>の配列変数をキーと一緒に管理したいならば、こう変えます：</p>
+<pre><code class="language-Perl">my %score = (&quot;failed&quot;=40,&quot;pass&quot;=60,&quot;excellent&quot;=100);</code></pre>
+<p>要素を取り出すには、以下のようにします：</p>
+<pre><code class="language-Perl">print $score{&quot;failed&quot;};</code></pre>
+<p>実行結果は</p>
+<pre><code>40</code></pre>
+<p>となります。取り出した変数はスカラー変数になるので、マークは<code>$</code>になります。</p>
