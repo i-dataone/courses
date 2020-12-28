@@ -11,9 +11,12 @@ const { JSDOM } = jsdom;
 const inputRootPath = "./courses"
 const outputRootPath = "./docs"
 const templatePath = "./template.html"
+const cssPath = "./style.css"
 
 const courseNames = fs.readdirSync(inputRootPath)
 const template = fs.readFileSync(templatePath, "utf-8")
+
+fs.copyFileSync(cssPath, path.join(outputRootPath, "style.css"))
 
 for(let courseName of courseNames){
     const inputCoursePath = path.join(inputRootPath, courseName)
