@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     max-width: 800px;
     margin: 90px auto;
@@ -70,4 +71,78 @@ th {
 td {
   border: solid 1px black;
   padding-left:5px;
+=======
+body {
+    max-width: 800px;
+    margin: 90px auto;
+    font-family: 'Meiryo UI';
+}
+h1 {
+    text-indent: 4px;
+    text-align:center;
+    font-size:48px;
+}
+
+h2 {
+    position: relative;
+    margin: 1em 0.5em;
+    border-bottom: 5px solid gray;
+    padding:8px 0;
+    color: black;
+    font-size: 32px;
+}
+
+h2::after {
+    position: absolute;
+    display: block;
+    content: " ";
+    border-bottom: 5px solid rgb(0, 115, 168);
+    bottom: -5px;
+    width: 3em;
+}
+
+h3 {
+    margin-top: 2em; 
+    margin-left: 0.5em;
+    font-size: 24px;
+    border-left: 0.3em solid rgb(0, 115, 168);
+    padding-left: 0.5em;
+}
+
+p {
+    margin:1em;
+    padding-left:10px;
+}
+
+pre{
+    background-color: #CCCCCC;
+    margin: 1em;
+    color: black;
+    font-family: 'Meiryo UI';
+    padding-left: 10px;
+}
+
+ul, ol{
+    margin: 1em;
+}
+
+
+li{
+    margin: 1em;
+    margin-left:20px;
+}
+
+table{
+    border: solid 1px black;
+    border-collapse: collapse;
+    width:500px;
+    margin:30px 0px 30px 60px;
+}
+th {
+  border: solid 1px black;
+}
+td {
+  border: solid 1px black;
+  padding-left:5px;
+>>>>>>> origin/master
 }
