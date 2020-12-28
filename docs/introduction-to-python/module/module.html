@@ -1,0 +1,312 @@
+<head><title>module</title><link rel="./server/css/index.css"></head>
+<h1 id="モジュール">モジュール</h1>
+<p>Pythonでは、.pyファイルはモジュールと呼ばれます。プログラムを作成するときに、Pythonでビルドされたモジュールやサードパーティのモジュールなど他のモジュールを参照することがよくあります。
+定義するときに組み込み関数と同じ名前を付けないようにしてください。Python組み込み関数のドキュメント: <a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
+<p>モジュールを定義したら、import文を使用してモジュールを導入できます。構文は次になります：</p>
+<pre><code class="language-python">import module1(, module2, ....)</code></pre>
+<p>例として組み込まれたmathモジュールをインポートして自然対数の底と円周率を出力します。</p>
+<pre><code class="language-python">#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import math
+print(math.e, math.pi)</code></pre>
+<p>Output:<code>2.718281828459045 3.141592653589793</code></p>
+<p>1行目のコメントは、システムのデフォルトライブラリの位置です。コンパイラはその位置でモジュールを探します。モジュールのパスを検索する順は：1.現在のディレクトリ、2.シェルパス変数PYTHONPATHの下の各ディレクトリ、3.デフォルトのパス。これにより、.pyファイルをLinuxとMacで直接実行できます。2行目のコメントは.pyファイル自体が標準のUTF-8エンコーディングを使用していることを表します。</p>
+<p>fromは指定された部分をモジュールから今の.pyファイルにインポートできます。<code>*</code>を使用してモジュール全体をインポートすることができます。使いやすいように.pyでモジュールの名前を変更することもできます。</p>
+<pre><code class="language-python">from math import *
+from time import localtime
+import numpy as np</code></pre>
+<p>パッケージからモジュールのインポートも(from..)importを使います。
+例のパッケージの構造は次のとおりです：</p>
+<p>execute.py
+package1
+|-- <strong>init</strong>.py
+|-- calculate.py</p>
+<p>execute.pyにcalculate.pyを使うのは：</p>
+<pre><code class="language-python">import package1.calculate</code></pre>
+<p>モジュールの一つの指定する関数のみを使いたい場合:</p>
+<pre><code class="language-python">from package1.calculate import function</code></pre>
+<h2 id="常用モジュール">常用モジュール</h2>
+<h3 id="組み込みモジュール">組み込みモジュール</h3>
+<h4 id="time、datatimeとcalendar">time、datatimeとcalendar</h4>
+<p>timeモジュールには、3つの主要な時間表現形式があります:timestampは1970年1月1日00:00:00から秒単位で計算されたオフセットを表します；struct_timeは時間タプルで表します；フォーマット時間はフォーマットされた構造は時間をより読みやすくします。カスタム形式と固定形式を含みます。
+例：</p>
+<pre><code class="language-python">import time
+from datetime import datetime
+
+print(time.time())                       #timestampを出力する
+print(time.localtime())                  #現地時間をstructtimeタプルで出力する
+print(datetime.now())                    #現在のdatetime形式の時刻を出力する
+print(datetime(2020,5,28,12,37))         #カスタム時間のdatatimeを出力する
+print(time.strptime
+    (&#39;2020-05-28 12:37:06&#39;, &#39;%Y-%m-%d %X&#39;))
+    #文字列をstructtimeに変換する（datetimeと同様）
+print(time.strftime
+    (&quot;%Y-%m-%d %X&quot;,time.localtime()))
+    #カスタム形式で現地時間(str)を出力する（datetimeと同様）</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">1590637020.0
+time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=37, tm_sec=21, tm_wday=3, tm_yday=149, tm_isdst=0)
+2020-05-28 12:37:21.352358
+2020-05-28 12:37:00
+time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=37, tm_sec=6, tm_wday=3, tm_yday=149, tm_isdst=-1)
+2020-05-28 12:37:21</code></pre>
+<p>struct_timeタプルの<code>tm_wday</code>は曜日を表し（0は日曜日）、<code>tm_yday</code>は年間通算日を表し、<code>tm_isdst</code>は夏時間かどうかを表します。</p>
+<p>時間の加算と減算の操作:</p>
+<pre><code class="language-python">import time
+from datetime import datetime, timedelta
+
+t1 = time.time()
+t2 = t1+10                      #秒単位でタイムスタンプを加算する
+print(time.localtime(t2))
+a = datetime(2020, 5, 31, 12, 40)
+print(a + timedelta(days=1))</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=40, tm_sec=33, tm_wday=3, tm_yday=149, tm_isdst=0)
+2020-06-01 12:40:00</code></pre>
+<p>タイムゾーン変換：</p>
+<p>まず<code>utcnow()</code>で現在の時間また特定の時間を<code>replace()</code>でUTC時刻を取得して任意のタイムゾーンの時刻に変換します。またはpytzサードパーティのライブラリを使用できます。</p>
+<pre><code class="language-python">from datetime import datetime, timedelta,timezone
+from pytz import timezone as tz
+
+setdate=datetime(2020, 5, 1, 12, 0)
+central = tz(&#39;GMT&#39;)
+loc_d = central.localize(setdate)           #変換前の時間とタイムゾーンを設定する
+tokyo_d = loc_d.astimezone(tz(&#39;Asia/Tokyo&#39;))
+#タイムゾーンコードでタイムゾーンを変換する
+print(tokyo_d)
+dt = setdate.replace(tzinfo=timezone.utc)   #UTC時間に変換する
+tokyo_dt = dt.astimezone(timezone(timedelta(hours=9)))　#プラス9時間
+print(tokyo_dt)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">2020-05-01 21:00:00+09:00
+2020-05-01 21:00:00+09:00</code></pre>
+<p>カレンダークラスは月間カレンダーで操作できます。カレンダークラスは月間カレンダーで操作できます。たとえば月間カレンダーを出力します：</p>
+<pre><code class="language-python">import calendar
+
+cal = calendar.month(2020, 6)
+print(type(cal))
+print(cal)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">&lt;class &#39;str&#39;&gt;
+     June 2020
+Mo Tu We Th Fr Sa Su
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30</code></pre>
+<p>実際に出力されるのはフォーマットされた文字列です。
+カレンダークラスを通じて、特定の月の日数範囲、最初の日の曜日、その他の情報を取得できます。たとえば1か月の日をループ処理します：</p>
+<pre><code class="language-python">from datetime import datetime, date, timedelta
+import calendar
+
+def get_month_range(startday=None):
+    _, days_in_month = calendar.monthrange(startday.year, startday.month)
+    endday = startday + timedelta(days=days_in_month)
+    return (startday, endday)
+oneday = timedelta(days=1)
+firstday, lastday = get_month_range(datetime(2020,6,1))
+while firstday &lt; lastday:
+    print(&#39;%d. %d&#39;%(first_day.month,firstday.day))
+    firstday += oneday</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">1. 1
+2. 2
+...
+6. 30</code></pre>
+<p>Pythonの日付と時刻は標準の数学演算子と比較演算子で計算できます。</p>
+<h4 id="json">json</h4>
+<p>jsonモジュールは、JSONデータをエンコードおよびデコードするためのシンプルな方法を提供します。 2つの主な関数は<code>dumps()</code>と<code>loads()</code>で、他のシリアライゼーション関数ライブラリより少ないです。JSON仕様に従うには、リストと辞書型をお勧めします。</p>
+<p>例：</p>
+<pre><code class="language-python">import json
+from collections import OrderedDict
+
+#辞書型データ
+data = {
+    &#39;type&#39;: &#39;fruit&#39;,
+    &#39;name&#39;: &#39;apple&#39;,
+    &#39;amount&#39;: 20
+}
+
+json_str = json.dumps(data)
+datanew = json.loads(json_str)
+print(type(data))
+print(type(json_str))
+ordereddata = json.loads(json_str,object_pairs_hook=OrderedDict)
+print(ordereddata)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">&lt;class &#39;dict&#39;&gt;
+&lt;class &#39;str&#39;&gt;
+OrderedDict([(&#39;type&#39;, &#39;fruit&#39;), (&#39;name&#39;, &#39;apple&#39;), (&#39;amount&#39;, 20)])</code></pre>
+<p>jsonオブジェクトを読み取るときに、他のパラメータを設定してデータを<code>OrderedDict</code>などのタイプに変換できます。</p>
+<p>Pythonとjsonの型変換は以下に対応します。</p>
+<table>
+<thead>
+<tr>
+<th>Python</th>
+<th>JSON</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int, float, Enums</td>
+<td>number</td>
+</tr>
+<tr>
+<td>str</td>
+<td>string</td>
+</tr>
+<tr>
+<td>list, tuple</td>
+<td>array</td>
+</tr>
+<tr>
+<td>dict</td>
+<td>object</td>
+</tr>
+<tr>
+<td>True/False</td>
+<td>true/false</td>
+</tr>
+<tr>
+<td>None</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<h4 id="glob">glob</h4>
+<p>globはUnixスタイルのパス操作の拡張モジュールであり、同じサフィックスファイルなどを操作することに便利です。
+例：</p>
+<pre><code class="language-python">import glob
+
+for fname in glob.glob(&quot;**/*.py&quot;,recursive=True):
+    print(fname)        #現在のパスにあるすべてのpyファイル名
+for fname in glob.glob(&quot;./tmp/*.py&quot;):
+    print(fname)        #現在のパスファイルtmpの下のPyファイル名
+for fname in glob.glob(&quot;./f[!0-9].py&quot;):
+    print(fname)
+    #正規表現範囲ワイルドカード、現在のパスファイルの下のfで始まる数字以外のpyファイル名</code></pre>
+<p>以下は、いくつかのワイルドカードの説明です</p>
+<table>
+<thead>
+<tr>
+<th>ワイルドカード</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>0文字以上をマッチします</td>
+</tr>
+<tr>
+<td>**</td>
+<td>すべてのファイル、ディレクトリ、サブディレクトリ、およびサブディレクトリ内のファイルをマッチします</td>
+</tr>
+<tr>
+<td>?</td>
+<td>一文字をマッチします</td>
+</tr>
+<tr>
+<td>[n,m]</td>
+<td>指定された範囲n~mの文字をマッチします</td>
+</tr>
+<tr>
+<td>[!n,m]</td>
+<td>指定された範囲n~m以外の文字をマッチします</td>
+</tr>
+</tbody></table>
+<p>大きなディレクトリツリーで<code>**</code>を使用すると、多くの時間がかかる可能性があります。</p>
+<h3 id="サードパーティのモジュール">サードパーティのモジュール</h3>
+<h4 id="numpy">numpy</h4>
+<p>NumPy（Numerical Python）は多数の次元配列および行列演算をサポートしています。さらに、配列演算用の多数の数学関数ライブラリも提供しています。Pythonで数学モデル、統計分析また機械学習などを学びたい場合、numpyを理解しておく必要があります。numpyの内容と関数が多すぎるため、例として一般的な関数を紹介します。</p>
+<p>NumPyで一般的に使用される基本配列単位はN次元配列オブジェクトndarrayです。
+例として値を指定する多次元配列を作成して配列とサイズ、次元を出力します。<code>asarray()</code>を使用してPythonコレクション型をndarrayに変換できます。</p>
+<pre><code class="language-python">import numpy as np
+a = np.array([[1,  2],  [3,  4]])
+b= (1, 2, 3, 4)
+print(a)
+print(np.asarray(b))
+print(a.shape)      #配列の次元
+print(a.size)       #要素の数</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[[1 2]
+ [3 4]]
+[1 2 3 4]
+(2, 2)
+4</code></pre>
+<p>指定されたサイズの配列を作成します。</p>
+<pre><code class="language-python">import numpy as np
+x = np.empty([2,2], dtype = int) #サイズとデータタイプを指定します
+print (x)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[[ -969198761 -1933286699]
+ [ 1116264138  1701634856]]</code></pre>
+<p>初期値はランダムに割り当てられることに注意してください。 すべてが0また1の行列を生成したい場合は、<code>zeros()</code>、<code>ones()</code>を使います。指定された範囲の乱数配列を生成する場合は、randomが使えます:</p>
+<pre><code class="language-python">from numpy import random as nr
+y = nr.randint(10, size=(3, 2))</code></pre>
+<p>算術シーケンスを生成する場合は<code>linspace()</code>また<code>arange()</code>を使います。
+例：</p>
+<pre><code class="language-python">a = np.arange(1, 11, 2)         #3番目のパラメータはステップサイズ
+b = np.linspace(1, 10, num=5)   #3番目のパラメータは生成される数</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[1 3 5 7 9]
+[ 1.    3.25  5.5   7.75 10.  ]</code></pre>
+<p>出力によれば、arangeは出力数を丸めました。 シーケンスインデックスとして使用する場合は<code>arange()</code>を使用し、厳密な算術シーケンスを取得する場合は、<code>linspace()</code>を使用してください。</p>
+<p>Pythonの集合タイプとは異なり、numpyの算術演算子は要素レベルに適用されます。</p>
+<pre><code class="language-python">a = np.arange(1,5)
+print(a*2)</code></pre>
+<p>Output:<code>[2 4 6 8]</code></p>
+<p>行列の乗算は<code>@</code>（python3.5以降）演算子または<code>dot()</code>関数を使います。2つの行列を乗算するのは対応する2つの各要素の乗算を表します。行列の形状が異なる場合はエラーが発生します。
+例：</p>
+<pre><code class="language-python">a = np.identity(2)          #単位行列を生成します
+b = np.array([[1, 2], [3, 4]])
+print(a@b)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[[1. 2.]
+ [3. 4.]]</code></pre>
+<p>比較演算子を使用して、指定された条件を満たす要素の配列を取得できます。</p>
+<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+print(x[x &gt; 5])</code></pre>
+<p>さまざまな関数で操作することもできます。行列を操作する関数のほとんどは、axisパラメータで処理したい行列の軸（行と列）を指定できます。</p>
+<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+print(x)
+print(x.sum())
+print(&#39;sums by column:&#39;, x.sum(axis=0))
+print(&#39;sums by row:&#39;, x.sum(axis=1))</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+45
+sums by column: [12 15 18]
+sums by row: [ 6 15 24]</code></pre>
+<p>多次元配列の繰り返しはaxis0に対して行われます。配列の各要素に対して操作を実行する場合は、flatプロパティを使用できます。</p>
+<!--
+「～するには、...を使います。」「...を使うことで、～できます。」
+-->
+<p>例：</p>
+<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+for i in x:
+    print(i)
+for ele in x.flat:
+    print(ele,　end=&quot; &quot;)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[1 2 3]
+[4 5 6]
+[7 8 9]
+1 2 3 4 5 6 7 8 9 </code></pre>
+<p>配列の形状を変更する場合には一般的に<code>reshape()</code>を使います。
+例：</p>
+<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6]])
+x2 = x.reshape(1,-1,order=&#39;C&#39;)      #(行、列、列で値を取る)
+x3 = x.T                            #行列xの転置行列
+print(x2)
+print(x3)
+x.resize((1, 6))
+print(&#39;resized x: &#39;, x)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">[[1 2 3 4 5 6]]
+[[1 4]
+ [2 5]
+ [3 6]]
+resized x:  [[1 2 3 4 5 6]]</code></pre>
+<p><code>reshape()</code>関数は変更された形状の新しい行列を返し、<code>resize()</code>は配列自体を変更します。</p>

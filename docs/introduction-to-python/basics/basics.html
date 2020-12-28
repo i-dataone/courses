@@ -1,0 +1,56 @@
+<head><title>basics</title><link rel="./server/css/index.css"></head>
+<h1 id="pythonの基礎文法">Pythonの基礎文法</h1>
+<p>基礎知識を学ぶ前に、注意すべき点がいくつかあります。HelloWorldコードの例を見ましょう。最初に新しいHelloworld.pyファイルを作ります。テキストエディタとして、Sublime、notepad++などが使えます。統合開発環境にはpycharmを推奨します。</p>
+<p>Helloworld.py中のコード：</p>
+<pre><code class="language-python"># -*- coding: UTF-8 -*-
+hello = True
+if hello:
+    print (&quot;Hello&quot;)
+else:
+    print (&quot;World&quot;)</code></pre>
+<p>この.pyファイルはCMDで<code>python Helloworld.py</code>を実行でき、IDEに導入して実行することもできます。コードの一行目には使用するエンコード方法を宣言します。後はif条件分岐で判断した後、<code>print()</code>関数で
+<code>Hello</code>を出力します。</p>
+<!--
+「両方に実行できます。」
+→意味が分かりませんでした。「両方」とは、何と何のこと？
+-->
+
+<h2 id="インデント">インデント</h2>
+<p>フォーマットについて、他の言語とは異なり、文末にセミコロンをつける必要がなく、コードブロックには中括弧を使用しません。その代わりにインデントでクラス、関数、その他の判断を処理します。
+そのためインデントのルールを厳守する必要があります。たとえばコードを</p>
+<!-- 他の言語とは異なり、文末にセミコロンをつける必要がありません。Pythonのコードブロック..⇒  Pythonは他の言語とは異なり、文末にセミコロンをつける必要がなく、コードブロック -->
+
+<pre><code class="language-python">hello = True
+if hello:
+    print (&quot;Hello&quot;)
+else:
+　print (&quot;World&quot;)</code></pre>
+<p>で実行したら、エラーが発生します。コードブロックで同じインデント（Space、TAB）数を使用する必要があります。行の間隔を明確にするためTABをお勧めします<!--ます⇒します-->。またIDEの自動エラー訂正機能によってある程度でこのようなエラーを回避できます。</p>
+<h2 id="複数行に一つの文を表示">複数行に一つの文を表示</h2>
+<p>文を複数の行に分割する場合、バックスラッシュ<code>\</code>を使います。</p>
+<pre><code class="language-python">helloworld = &quot;hello&quot; + \
+             &quot;world&quot;</code></pre>
+<h2 id="1行に複数のステートメントを表示">1行に複数のステートメントを表示</h2>
+<p>ステートメントをセミコロンで分割します。</p>
+<pre><code class="language-python">x = &quot;hello&quot;; y=&quot;world&quot;; print(x,y)</code></pre>
+<h2 id="引用符">引用符</h2>
+<p>引用符<code>&#39;</code>、二重引用符<code>&quot;</code>、三重引用符<code>&#39;&#39;&#39;</code>,<code>&quot;&quot;&quot;</code>を使用して文字列を表すことができます。<code>&#39;</code>と<code>&quot;</code>の違いはありませんが、三重引用符は複数行で表示できます。</p>
+<pre><code class="language-python">x = &quot;&quot;&quot;hello,
+world&quot;&quot;&quot;</code></pre>
+<h2 id="コメント">コメント</h2>
+<p>コードをコメントしたい場合：</p>
+<ul>
+<li>行コメント：コメントの頭に<code>#</code>をつけます</li>
+</ul>
+<pre><code class="language-python"> hello=&quot;hello&quot; # It&#39;s a hello.</code></pre>
+<p>　または</p>
+<!--"は"追加-->
+
+<pre><code class="language-python"> # It&#39;s a hello.</code></pre>
+<ul>
+<li>複数行コメント:三重引用符を頭と尾につけます。</li>
+</ul>
+<pre><code class="language-python"> &quot;&quot;&quot;
+ hello=&quot;hello&quot;
+ world=&quot;world&quot;
+ &quot;&quot;&quot;</code></pre>

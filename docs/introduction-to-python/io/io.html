@@ -1,0 +1,123 @@
+<head><title>io</title><link rel="./server/css/index.css"></head>
+<h1 id="io処理">I/O処理</h1>
+<p>IOは、コンピューターのInput/Output、つまり入力と出力を指します。</p>
+<h2 id="ファイルの読み書き">ファイルの読み書き</h2>
+<p>Pythonはopen()関数でファイルを開き、ファイルオブジェクトを作成します。そして関連する関数でこのオブジェクトを呼び出して読み取りと書き込みを行います。
+構文は次のようになります：</p>
+<pre><code class="language-python">fileobject = open(name (, mode, buffering))</code></pre>
+<p>nameは読み取りたいファイルのパスを表します。modeはファイルのアクセスモードで、読み取り専用、書き込み、追加などがあります。 デフォルトのモードは読み取り専用です。bufferingはバッファのサイズを指定することです。
+一般的なアクセスモードは次のようになります：</p>
+<table>
+<thead>
+<tr>
+<th>モード</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>t</td>
+<td>テキストモード</td>
+</tr>
+<tr>
+<td>r</td>
+<td>ファイルを読み取り専用で開きます（デフォルト）。ファイルポインタはファイルの先頭に配置されます。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>読み取りおよび書き込み用にバイナリ形式でファイルを開きます。ファイルポインタはファイルの先頭に配置されます。通常は画像などの非テキストファイルに使用されます。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>読み取りと書き込みのためにファイルを開きます。 ファイルが既に存在する場合は、ファイルを開いて最初から編集します。元のコンテンツは削除されます。ファイルが存在しない場合は、新しいファイルを作成します。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>追加するためにファイルを開きます。ファイルが既に存在する場合、ファイルポインターはファイルの末尾に置かれます。新しい内容は既存の内容の後に書き込まれます。ファイルが存在しない場合は新しいファイルを作成します。</td>
+</tr>
+</tbody></table>
+<p>例としてファイルを読み取るreadfile.pyを作成します。ファイルのパスはコマンドラインの入力から取得されます。</p>
+<pre><code class="language-python">import sys
+def openfile():
+    args = sys.argv
+    f = open(args[0], &#39;r&#39;)
+    print(f.read())
+    f.close()
+if __name__==&#39;__main__&#39;:
+    openfile()</code></pre>
+<p>コマンドラインにはこのように入力します。</p>
+<pre><code class="language-shell">python readfile.py /Users/python/test.txt</code></pre>
+<p>sys.argv関数は.pyの後ろのパラメータをリストに入れます。パラメータはスペースで区切られます。この例の場合には<code>/Users/python/test.txt</code>パスのファイルを<code>open()</code>関数で開きます。<code>read()</code>を呼び出して、ファイルの内容全体を読み取ります。内容をメモリに読み取り、strオブジェクトで表します。ファイルオブジェクトはOSのリソースを占有するため、使用後に<code>close()</code>でファイルを閉じる必要があります。
+ファイルの読み書き中にIOエラーが発生する可能性があります。エラーが発生すると次のclose()は呼び出されません。 withはエラーの有無に関係なくファイルを正しく閉じることができます。</p>
+<pre><code class="language-python">import sys
+def openfile():
+    args = sys.argv
+    with open(args[0], &#39;r&#39;) as f:
+        print(f.read())
+if __name__==&#39;__main__&#39;:
+    openfile()</code></pre>
+<p><code>write()</code>を使用してファイルを書き込みます。入力は文字列型でなければなりません。</p>
+<pre><code class="language-python">with open(&#39;/Users/python/test.txt&#39;, &#39;w&#39;) as f:
+    f.write(&#39;Test text&#39;)</code></pre>
+<p>上記の基本的な関数以外には、Pythonのioモジュールは複数のストリーミングインターフェイスを提供します。ファイルの読み書きに限らずメモリに直接読み書きすることもできます。</p>
+<p>例えばメモリ内の文字列を読み書きます：</p>
+<pre><code class="language-python">from io import StringIO
+f = StringIO()
+f.write(&#39;Hello&#39;)</code></pre>
+<p>読み取ります：</p>
+<pre><code class="language-python">from io import StringIO
+f = StringIO(&#39;Hello&#39;)
+s = f.readline()</code></pre>
+<p>バイナリデータを操作する場合はBytesIOを使用します。</p>
+<pre><code class="language-python">from io import BytesIO
+f = BytesIO()
+f.write(&#39;バイナリ&#39;.encode(&#39;utf-8&#39;))</code></pre>
+<p>書き込まれるのはUTF-8エンコードされたバイトです。</p>
+<h2 id="ファイルとディレクトリを操作する">ファイルとディレクトリを操作する</h2>
+<p>ファイルとディレクトリを操作する関数はosモジュールとos.pathモ​​ジュールに配置されます。
+例：</p>
+<pre><code class="language-python">import os
+path = os.path.abspath(&#39;.&#39;)     #現在の.pyファイルの絶対パスを取得します。
+a = os.path.join(path, &#39;testdir&#39;)   #現在のパスとフォルダ名を組み合わせます。
+b = os.path.split(&#39;/Users/python/testdir/test.txt&#39;) #パスを分けます。
+print(a)
+print(b)</code></pre>
+<p>Output:</p>
+<pre><code class="language-python">/Users/python/testdir
+(&#39;/Users/python/testdir&#39;, &#39;test.txt&#39;)</code></pre>
+<p>2つのパスを1つに結合するときは文字列を直接に連結せず、異なるOSのパス区切り文字を正しく処理できる<code>os.path.join()</code>関数を使ってください。<code>split()</code>関数はパスを自動的に2つの部分に分割できます。後者の部分は最後のディレクトリまたはファイル名です。</p>
+<p>他の常用的な方法は次のようになります。</p>
+<table>
+<thead>
+<tr>
+<th>関数</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mkdir()</td>
+<td>ディレクトリを作成します。</td>
+</tr>
+<tr>
+<td>rmdir()</td>
+<td>ディレクトリを削除します。</td>
+</tr>
+<tr>
+<td>rename(before, after)</td>
+<td>ファイル名を変更します。</td>
+</tr>
+<tr>
+<td>remove()</td>
+<td>ファイルを削除します。</td>
+</tr>
+</tbody></table>
+<h2 id="データシリアライズ">データシリアライズ</h2>
+<p>前の節はファイルにテキストの書き込みを説明しました。より複雑なPythonオブジェクトをディスクに書き込む場合、データをシリアル化する必要があります。Pythonはシリアル化のpickleモジュールを提供します。
+例：</p>
+<pre><code class="language-python">import pickle
+list1 = [1, 2, 3]
+pickle.dumps(list1)
+with open(&#39;/Users/python/test.txt&#39;, &#39;wb&#39;) as f:
+    pickle.dump(list1, f)</code></pre>
+<p>オブジェクトをディスクからメモリに読み取る場合は、pklファイルをバイトに読み取り、pickle.loads()関数を使用してオブジェクトを逆シリアル化できます。</p>
+<pre><code class="language-python">with open(&#39;/Users/python/test.txt&#39;, &#39;rb&#39;) as f:
+    d = pickle.load(f)</code></pre>

@@ -1,0 +1,144 @@
+<head><title>file</title><link rel="./server/css/index.css"></head>
+<h1 id="ファイル操作">ファイル操作</h1>
+<p>Perlは、ファイルハンドルという変数を使用してファイルを操作します。
+ファイルハンドルはファイルからデータを読み書きする時に使えます。ファイルハンドルは、I / O接続の名前です。</p>
+<p>Perlには、標準入力、標準出力、および標準エラー出力をそれぞれ表すために、STDIN、STDOUT、およびSTDERRの3つのファイルハンドルが用意されています。</p>
+<h2 id="ファイルハンドル名">ファイルハンドル名</h2>
+<p>ファイルハンドル名を付けるには規則があります。</p>
+<ol>
+<li>変数名にはアルファベット、数字、「＿」が使えます。</li>
+<li>先頭は数字を使えません。</li>
+<li>大文字と小文字が区別されていますが、一般的に全部大文字を付けます。</li>
+</ol>
+<h2 id="ファイルの開閉関数">ファイルの開閉関数</h2>
+<h3 id="open関数">open関数</h3>
+<p><code>open</code>関数の書き方は以下の通りです：</p>
+<pre><code class="language-Perl">open(ファイルハンドル名, &quot;ファイル名&quot;);</code></pre>
+<p>例：</p>
+<pre><code class="language-Perl">open(DATA, &quot;file.txt&quot;);</code></pre>
+<p>ここでは、<code>file.txt</code>というファイルを開いて、<code>DATA</code>というファイルハンドルを設定しています。
+あるいは</p>
+<pre><code class="language-Perl">open(ファイルハンドル名, &quot;モード&quot;, &quot;ファイル名&quot;);</code></pre>
+<p>ファイルは開けない場合は、<code>die</code>関数を使います。書き方は</p>
+<pre><code class="language-Perl">open(ファイルハンドル名, &quot;ファイル名&quot;) or die(処理);</code></pre>
+<p>あるいは</p>
+<pre><code class="language-Perl">open(ファイルハンドル名, &quot;ファイル名&quot;) || die(処理);</code></pre>
+<p>例：</p>
+<pre><code class="language-Perl">open(DATA, &quot;file.txt&quot;) or die(&quot;Error&quot;);</code></pre>
+<h4 id="open関数のモード">open関数のモード</h4>
+<p>モードは以下のように用意されています。</p>
+<ul>
+<li>「&lt;」 /「r」    読み込み専用、ファイル先頭にポイントする</li>
+<li>「&gt;」 /「w」    書き込み専用、ファイル先頭にポイントしてファイルサイズをゼロに切り捨てます。 ファイルが存在しない場合は、作成します。</li>
+<li>「&gt;&gt;」 /「a」　　追加書き込み。ファイル最後をポイントして、ファイルが存在しない場合は、作成します。</li>
+<li>「+&lt;」 /「r+」   読み書き両用、ファイル先頭にポイントする</li>
+<li>「+&gt;」 /「w+」   読み書き両用、ファイル先頭にポイントしてファイルサイズをゼロに切り捨てます。 ファイルが存在しない場合</li>
+<li>「+&gt;&gt;」 /「a+」  読み書き両用、ファイル最後をポイントして、ファイルが存在しない場合は、作成します。</li>
+<li>| command        パイプ出力用</li>
+<li>command |        パイプ入力用</li>
+</ul>
+<h3 id="sysopen関数">Sysopen関数</h3>
+<p>Sysopen関数はopen関数と似ていますが、書き方は違います、Sysopen関数の書き方は以下の通りです：</p>
+<pre><code class="language-Perl">Sysopen(ファイルハンドル名, &quot;ファイル名&quot;,モード) ;</code></pre>
+<p>Sysopenのモードは以下のように用意されています：</p>
+<ul>
+<li>O_RDWR     読み書き両用、ファイル先頭にポイントする</li>
+<li>O_RDONLY   読み込み専用、ファイル先頭にポイントする</li>
+<li>O_WRONLY   書き込み専用、ファイル先頭にポイントしてファイルサイズをゼロに切り捨てます。 ファイルが存在しない場合は、作成します。</li>
+<li>O_CREAT    ファイルを作成する</li>
+<li>O_APPEND   ファイルを追加する</li>
+<li>O_TRUNC    ファイルサイズをゼロに切り捨てます</li>
+<li>O_EXCL　　　ファイルはあれば、エラーを出てきます、このモードはファイルの存在するかどうかをテストできる。</li>
+<li>O_NONBLOCK  ブロックされずに、操作が成功するか、エラーかをすぐに返すことができる。</li>
+</ul>
+<h3 id="close関数">close関数</h3>
+<p>close関数の書き方は以下の通りです：</p>
+<pre><code class="language-Perl">close(ファイルハンドル名);</code></pre>
+<p>例えば：</p>
+<pre><code class="language-Perl">open(DATA, &quot;file.txt&quot;);
+close(DATA);</code></pre>
+<p>ファイルは閉めない場合で、「die」関数を使います。書き方は</p>
+<pre><code class="language-Perl">close(ファイルハンドル名) || die(処理);</code></pre>
+<h2 id="ファイルの読み書き">ファイルの読み書き</h2>
+<h3 id="ファイルの読み込む">ファイルの読み込む</h3>
+<p>まずは「hello.dat」というファイルで以下のようにデータを格納します：</p>
+<pre><code class="language-1">2
+3
+4
+5</code></pre>
+<p>次のコードを実行すると、</p>
+<pre><code class="language-Perl">open(IN,&quot;&lt;&quot;,&quot;hello.dat&quot;)or die(&quot;ファイルは開けません&quot;);
+
+while(&lt;IN&gt;) {
+ print $_;
+}
+
+close(IN);</code></pre>
+<p>結果は</p>
+<pre><code class="language-1">2
+3
+4
+5</code></pre>
+<p>となります。</p>
+<h3 id="ファイルの書き込む">ファイルの書き込む</h3>
+<p>まずは「hello.dat」というファイルに以下のようにデータを格納します：</p>
+<pre><code class="language-1">2
+3
+4
+5</code></pre>
+<p>以下の文を実行すると、</p>
+<pre><code class="language-Perl">open(OUT,&quot;&gt;&quot;,&quot;hello.dat&quot;)or die(&quot;ファイルは開けません&quot;);
+
+print OUT &quot;6\n&quot;;
+print OUT &quot;7\n&quot;;
+
+close(OUT);</code></pre>
+<p>「hello.dat」の内容は</p>
+<pre><code class="language-6">7</code></pre>
+<p>となります。</p>
+<h3 id="追加書き込み">追加書き込み</h3>
+<p>追加書き込みの書き方は：</p>
+<pre><code class="language-Perl">1. open(ファイルハンドル名, &quot;&gt;&gt;&quot;, &quot;ファイル名&quot;);
+2. open(ファイルハンドル名, &quot;&gt;&gt; ファイル名&quot;);</code></pre>
+<p>の二種類があります。引数が二つ以内あれば、2番の書き方で書きます。引数が三つ以上あれば、1番の書き方で書きます。</p>
+<p>まずは「hello.dat」というファイルに以下のようにデータを格納します：</p>
+<pre><code class="language-1">2
+3
+4
+5</code></pre>
+<p>次のコードを実行すると、</p>
+<pre><code class="language-Perl">open(OUT,&quot;&gt;&gt; hello.dat&quot;)or die(&quot;ファイルは開けません&quot;);
+
+print OUT &quot;6\n&quot;;
+print OUT &quot;7\n&quot;;
+
+close(OUT);</code></pre>
+<p>「hello.dat」の内容は</p>
+<pre><code class="language-1">2
+3
+4
+5
+6
+7</code></pre>
+<p>となります。</p>
+<h2 id="ファイルの変更">ファイルの変更</h2>
+<h3 id="ファイル名の変更">ファイル名の変更</h3>
+<p>ファイル名の変更はrename関数を使います。書き方は下記です：</p>
+<pre><code class="language-Perl">rename(&quot;旧名&quot;,&quot;新名&quot;);</code></pre>
+<h3 id="ファイルの削除">ファイルの削除</h3>
+<p>ファイル名の変更はunlink関数を使います。書き方は下記です：</p>
+<pre><code class="language-Perl">unlink(&quot;ファイル名&quot;);</code></pre>
+<h3 id="ファイルのコピー">ファイルのコピー</h3>
+<p>ファイル名の変更はwhile文で実現します。書き方は下記です：</p>
+<pre><code class="language-Perl">while(&lt;コピー元ファイルハンドル&gt;){
+ print コピー先ファイルハンドル $_;
+}</code></pre>
+<p>例：</p>
+<pre><code class="language-Perl">open(FILE1,&quot;&lt;file1.txt&quot;);
+open(FILE2,&quot;&gt;file1.txt&quot;);
+while(&lt;FILE1&gt;){
+ print FILE2 $_;
+}
+close(FILE1);
+close(FILE2);</code></pre>
+<p>これを実行すると、file1.txtの内容はfile2.txtにコピーされます。</p>

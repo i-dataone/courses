@@ -1,0 +1,117 @@
+<head><title>regex</title><link rel="./server/css/index.css"></head>
+<h1 id="正規表現">正規表現</h1>
+<h2 id="定義">定義</h2>
+<p>正規表現は文字列に特定部分の文字列が含まれているかどうかのどうかを確認します。ここでは、、一致した部分の文字列の置換や抽出に使用できる文字列一致パターンについて説明します。
+Perlはマッチ.置換.転換の三つの演算子があります。この三つの演算子は常に結合演算子と一緒に使用します。</p>
+<h2 id="結合演算子">結合演算子</h2>
+<p>結合演算子の書き方は<code>=~</code>です、これはマッチするという意味です。マッチしないなら、書き方は<code>!~</code>です。</p>
+<h3 id="結合演算子の省略">結合演算子の省略</h3>
+<p><code>=~</code>の左側の変数はデフォルト<code>$_</code>です。デフォルトの場合には、左側の変数<code>$_</code>と結合演算子が省略できます。
+例えば：</p>
+<pre><code class="language-Perl">if($_ =~ /a/){
+ print&quot;文字列にaがあります。&quot;;
+}</code></pre>
+<p>を</p>
+<pre><code class="language-Perl">if(/a/){
+ print&quot;文字列にaがあります。&quot;;
+}</code></pre>
+<p>に省略できます。</p>
+<h2 id="マッチ演算子">マッチ演算子</h2>
+<p>前のような、<code>/a/</code>は左側の変数に一致するがどうかを判断したい部分、この部分はパターンと定義されています。<code>//</code>はマッチ演算子と呼ばれて、正式な記述方法は<code>m+区切り文字+パターン+区切り文字</code>です。デフォルトの区切り文字は<code>/</code>です、この場合には「m」が省略できます、<code>//</code>で表示します。区切り文字はその他の場合には「m」が省略出来ません、例えば、<code>m%%</code>で表示することもできます。
+例えば</p>
+<pre><code class="language-Perl">my $moji = &quot;Hello World&quot;;
+
+if($moji =~ /Hello/){
+ print&quot;match&quot;;
+}</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-match"></code></pre>
+<p>となります。</p>
+<h3 id="マッチした部分文字列">マッチした部分文字列</h3>
+<p>マッチした後、三つ特殊変数が存在します：</p>
+<ul>
+<li>$`     マッチした部分の前の文字列</li>
+<li>$&amp;　　　マッチした文字列</li>
+<li>$&#39;　　　マッチした部分の後の文字列</li>
+</ul>
+<p>これらの3つの変数を組み合わせると、元の文字列が得られます。</p>
+<p>例えば：</p>
+<pre><code class="language-Perl">my $moji = &quot;apple is 500yen&quot;;
+$moji =~ m/is/;
+print &quot;マッチした部分の前の文字列: $`\n&quot;;
+print &quot;マッチした文字列: $&amp;\n&quot;;
+print &quot;マッチした部分の後の文字列: $&#39;\n&quot;;</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-マッチした部分の前の文字列:apple">マッチした文字列:is
+マッチした部分の後の文字列:500yen</code></pre>
+<h2 id="置換演算子">置換演算子</h2>
+<p>置換演算子の書き方は</p>
+<pre><code class="language-Perl">s/置換元パターン/置換先パターン/;</code></pre>
+<p>です。</p>
+<p>例えば</p>
+<pre><code class="language-Perl">my $moji = &quot;Hello World&quot;;
+$moji =~ s/World/Japan/;
+
+print &quot;$moji\n&quot;;</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-Hello"></code></pre>
+<p>となります。</p>
+<h2 id="転換演算子">転換演算子</h2>
+<p>転換演算子の書き方は</p>
+<pre><code class="language-Perl">tr/転換元パターン/転換先パターン/;</code></pre>
+<p>例えば</p>
+<pre><code class="language-Perl">my $moji = &quot;hello world&quot;;
+$moji =~ tr/a-z/A-Z/;
+
+print &quot;$moji\n&quot;;</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-HELLO"></code></pre>
+<p>となります。</p>
+<h2 id="修飾子">修飾子</h2>
+<p>修飾子を使ってパターンがマッチする時の動作を変更できます。使い方は<code>演算子の書き方+修飾子</code>です。たとえば、マッチ演算子使う時、もし大小文字を区別したくないなら、書き方は<code>m/パターン/i</code>です、この中の<code>/i</code>は大小文字を区別しないようにする修飾子です。
+常に使う修飾子は以下のいくつかがあります：</p>
+<ul>
+<li>/i         大文字と小文字を区別せずにマッチする</li>
+<li>/x　　　　　パターン中のスペースやコメントを無視する</li>
+<li>/s　　　　　単一行モード</li>
+<li>/m　　　　　複数行モード</li>
+<li>/o　　　　　一回だけコンパイルをする</li>
+<li>/g　　　　　繰り返しマッチを行う</li>
+<li>cg　　　　　繰り返しマッチ失敗したら、もう一度パターンを探る</li>
+<li>/e　　　　　置換後の結果を式として行う</li>
+</ul>
+<p>修飾子を複数扱うこともできます。たとえば<code>m/パターン/ix</code>は同時に<code>/i</code>と<code>/x</code>を扱います、このとき、<code>/i</code>と<code>/x</code>の二種類の修飾子の効能を使っています。</p>
+<h2 id="文字列の位置指定">文字列の位置指定</h2>
+<p>文字列の位置を指定しないなら、マッチしたい文字列はどの位置でもマッチします。文字列の位置を指定してマッチしたい場合もありますので、指定方法は必要です。</p>
+<ul>
+<li>「^」     文字列の先頭</li>
+<li>「$」     文字列の末尾</li>
+</ul>
+<p>これらの2つの方法を組み合わせると、元の文字列がマッチできます。
+書き方は</p>
+<pre><code class="language-Perl">/^パターン/
+/パターン$/
+/^パターン$/</code></pre>
+<p>例えば</p>
+<pre><code class="language-Perl">my $moji1 = &quot;apple is 500yen&quot;;
+my $moji2 = &quot;apple&quot;;
+
+if ($moji1 =~ /^app/){
+  print &quot;文字列の先頭は「app」を含みます。¥n&quot;;
+}else{
+  print&quot;文字列の先頭は「app」を含みません。¥n&quot;
+}
+if ($moji1 =~ /is$/){
+  print &quot;文字列の末尾は「is」を含みます。¥n&quot;;
+}else{
+  print&quot;文字列の末尾は「is」を含みません。¥n&quot;
+}
+if ($moji2 =~ /^apple$/){
+  print &quot;文字列は「apple」です。¥n&quot;;
+}else{
+  print&quot;文字列は「apple」ではありません。¥n&quot;
+}</code></pre>
+<p>と実行すると、結果は</p>
+<pre><code class="language-文字列の先頭は「app」を含みます。">文字列の末尾は「is」を含みません。
+文字列は「apple」です。</code></pre>
+<p>となります。</p>
