@@ -1,5 +1,9 @@
-<head><title>time</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="perl時間操作">Perl時間操作</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>Perl時間操作</title>
+    </head>
+    <body><h1 id="perl時間操作">Perl時間操作</h1>
 <p>Perlで時間を処理する関数は次のとおりです。</p>
 <ol>
 <li><code>time</code>関数：1970年1月1日からの累積秒数を返します</li>
@@ -12,17 +16,17 @@
 <pre><code class="language-Perl">localtime();</code></pre>
 <p>例えば：</p>
 <pre><code class="language-Perl">$day = localtime();
-print&quot;今日は$dayです。\n&quot;</code></pre>
+print"今日は$dayです。\n"</code></pre>
 <p>今日はThu May 21 16:31:08 2020です。</p>
 <h2 id="グリニッジ標準時関数">グリニッジ標準時関数</h2>
 <p>グリニッジ標準時関数とローカルタイム関数は似ていますが、返す時間はグリニッジ標準時です。</p>
 <pre><code class="language-Perl"> gmtime();</code></pre>
 <p>例えば：</p>
 <pre><code class="language-Perl">$local_time = localtime();
-print &quot;ローカル時間は：：$local_time\n&quot;;
+print "ローカル時間は：：$local_time\n";
 
 $gmt_time = gmtime();
-print &quot;グリニッジ時間は：$gmt_time\n&quot;;</code></pre>
+print "グリニッジ時間は：$gmt_time\n";</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-ローカル時間は：May">グリニッジ時間は：May 21 07:39:55 2020</code></pre>
 <p>となります。</p>
@@ -30,7 +34,7 @@ print &quot;グリニッジ時間は：$gmt_time\n&quot;;</code></pre>
 <h2 id="時間フォーマット化">時間フォーマット化</h2>
 <p>関数strftime（）は、時刻を望むフォーマットに変換できます。書き方は：</p>
 <pre><code class="language-Perl"> use POSIX qw(strftime);
- strftime &quot;記号&quot;,時間関数;</code></pre>
+ strftime "記号",時間関数;</code></pre>
 <p>以下がフォーマットされる記号です。</p>
 <ul>
 <li>%a   曜日の略称（ Sun..Sat）</li>
@@ -57,8 +61,9 @@ print &quot;グリニッジ時間は：$gmt_time\n&quot;;</code></pre>
 </ul>
 <p>例えば：</p>
 <pre><code class="language-Perl">use POSIX qw(strftime);
-$date = strftime &quot;%Y-%m-%d %H:%M:%S&quot;, localtime;
-print&quot;ローカル時間は：$date\n&quot;;</code></pre>
+$date = strftime "%Y-%m-%d %H:%M:%S", localtime;
+print"ローカル時間は：$date\n";</code></pre>
 <p>と実行すると、結果は</p>
 <p><code>ローカル時間は：2020-05-21 14:15:11</code></p>
 <p>となります。</p>
+</body></html>

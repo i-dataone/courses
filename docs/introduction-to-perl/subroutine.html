@@ -1,5 +1,9 @@
-<head><title>subroutine</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="サブルーチン">サブルーチン</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>サブルーチン</title>
+    </head>
+    <body><h1 id="サブルーチン">サブルーチン</h1>
 <h2 id="サブルーチンとは">サブルーチンとは</h2>
 <p>Perlサブルーチンはユーザーが定義する関数です。サブルーチンは繰り返されるコードを減らし、プログラムを読みやすくすることができます。</p>
 <h2 id="サブルーチンの定義">サブルーチンの定義</h2>
@@ -15,7 +19,7 @@
 <pre><code class="language-Perl"> &amp;サブルーチン名;</code></pre>
 <p>例：</p>
 <pre><code class="language-Perl">sub Number{
- print&quot;1234567\n&quot;
+ print"1234567\n"
 }
 
 Number();</code></pre>
@@ -40,7 +44,7 @@ sub add{
 }
 # ここで10と20は引数です。
 my $sum = &amp;add(10, 20);
-print &quot;$sum\n&quot;;</code></pre>
+print "$sum\n";</code></pre>
 <p>と実行すると、結果は</p>
 <p><code>30</code></p>
 <p>となります。</p>
@@ -54,7 +58,7 @@ sub add{
   return $a + $b;
 }
 my $sum = &amp;add(10, 20);
-print &quot;$sum\n&quot;;</code></pre>
+print "$sum\n";</code></pre>
 <p>これを実行すると、結果</p>
 <p><code>30</code></p>
 <p>となります。</p>
@@ -68,7 +72,7 @@ sub add{
   $_[0]+$_[1];  
 }
 my $sum = &amp;add(10, 20);
-print &quot;$sum\n&quot;;</code></pre>
+print "$sum\n";</code></pre>
 <p>これを実行すると、結果は</p>
 <p><code>30</code></p>
 <p>となります。</p>
@@ -78,7 +82,7 @@ print &quot;$sum\n&quot;;</code></pre>
 <pre><code class="language-Perl">
 sub List{
    my @list = @_;
-   print &quot;リストは : @list\n&quot;;
+   print "リストは : @list\n";
 }
 $a = 5;
 @b = (1, 2, 3, 4);
@@ -94,12 +98,13 @@ List($a, @b);</code></pre>
    my (%hash) = @_;
    foreach my $key ( keys %hash ){
       my $value = $hash{$key};
-      print &quot;$key : $value\n&quot;;
+      print "$key : $value\n";
    }
 }
-%hash = (&#39;name&#39; = &#39;Tom&#39;, &#39;age&#39; = 18);
+%hash = ('name' = 'Tom', 'age' = 18);
 
 Hash(%hash);</code></pre>
 <p>これを実行すると、結果は</p>
 <pre><code class="language-name">age : 18</code></pre>
 <p>となります。</p>
+</body></html>

@@ -1,5 +1,9 @@
-<head><title>oop</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="オブジェクト指向プログラミング">オブジェクト指向プログラミング</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>オブジェクト指向プログラミング</title>
+    </head>
+    <body><h1 id="オブジェクト指向プログラミング">オブジェクト指向プログラミング</h1>
 <h2 id="クラスとインスタンス">クラスとインスタンス</h2>
 <p>Pythonのクラスはclassキーワードで定義されます。</p>
 <pre><code class="language-python">class classname(object):
@@ -10,7 +14,7 @@
         self.name = name
         self.price = price
     def prt(self):
-        print(&#39;fruit!&#39;)</code></pre>
+        print('fruit!')</code></pre>
 <p>ここにいくつかのクラスの特殊メソッドがあります：</p>
 <table>
 <thead>
@@ -46,10 +50,10 @@
         self.name = name
         self.price = price
 def prt(self):          　#selfが必要
-        print(&#39;fruit!&#39;)
+        print('fruit!')
 fruit.prt = prt</code></pre>
 <p>fruitクラスをインスタンス化：</p>
-<pre><code class="language-python">a = fruit(&#39;apple&#39;,&#39;20&#39;)  #インスタンスを作成します
+<pre><code class="language-python">a = fruit('apple','20')  #インスタンスを作成します
 a.prt()                  #インスタンスの関数を呼び出します。</code></pre>
 <p>クラスfruitの初期化関数では2つの変数が定義されているため、インスタンスのパラメーターが二個未満の場合、エラーが発生します。</p>
 <p>外部コードがクラスの一部のフィールド属性値を変更させたくない場合は、これらのフィールドをプライベート属性に変更できます。Pythonでは、インスタンスの変数名が<code>__</code>で始まる場合はプライベート変数（プライベート）になり、内部からのみアクセスでき、外部からはアクセスできません。
@@ -60,14 +64,14 @@ a.prt()                  #インスタンスの関数を呼び出します。</c
         self.price = price
         self.__innerprice = 10
     def prt(self):
-        print(&#39;fruit!&#39;)
-a = fruit(&#39;apple&#39;,&#39;20&#39;)
+        print('fruit!')
+a = fruit('apple','20')
 print(a.__innerprice)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Traceback (most recent call last):
   File ..., line 9, in &lt;module&gt;
     print(a.__innerprice)
-AttributeError: &#39;fruit&#39; object has no attribute &#39;__innerprice&#39;</code></pre>
+AttributeError: 'fruit' object has no attribute '__innerprice'</code></pre>
 <p>同様に、クラスのプライベート関数も関数名の前に<code>__</code>を追加します。</p>
 <h2 id="継承">継承</h2>
 <p>クラスを定義する時に既存のクラスから継承できます。このクラスは他のクラスのフィールドと関数を継承できます。新しいクラスは「派生クラス」「子クラス」「サブクラス」と呼ばれ、継承されたクラスは「基底クラス」「親クラス」「スーパークラス」などと呼ばれます。
@@ -79,14 +83,14 @@ AttributeError: &#39;fruit&#39; object has no attribute &#39;__innerprice&#39;</
     def __init__(self, price):
         self.price = price
     def prt(self):
-        print(&#39;fruit!&#39;)
+        print('fruit!')
 class apple(fruit):
     def __init__(self, price, color):   #親クラスのコンストラクタを呼び出します
         fruit.__init__(self,price)
         self.color = color              #フィールドを追加します
     def colorprt(self):                 #新しい関数を追加します
-        print(&#39;apple is &#39;+ self.color)
-a = apple(20, &#39;red&#39;)
+        print('apple is '+ self.color)
+a = apple(20, 'red')
 a.prt()                                 #親クラスの関数を呼び出します
 a.colorprt()                            #子クラスの関数を呼び出します</code></pre>
 <p>クラスは複数の親クラスから継承することもできます：</p>
@@ -94,12 +98,12 @@ a.colorprt()                            #子クラスの関数を呼び出しま
     def __init__(self, price):
         self.price = price
     def prt(self):
-        print(&#39;price!&#39;)
+        print('price!')
 class color:
     def __init__(self, color):
         self.color = color
     def prt(self):
-        print(&#39;color!&#39;)
+        print('color!')
 class cherry(price, color):
     pass
 c = cherry(20)
@@ -122,10 +126,10 @@ class banana(price,color):
     def __init__(self, price):
         self.price = price
     def prt(self):
-        print(&#39;fruit!&#39;)
+        print('fruit!')
 class cherry(fruit):
     def prt(self):
-        print(&#39;cherry!&#39;)
+        print('cherry!')
 c = cherry(20)
 c.prt()</code></pre>
 <p>Output:<code>cherry!</code></p>
@@ -135,10 +139,10 @@ c.prt()</code></pre>
 <pre><code class="language-python">class fruit:
     def setamount(self, value):
         if not isinstance(value, int):
-            print(&#39;fail&#39;)
+            print('fail')
             return
         if value&lt;0:
-            print(&#39;fail&#39;)
+            print('fail')
             return
         self.amount=value
     def getamount(self):
@@ -152,9 +156,9 @@ c.prt()</code></pre>
     @amount.setter
     def amount(self,value):
         if not isinstance(value, int):
-            print(&#39;fail&#39;)
+            print('fail')
         if value&lt; 0:
-            print(&#39;fail&#39;)
+            print('fail')
         self._amount=value
 f=fruit4()
 f.amount=-3</code></pre>
@@ -185,11 +189,11 @@ class banana(fruit):
 例：</p>
 <pre><code class="language-python">from enum import Enum
 
-Week = Enum(&#39;Week&#39;,
-             (&#39;Mon&#39;, &#39;Tue&#39;, &#39;Wed&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;, &#39;Sun&#39;))</code></pre>
+Week = Enum('Week',
+             ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))</code></pre>
 <p>イテレータを使用してすべての定数を取得できます。</p>
 <pre><code class="language-python">for name, member in Week.__members__.items():
-    print(name, &#39;,&#39;, member, &#39;,&#39;, member.value)</code></pre>
+    print(name, ',', member, ',', member.value)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Mon , Week.Mon , 1
 Tue , Week.Tue , 2
@@ -205,5 +209,6 @@ Sun , Week.Sun , 7</code></pre>
 class Week(Enum):
     Mon = 1;Tue = 2;Wed = 3;Thu = 4;Fri = 5;Sat = 6;Sun = 7
 
-print(Week.Mon,&#39; &#39;,Week[&#39;Mon&#39;],&#39; &#39;,Week(1),&#39; &#39;,Week.Mon.value) #異なる表示方法</code></pre>
+print(Week.Mon,' ',Week['Mon'],' ',Week(1),' ',Week.Mon.value) #異なる表示方法</code></pre>
 <p>Output:<code>Week.Mon   Week.Mon   Week.Mon   1</code></p>
+</body></html>

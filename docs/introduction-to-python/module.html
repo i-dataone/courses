@@ -1,5 +1,9 @@
-<head><title>module</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="モジュール">モジュール</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>モジュール</title>
+    </head>
+    <body><h1 id="モジュール">モジュール</h1>
 <p>Pythonでは、.pyファイルはモジュールと呼ばれます。プログラムを作成するときに、Pythonでビルドされたモジュールやサードパーティのモジュールなど他のモジュールを参照することがよくあります。
 定義するときに組み込み関数と同じ名前を付けないようにしてください。Python組み込み関数のドキュメント: <a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
 <p>モジュールを定義したら、import文を使用してモジュールを導入できます。構文は次になります：</p>
@@ -39,10 +43,10 @@ print(time.localtime())                  #現地時間をstructtimeタプルで�
 print(datetime.now())                    #現在のdatetime形式の時刻を出力する
 print(datetime(2020,5,28,12,37))         #カスタム時間のdatatimeを出力する
 print(time.strptime
-    (&#39;2020-05-28 12:37:06&#39;, &#39;%Y-%m-%d %X&#39;))
+    ('2020-05-28 12:37:06', '%Y-%m-%d %X'))
     #文字列をstructtimeに変換する（datetimeと同様）
 print(time.strftime
-    (&quot;%Y-%m-%d %X&quot;,time.localtime()))
+    ("%Y-%m-%d %X",time.localtime()))
     #カスタム形式で現地時間(str)を出力する（datetimeと同様）</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">1590637020.0
@@ -70,9 +74,9 @@ print(a + timedelta(days=1))</code></pre>
 from pytz import timezone as tz
 
 setdate=datetime(2020, 5, 1, 12, 0)
-central = tz(&#39;GMT&#39;)
+central = tz('GMT')
 loc_d = central.localize(setdate)           #変換前の時間とタイムゾーンを設定する
-tokyo_d = loc_d.astimezone(tz(&#39;Asia/Tokyo&#39;))
+tokyo_d = loc_d.astimezone(tz('Asia/Tokyo'))
 #タイムゾーンコードでタイムゾーンを変換する
 print(tokyo_d)
 dt = setdate.replace(tzinfo=timezone.utc)   #UTC時間に変換する
@@ -88,7 +92,7 @@ cal = calendar.month(2020, 6)
 print(type(cal))
 print(cal)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class &#39;str&#39;&gt;
+<pre><code class="language-python">&lt;class 'str'&gt;
      June 2020
 Mo Tu We Th Fr Sa Su
  1  2  3  4  5  6  7
@@ -108,7 +112,7 @@ def get_month_range(startday=None):
 oneday = timedelta(days=1)
 firstday, lastday = get_month_range(datetime(2020,6,1))
 while firstday &lt; lastday:
-    print(&#39;%d. %d&#39;%(first_day.month,firstday.day))
+    print('%d. %d'%(first_day.month,firstday.day))
     firstday += oneday</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">1. 1
@@ -124,9 +128,9 @@ from collections import OrderedDict
 
 #辞書型データ
 data = {
-    &#39;type&#39;: &#39;fruit&#39;,
-    &#39;name&#39;: &#39;apple&#39;,
-    &#39;amount&#39;: 20
+    'type': 'fruit',
+    'name': 'apple',
+    'amount': 20
 }
 
 json_str = json.dumps(data)
@@ -136,9 +140,9 @@ print(type(json_str))
 ordereddata = json.loads(json_str,object_pairs_hook=OrderedDict)
 print(ordereddata)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class &#39;dict&#39;&gt;
-&lt;class &#39;str&#39;&gt;
-OrderedDict([(&#39;type&#39;, &#39;fruit&#39;), (&#39;name&#39;, &#39;apple&#39;), (&#39;amount&#39;, 20)])</code></pre>
+<pre><code class="language-python">&lt;class 'dict'&gt;
+&lt;class 'str'&gt;
+OrderedDict([('type', 'fruit'), ('name', 'apple'), ('amount', 20)])</code></pre>
 <p>jsonオブジェクトを読み取るときに、他のパラメータを設定してデータを<code>OrderedDict</code>などのタイプに変換できます。</p>
 <p>Pythonとjsonの型変換は以下に対応します。</p>
 <table>
@@ -178,11 +182,11 @@ OrderedDict([(&#39;type&#39;, &#39;fruit&#39;), (&#39;name&#39;, &#39;apple&#39;
 例：</p>
 <pre><code class="language-python">import glob
 
-for fname in glob.glob(&quot;**/*.py&quot;,recursive=True):
+for fname in glob.glob("**/*.py",recursive=True):
     print(fname)        #現在のパスにあるすべてのpyファイル名
-for fname in glob.glob(&quot;./tmp/*.py&quot;):
+for fname in glob.glob("./tmp/*.py"):
     print(fname)        #現在のパスファイルtmpの下のPyファイル名
-for fname in glob.glob(&quot;./f[!0-9].py&quot;):
+for fname in glob.glob("./f[!0-9].py"):
     print(fname)
     #正規表現範囲ワイルドカード、現在のパスファイルの下のfで始まる数字以外のpyファイル名</code></pre>
 <p>以下は、いくつかのワイルドカードの説明です</p>
@@ -270,8 +274,8 @@ print(x[x &gt; 5])</code></pre>
 <pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
 print(x)
 print(x.sum())
-print(&#39;sums by column:&#39;, x.sum(axis=0))
-print(&#39;sums by row:&#39;, x.sum(axis=1))</code></pre>
+print('sums by column:', x.sum(axis=0))
+print('sums by row:', x.sum(axis=1))</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">[[1 2 3]
  [4 5 6]
@@ -288,7 +292,7 @@ sums by row: [ 6 15 24]</code></pre>
 for i in x:
     print(i)
 for ele in x.flat:
-    print(ele,　end=&quot; &quot;)</code></pre>
+    print(ele,　end=" ")</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">[1 2 3]
 [4 5 6]
@@ -297,12 +301,12 @@ for ele in x.flat:
 <p>配列の形状を変更する場合には一般的に<code>reshape()</code>を使います。
 例：</p>
 <pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6]])
-x2 = x.reshape(1,-1,order=&#39;C&#39;)      #(行、列、列で値を取る)
+x2 = x.reshape(1,-1,order='C')      #(行、列、列で値を取る)
 x3 = x.T                            #行列xの転置行列
 print(x2)
 print(x3)
 x.resize((1, 6))
-print(&#39;resized x: &#39;, x)</code></pre>
+print('resized x: ', x)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">[[1 2 3 4 5 6]]
 [[1 4]
@@ -310,3 +314,4 @@ print(&#39;resized x: &#39;, x)</code></pre>
  [3 6]]
 resized x:  [[1 2 3 4 5 6]]</code></pre>
 <p><code>reshape()</code>関数は変更された形状の新しい行列を返し、<code>resize()</code>は配列自体を変更します。</p>
+</body></html>

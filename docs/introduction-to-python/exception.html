@@ -1,5 +1,9 @@
-<head><title>exception</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="例外処理">例外処理</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>例外処理</title>
+    </head>
+    <body><h1 id="例外処理">例外処理</h1>
 <p>プログラミングでは、構文の書き込みエラーやデータの問題などにより、実行中にさまざまなエラーが発生するかもしれません。 Pythonには、エラー処理に役立つ組み込みの例外処理メカニズムがあります。</p>
 <h2 id="try">try</h2>
 <p>例外キャッチの構文は次のようになります。</p>
@@ -12,48 +16,48 @@ except:
 <pre><code class="language-python">try:
     i = a + 2
     i = i + 1
-    print(&#39;succeed&#39;)
+    print('succeed')
 except NameError as e:
-    print(&#39;except:&#39;, e)
+    print('except:', e)
 except (ValueError、OSError) as e:
-    print(&#39;except:&#39;, e)</code></pre>
-<p>Output:<code>except: name &#39;a&#39; is not defined</code></p>
+    print('except:', e)</code></pre>
+<p>Output:<code>except: name 'a' is not defined</code></p>
 <p>try文には、異なる特定の例外を処理するために複数のexcept句を含めることができます。
 except文ブロックの後にelseを追加できます。エラーが発生しない場合はelse文のブロックを実行します。</p>
 <pre><code class="language-python">try:
     i = 2
     print(i)
 except NameError as e:
-    print(&#39;except:&#39;, e)
+    print('except:', e)
 else:
-    print(&#39;succeed&#39;)</code></pre>
+    print('succeed')</code></pre>
 <p>Pythonの例外は実際にはクラスであり、すべてのエラータイプはBaseExceptionから継承されます。例外タイプがわからない場合にExceptionを使えば十分です。詳細は公式ドキュメントを参照してください<a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">https://docs.python.org/3/library/exceptions.html#exception-hierarchy</a>。複数のexceptを使う場合は異常の範囲が小さいものから大きいものへと配置する必要があります。</p>
 <p>try文にfinallyを最後に追加できます。このブロックは例外が発生したかどうかに関係なく最後に実行されます。</p>
 <pre><code class="language-python">try:
     i = 2
     print(i)
 except NameError as e:
-    print(&#39;except:&#39;, e)
+    print('except:', e)
 else:
-    print(&#39;succeed&#39;)
+    print('succeed')
 finally:
-    print(&#39;finished&#39;)</code></pre>
+    print('finished')</code></pre>
 <h2 id="raise">raise</h2>
 <p>エラーはクラスであるため、エラーをキャプチャするとクラスのインスタンスがキャプチャされます。定義した関数は特定の条件によってエラーを発生させます。
 例：</p>
 <pre><code class="language-python">x = 1
 if x &gt; 0:
-    raise Exception(&#39;Bigger than 0!!!&#39;)</code></pre>
+    raise Exception('Bigger than 0!!!')</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Traceback (most recent call last):
   File ..., line 3, in &lt;module&gt;
-    raise Exception(&#39;Bigger than 0!!!&#39;)
+    raise Exception('Bigger than 0!!!')
 Exception: Bigger than 0!!!</code></pre>
 <p>exceptの中にraiseでエラーのタイプを変換できます。しかしこの二つのタイプはできるだけ包含関係になります。</p>
 <pre><code class="language-python">try:
     10 / 0
 except ZeroDivisionError:
-    raise ValueError(&#39;input error!&#39;)</code></pre>
+    raise ValueError('input error!')</code></pre>
 <h2 id="カスタム例外">カスタム例外</h2>
 <p>新しい例外クラスを作成することにより、独自の例外を作れます。 このクラスは例外クラスから直接または間接的に継承します。</p>
 <p>例：</p>
@@ -67,18 +71,18 @@ if i&lt;0:
     try:
         raise MinusError(i)
     except MinusError as e:
-        print(e.value,&#39; is smaller than 0&#39;)</code></pre>
+        print(e.value,' is smaller than 0')</code></pre>
 <p>MinusErrorクラスは__init__関数をオーバーライドして、valueパラメータを渡すことができます。</p>
 <h2 id="assert">assert</h2>
 <p>assert式は簡単な式を判断するために使用されます。式の条件がfalseの場合、例外を発生させます。
 例：</p>
 <pre><code class="language-python">n = 5
-assert n &lt; 0, &#39;n is not a positive number!&#39;
+assert n &lt; 0, 'n is not a positive number!'
 print(n)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Traceback (most recent call last):
   File ..., line 2, in &lt;module&gt;
-    assert n &lt; 0, &#39;n is not a positive number!&#39;
+    assert n &lt; 0, 'n is not a positive number!'
 AssertionError: n is not a positive number!</code></pre>
 <p><code>-O</code>パラメータを使用して、Pythonインタープリタの起動するときにassertを閉じることができます。</p>
 <h2 id="logging">logging</h2>
@@ -87,7 +91,7 @@ AssertionError: n is not a positive number!</code></pre>
 <pre><code class="language-python">import logging
 logging.basicConfig(level=logging.INFO)
 n = 1
-logging.info(&#39;n = %d&#39; % n)</code></pre>
+logging.info('n = %d' % n)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">INFO:root:n = 1</code></pre>
 <p>二行目はloggingのレベル。<code>debug``info``warning``error``critical</code>の五つのレベルがあります。これらのレベルを実際の状況に応じて選択します。</p>
@@ -95,10 +99,11 @@ logging.info(&#39;n = %d&#39; % n)</code></pre>
 <p>互換性などの問題により、警告メッセージを生成する場合があります。
 例：</p>
 <pre><code class="language-python">import warnings
-filea = &#39;/Users/python/test&#39;
+filea = '/Users/python/test'
 if filea is not None:
-    warnings.warn(&#39;file argument deprecated&#39;, DeprecationWarning)</code></pre>
+    warnings.warn('file argument deprecated', DeprecationWarning)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">....py:4: DeprecationWarning: file argument is deprecated
-  warnings.warn(&#39;file argument is deprecated&#39;, DeprecationWarning)</code></pre>
+  warnings.warn('file argument is deprecated', DeprecationWarning)</code></pre>
 <p>警告を例外に変換する場合はPythonインタープリタの起動するときに<code>-W error</code>を使用します。</p>
+</body></html>

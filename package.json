@@ -1,0 +1,27 @@
+{
+  "name": "courses-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "transform.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-dataone/courses.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i-dataone/courses/issues"
+  },
+  "homepage": "https://github.com/i-dataone/courses#readme",
+  "dependencies": {
+    "jsdom": "^16.4.0",
+    "marked": "^1.2.7"
+  }
+}

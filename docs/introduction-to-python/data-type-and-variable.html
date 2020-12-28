@@ -1,15 +1,19 @@
-<head><title>data-type-and-variable</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="データ型と変数">データ型と変数</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>データ型と変数</title>
+    </head>
+    <body><h1 id="データ型と変数">データ型と変数</h1>
 <h2 id="変数">変数</h2>
 <p>Pythonでは、変数は任意のデータ型の変数名で表されます。変数名は、大文字と小文字の英語、数字、アンダースコア<code>_</code>またそれらの組み合わせです。数字で始めることはできません。等号<code>=</code>は、変数に値を割り当てるために使用されます。</p>
 <pre><code class="language-python">a_1 = 1</code></pre>
 <p>例として整数変数を宣言します。Pythonで新しい変数を宣言するとき、型宣言の必要がありません、コンパイラが自動的に変数値の型を判断します。</p>
 <pre><code class="language-python">a = 1
-b, c = 1, &quot;hello&quot;</code></pre>
+b, c = 1, "hello"</code></pre>
 <p>例の二行目には複数のオブジェクトに対して異なるタイプの変数を同時に指定できます。</p>
 <p>静的型付け言語とは異なり、動的型付け言語は変数宣言の後でも変数のデータ型を変更できます。</p>
 <pre><code class="language-python">a = 123     #整数
-a = &#39;Hello&#39; #文字列
+a = 'Hello' #文字列
 print(a)</code></pre>
 <p>Output: <code>Hello</code></p>
 <h2 id="標準データ型">標準データ型</h2>
@@ -27,17 +31,17 @@ c=1.23e+5   # 科学表記の123000
 d=2.25j     # 複素数</code></pre>
 <p>Pythonは実部と虚部で構成される複素数型を処理できます。<code>a+bj</code>または<code>complex(a,b)</code>として表します。実部aと虚部bの両方が浮動小数点型です</p>
 <h3 id="文字列型string">文字列型String</h3>
-<p>文字列は一重引用符<code>&#39;</code>または二重引用符<code>&quot;</code>で囲まれた任意のテキストです。文字列の中に引用符を含める場合、エスケープ文字<code>\</code>を使います。
-<code>&quot;You\&#39;re learning python.&quot;</code>
-<code>You&#39;re learning python</code>が出力されます。</p>
+<p>文字列は一重引用符<code>'</code>または二重引用符<code>"</code>で囲まれた任意のテキストです。文字列の中に引用符を含める場合、エスケープ文字<code>\</code>を使います。
+<code>"You\'re learning python."</code>
+<code>You're learning python</code>が出力されます。</p>
 <p>それに、Pythonではrを使ってエスケープせずに直接に文字列を表すこともできます。
 例えば</p>
-<pre><code class="language-python">print(&#39;\\\t\\&#39;)</code></pre>
+<pre><code class="language-python">print('\\\t\\')</code></pre>
 <p>は<code>\    \</code>を出力し、</p>
-<pre><code class="language-python">print(r&#39;\\\t\\&#39;)</code></pre>
+<pre><code class="language-python">print(r'\\\t\\')</code></pre>
 <p>は<code>\\\t\\</code>を出力します。</p>
 <p>Pythonの文字列型はユニコード型のため、文字の16進エンコーディングがわかっている場合、<code>\u</code>をつけて文字を出力できます</p>
-<pre><code class="language-python">print(&quot;こちらは\u65e5\u672c&quot;)</code></pre>
+<pre><code class="language-python">print("こちらは\u65e5\u672c")</code></pre>
 <p>Output: <code>こちらは日本</code></p>
 <h4 id="スライス操作">スライス操作</h4>
 <p>Python文字列型の便利な点の一つは、文字列インデックスに従って直接<!--"に"削除-->スライス操作できることです：</p>
@@ -55,7 +59,7 @@ d=2.25j     # 複素数</code></pre>
 <p>部分文字列を取得したい場合は、[開始位置：終了位置]を使用して、対応する文字列を切り取り<!--取りきり⇒切り取り-->できます。ここで、インデックスは0から始まり、左からには正数を使い、右からには負の数を使用します。 マークは、開始または終了を示すために空にすることができます。</p>
 <p>[Head：tail]取得された部分文字列には、開始位置の文字が含まれますが、終了位置の文字は含まれません。</p>
 <p>例：</p>
-<pre><code class="language-python">s = &#39;Hello,world!!!&#39;
+<pre><code class="language-python">s = 'Hello,world!!!'
 print(s[0:5])</code></pre>
 <p>Output: <code>Hello</code></p>
 <pre><code class="language-python">print(s[-3:])</code></pre>
@@ -70,7 +74,7 @@ print(s[0:5])</code></pre>
 <ul>
 <li>文字列に多変数を代入して出力するには<code>%</code>を使います。例：</li>
 </ul>
-<pre><code class="language-python">print(&#39;%s, you are in the Class %d.&#39; % (&#39;Alice&#39;, 2))</code></pre>
+<pre><code class="language-python">print('%s, you are in the Class %d.' % ('Alice', 2))</code></pre>
 <p>Output: <code>Alice, you are in the Class 2.</code></p>
 <p>%sは文字列で置き換えることを意味し、%dは整数で置き換えることを意味します。順序は正確に対応します。変数が一つしかない場合は括弧を省略できます。</p>
 <p>一般的なプレースホルダーは</p>
@@ -108,8 +112,8 @@ print(s[0:5])</code></pre>
 <li>もう一つの方法は文字列の<code>format</code>メソッドを使用することです。</li>
 </ul>
 <p>例：</p>
-<pre><code class="language-python">print(&#39;Hello, {0}\&#39;s number is {1:04d}.&#39;.format(&#39;Bob&#39;, 2))</code></pre>
-<p>Output:<code>Hello, Bob&#39;s number is 0002.</code></p>
+<pre><code class="language-python">print('Hello, {0}\'s number is {1:04d}.'.format('Bob', 2))</code></pre>
+<p>Output:<code>Hello, Bob's number is 0002.</code></p>
 <h3 id="ブール型boolean">ブール型Boolean</h3>
 <p>ブール値には、TrueとFalseの2つの値があります。and、or、notで論理演算を操作できます。</p>
 <pre><code class="language-python">&gt;&gt;&gt; True and False
@@ -127,7 +131,7 @@ True</code></pre>
 <li><p>インデックスを使用してリスト内の要素を操作します。</p>
 </li>
 </ul>
-<pre><code class="language-python">list1 = [&#39;Apple&#39;, &#39;Banana&#39;, 1, 2]
+<pre><code class="language-python">list1 = ['Apple', 'Banana', 1, 2]
 print(list1[0], list1[-1])
 </code></pre>
 <p>Output: <code>Apple 2</code></p>
@@ -136,7 +140,7 @@ print(list1[0], list1[-1])
 </ul>
 <p>リストはネストできます。
 例：</p>
-<pre><code class="language-python">list1 = [&#39;Apple&#39;, &#39;Banana&#39;, [1, 2], 3]
+<pre><code class="language-python">list1 = ['Apple', 'Banana', [1, 2], 3]
 print(list1[2][0])
 </code></pre>
 <p>Output: <code>1</code></p>
@@ -146,14 +150,14 @@ print(list1[2][0])
 <li><p>pop(index)、del()で指定された位置の要素を削除できます。</p>
 </li>
 </ul>
-<pre><code class="language-python">list1 = [&#39;Apple&#39;, &#39;Banana&#39;, 1, 2]
+<pre><code class="language-python">list1 = ['Apple', 'Banana', 1, 2]
 del(list1[2])
 list1.pop(2)
 print(list1)</code></pre>
-<p>Output: <code>[&#39;Apple&#39;, &#39;Banana&#39;]</code></p>
+<p>Output: <code>['Apple', 'Banana']</code></p>
 <h3 id="タプル型tuple">タプル型Tuple</h3>
 <p>タプルはリストに非常に似ていますが、タプルの方は不変のため、いったん初期化されると、変更できません。</p>
-<pre><code class="language-python">tuple1 = (&#39;Apple&#39;, &#39;Banana&#39;, &#39;melon&#39;)
+<pre><code class="language-python">tuple1 = ('Apple', 'Banana', 'melon')
 print(tuple1[0])
 </code></pre>
 <p>Output: <code>Apple</code></p>
@@ -167,11 +171,11 @@ print(tuple1[0])
 <p>Pythonにはディクショナリdict集合型が組み込まれています。他の言語ではmapとも呼ばれます。key-valueでストレージを使用し、検索速度がはやいです。
 キーはクエリのインデックスとして使用されるため、ユニークにする必要があります。キーは不変でなければならないので、数値、文字列、またはタプルをできますが、リストは使用できません（リストの可変の属性）。</p>
 <p>以下はdictの例です：</p>
-<pre><code class="language-python">dict1 = {&#39;Apple&#39;: 1, &#39;Banana&#39;: 2, &#39;Cherry&#39;: 3}
-print(dict1[&#39;Apple&#39;])
+<pre><code class="language-python">dict1 = {'Apple': 1, 'Banana': 2, 'Cherry': 3}
+print(dict1['Apple'])
 
-dict1[&#39;Apple&#39;] = 5    # 更新
-dict1[&#39;Durian&#39;] = 4   # 追加</code></pre>
+dict1['Apple'] = 5    # 更新
+dict1['Durian'] = 4   # 追加</code></pre>
 <p>Output: <code>1</code></p>
 <p><code>get(key)</code>関数でも<!--も⇒でも-->キーの値を得られます。</p>
 <h3 id="集合型set">集合型Set</h3>
@@ -187,7 +191,7 @@ print(set1)</code></pre>
 <pre><code class="language-python">Traceback (most recent call last):
   File ..., line 1, in &lt;module&gt;
     s=set([[1,2,],1,2,3])
-TypeError: unhashable type: &#39;list&#39;</code></pre>
+TypeError: unhashable type: 'list'</code></pre>
 <h2 id="データ型変換">データ型変換</h2>
 <p>Pythonにはデータ型を自動的に変換する関数があります。一般的な方法は以下のようになります。</p>
 <table>
@@ -227,26 +231,26 @@ TypeError: unhashable type: &#39;list&#39;</code></pre>
 </tr>
 </tbody></table>
 <p><code>input()</code>でキーボードから入力したパラメータは文字列型です。パラメータを計算する場合は、パラメータを数値型に変換する必要があります。文字列は<code>int()</code>関数で整数型に変換できます。</p>
-<pre><code class="language-python">input1 = &#39;1&#39;
-input2 = &#39;2&#39;
+<pre><code class="language-python">input1 = '1'
+input2 = '2'
 print(type(input1))
 print(int(input1)+int(input2))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class &#39;str&#39;&gt;
+<pre><code class="language-python">&lt;class 'str'&gt;
 3</code></pre>
 <p><code>eval()</code>を使う場合：</p>
-<pre><code class="language-python">input1 = &#39;1&#39;
-input2 = &#39;2&#39;
-print(eval(input1+&quot;+&quot;+input2))
+<pre><code class="language-python">input1 = '1'
+input2 = '2'
+print(eval(input1+"+"+input2))
 print(eval(input1+input2))</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">3
 12</code></pre>
 <p>文字列の本質は文字のリストであるため、文字列を直接に文字リストに変換することもできます。</p>
-<pre><code class="language-python">str1 = &#39;Hello&#39;
+<pre><code class="language-python">str1 = 'Hello'
 print(list(str1))</code></pre>
 <p>Output:
-<code>[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]</code></p>
+<code>['H', 'e', 'l', 'l', 'o']</code></p>
 <h2 id="一般的な演算子">一般的な演算子</h2>
 <p>他のプログラミング言語と同じく、Pythonにはさまざまな演算子があります。</p>
 <h3 id="算術演算子">算術演算子</h3>
@@ -323,7 +327,7 @@ print(list1+list2)  #list1とlist2の組み合わせのリストを出力する<
 <pre><code class="language-python">list1 = [1, 2, 3]
 list2 = [1, 2, 3]
 list3 = [1, 2, 2, 2]
-list4 = [1, 2, &#39;Hi&#39;]
+list4 = [1, 2, 'Hi']
 print(list1==list2)
 print(list1&gt;list3)
 print(list1&gt;list4)</code></pre>
@@ -333,7 +337,7 @@ True
 Traceback (most recent call last):
   File ..., line 7, in &lt;module&gt;
     print(list1&gt;list4)
-TypeError: &#39;&gt;&#39; not supported between instances of &#39;int&#39; and &#39;str&#39;</code></pre>
+TypeError: '&gt;' not supported between instances of 'int' and 'str'</code></pre>
 <p>一個目のprint()関数はlist1とlist2の要素が等しいかどうかを判別します。等しいのでTureを返します；</p>
 <p>二個目のprint()関数はlist1がlist2より大きいかどうかを判別します。評価するのはリストのサイズでも合計の大きさでもなく、リストの要素を一個ずつ比較します。二つの要素が等しくない関係を判断すると、結果をすぐに返します；</p>
 <p>三個目のprint()関数はlist1がlist4より大きいかどうかを判別します。3番目の要素のタイプが異なるため、エラーが出力されました。
@@ -353,7 +357,7 @@ TypeError: &#39;&gt;&#39; not supported between instances of &#39;int&#39; and &
 <td>AND演算子：2つの対応するビットが1の場合、ビットの結果は1、それ以外の場合は0</td>
 </tr>
 <tr>
-<td>&#124;</td>
+<td>|</td>
 <td>OR演算子：2つの対応するビットの1つが1である限り、結果ビットは1です。それ以外の場合は0</td>
 </tr>
 <tr>
@@ -457,3 +461,4 @@ print(a is not c)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">True
 True</code></pre>
+</body></html>

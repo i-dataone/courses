@@ -1,5 +1,9 @@
-<head><title>io</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="io処理">I/O処理</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>I/O処理</title>
+    </head>
+    <body><h1 id="io処理">I/O処理</h1>
 <p>IOは、コンピューターのInput/Output、つまり入力と出力を指します。</p>
 <h2 id="ファイルの読み書き">ファイルの読み書き</h2>
 <p>Pythonはopen()関数でファイルを開き、ファイルオブジェクトを作成します。そして関連する関数でこのオブジェクトを呼び出して読み取りと書き込みを行います。
@@ -39,10 +43,10 @@
 <pre><code class="language-python">import sys
 def openfile():
     args = sys.argv
-    f = open(args[0], &#39;r&#39;)
+    f = open(args[0], 'r')
     print(f.read())
     f.close()
-if __name__==&#39;__main__&#39;:
+if __name__=='__main__':
     openfile()</code></pre>
 <p>コマンドラインにはこのように入力します。</p>
 <pre><code class="language-shell">python readfile.py /Users/python/test.txt</code></pre>
@@ -51,39 +55,39 @@ if __name__==&#39;__main__&#39;:
 <pre><code class="language-python">import sys
 def openfile():
     args = sys.argv
-    with open(args[0], &#39;r&#39;) as f:
+    with open(args[0], 'r') as f:
         print(f.read())
-if __name__==&#39;__main__&#39;:
+if __name__=='__main__':
     openfile()</code></pre>
 <p><code>write()</code>を使用してファイルを書き込みます。入力は文字列型でなければなりません。</p>
-<pre><code class="language-python">with open(&#39;/Users/python/test.txt&#39;, &#39;w&#39;) as f:
-    f.write(&#39;Test text&#39;)</code></pre>
+<pre><code class="language-python">with open('/Users/python/test.txt', 'w') as f:
+    f.write('Test text')</code></pre>
 <p>上記の基本的な関数以外には、Pythonのioモジュールは複数のストリーミングインターフェイスを提供します。ファイルの読み書きに限らずメモリに直接読み書きすることもできます。</p>
 <p>例えばメモリ内の文字列を読み書きます：</p>
 <pre><code class="language-python">from io import StringIO
 f = StringIO()
-f.write(&#39;Hello&#39;)</code></pre>
+f.write('Hello')</code></pre>
 <p>読み取ります：</p>
 <pre><code class="language-python">from io import StringIO
-f = StringIO(&#39;Hello&#39;)
+f = StringIO('Hello')
 s = f.readline()</code></pre>
 <p>バイナリデータを操作する場合はBytesIOを使用します。</p>
 <pre><code class="language-python">from io import BytesIO
 f = BytesIO()
-f.write(&#39;バイナリ&#39;.encode(&#39;utf-8&#39;))</code></pre>
+f.write('バイナリ'.encode('utf-8'))</code></pre>
 <p>書き込まれるのはUTF-8エンコードされたバイトです。</p>
 <h2 id="ファイルとディレクトリを操作する">ファイルとディレクトリを操作する</h2>
 <p>ファイルとディレクトリを操作する関数はosモジュールとos.pathモ​​ジュールに配置されます。
 例：</p>
 <pre><code class="language-python">import os
-path = os.path.abspath(&#39;.&#39;)     #現在の.pyファイルの絶対パスを取得します。
-a = os.path.join(path, &#39;testdir&#39;)   #現在のパスとフォルダ名を組み合わせます。
-b = os.path.split(&#39;/Users/python/testdir/test.txt&#39;) #パスを分けます。
+path = os.path.abspath('.')     #現在の.pyファイルの絶対パスを取得します。
+a = os.path.join(path, 'testdir')   #現在のパスとフォルダ名を組み合わせます。
+b = os.path.split('/Users/python/testdir/test.txt') #パスを分けます。
 print(a)
 print(b)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">/Users/python/testdir
-(&#39;/Users/python/testdir&#39;, &#39;test.txt&#39;)</code></pre>
+('/Users/python/testdir', 'test.txt')</code></pre>
 <p>2つのパスを1つに結合するときは文字列を直接に連結せず、異なるOSのパス区切り文字を正しく処理できる<code>os.path.join()</code>関数を使ってください。<code>split()</code>関数はパスを自動的に2つの部分に分割できます。後者の部分は最後のディレクトリまたはファイル名です。</p>
 <p>他の常用的な方法は次のようになります。</p>
 <table>
@@ -116,8 +120,9 @@ print(b)</code></pre>
 <pre><code class="language-python">import pickle
 list1 = [1, 2, 3]
 pickle.dumps(list1)
-with open(&#39;/Users/python/test.txt&#39;, &#39;wb&#39;) as f:
+with open('/Users/python/test.txt', 'wb') as f:
     pickle.dump(list1, f)</code></pre>
 <p>オブジェクトをディスクからメモリに読み取る場合は、pklファイルをバイトに読み取り、pickle.loads()関数を使用してオブジェクトを逆シリアル化できます。</p>
-<pre><code class="language-python">with open(&#39;/Users/python/test.txt&#39;, &#39;rb&#39;) as f:
+<pre><code class="language-python">with open('/Users/python/test.txt', 'rb') as f:
     d = pickle.load(f)</code></pre>
+</body></html>

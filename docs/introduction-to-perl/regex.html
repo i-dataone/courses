@@ -1,5 +1,9 @@
-<head><title>regex</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="正規表現">正規表現</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>正規表現</title>
+    </head>
+    <body><h1 id="正規表現">正規表現</h1>
 <h2 id="定義">定義</h2>
 <p>正規表現は文字列に特定部分の文字列が含まれているかどうかのどうかを確認します。ここでは、、一致した部分の文字列の置換や抽出に使用できる文字列一致パターンについて説明します。
 Perlはマッチ.置換.転換の三つの演算子があります。この三つの演算子は常に結合演算子と一緒に使用します。</p>
@@ -9,20 +13,20 @@ Perlはマッチ.置換.転換の三つの演算子があります。この三�
 <p><code>=~</code>の左側の変数はデフォルト<code>$_</code>です。デフォルトの場合には、左側の変数<code>$_</code>と結合演算子が省略できます。
 例えば：</p>
 <pre><code class="language-Perl">if($_ =~ /a/){
- print&quot;文字列にaがあります。&quot;;
+ print"文字列にaがあります。";
 }</code></pre>
 <p>を</p>
 <pre><code class="language-Perl">if(/a/){
- print&quot;文字列にaがあります。&quot;;
+ print"文字列にaがあります。";
 }</code></pre>
 <p>に省略できます。</p>
 <h2 id="マッチ演算子">マッチ演算子</h2>
 <p>前のような、<code>/a/</code>は左側の変数に一致するがどうかを判断したい部分、この部分はパターンと定義されています。<code>//</code>はマッチ演算子と呼ばれて、正式な記述方法は<code>m+区切り文字+パターン+区切り文字</code>です。デフォルトの区切り文字は<code>/</code>です、この場合には「m」が省略できます、<code>//</code>で表示します。区切り文字はその他の場合には「m」が省略出来ません、例えば、<code>m%%</code>で表示することもできます。
 例えば</p>
-<pre><code class="language-Perl">my $moji = &quot;Hello World&quot;;
+<pre><code class="language-Perl">my $moji = "Hello World";
 
 if($moji =~ /Hello/){
- print&quot;match&quot;;
+ print"match";
 }</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-match"></code></pre>
@@ -32,15 +36,15 @@ if($moji =~ /Hello/){
 <ul>
 <li>$`     マッチした部分の前の文字列</li>
 <li>$&amp;　　　マッチした文字列</li>
-<li>$&#39;　　　マッチした部分の後の文字列</li>
+<li>$'　　　マッチした部分の後の文字列</li>
 </ul>
 <p>これらの3つの変数を組み合わせると、元の文字列が得られます。</p>
 <p>例えば：</p>
-<pre><code class="language-Perl">my $moji = &quot;apple is 500yen&quot;;
+<pre><code class="language-Perl">my $moji = "apple is 500yen";
 $moji =~ m/is/;
-print &quot;マッチした部分の前の文字列: $`\n&quot;;
-print &quot;マッチした文字列: $&amp;\n&quot;;
-print &quot;マッチした部分の後の文字列: $&#39;\n&quot;;</code></pre>
+print "マッチした部分の前の文字列: $`\n";
+print "マッチした文字列: $&amp;\n";
+print "マッチした部分の後の文字列: $'\n";</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-マッチした部分の前の文字列:apple">マッチした文字列:is
 マッチした部分の後の文字列:500yen</code></pre>
@@ -49,10 +53,10 @@ print &quot;マッチした部分の後の文字列: $&#39;\n&quot;;</code></pre
 <pre><code class="language-Perl">s/置換元パターン/置換先パターン/;</code></pre>
 <p>です。</p>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji = &quot;Hello World&quot;;
+<pre><code class="language-Perl">my $moji = "Hello World";
 $moji =~ s/World/Japan/;
 
-print &quot;$moji\n&quot;;</code></pre>
+print "$moji\n";</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-Hello"></code></pre>
 <p>となります。</p>
@@ -60,10 +64,10 @@ print &quot;$moji\n&quot;;</code></pre>
 <p>転換演算子の書き方は</p>
 <pre><code class="language-Perl">tr/転換元パターン/転換先パターン/;</code></pre>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji = &quot;hello world&quot;;
+<pre><code class="language-Perl">my $moji = "hello world";
 $moji =~ tr/a-z/A-Z/;
 
-print &quot;$moji\n&quot;;</code></pre>
+print "$moji\n";</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-HELLO"></code></pre>
 <p>となります。</p>
@@ -93,25 +97,26 @@ print &quot;$moji\n&quot;;</code></pre>
 /パターン$/
 /^パターン$/</code></pre>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji1 = &quot;apple is 500yen&quot;;
-my $moji2 = &quot;apple&quot;;
+<pre><code class="language-Perl">my $moji1 = "apple is 500yen";
+my $moji2 = "apple";
 
 if ($moji1 =~ /^app/){
-  print &quot;文字列の先頭は「app」を含みます。¥n&quot;;
+  print "文字列の先頭は「app」を含みます。¥n";
 }else{
-  print&quot;文字列の先頭は「app」を含みません。¥n&quot;
+  print"文字列の先頭は「app」を含みません。¥n"
 }
 if ($moji1 =~ /is$/){
-  print &quot;文字列の末尾は「is」を含みます。¥n&quot;;
+  print "文字列の末尾は「is」を含みます。¥n";
 }else{
-  print&quot;文字列の末尾は「is」を含みません。¥n&quot;
+  print"文字列の末尾は「is」を含みません。¥n"
 }
 if ($moji2 =~ /^apple$/){
-  print &quot;文字列は「apple」です。¥n&quot;;
+  print "文字列は「apple」です。¥n";
 }else{
-  print&quot;文字列は「apple」ではありません。¥n&quot;
+  print"文字列は「apple」ではありません。¥n"
 }</code></pre>
 <p>と実行すると、結果は</p>
 <pre><code class="language-文字列の先頭は「app」を含みます。">文字列の末尾は「is」を含みません。
 文字列は「apple」です。</code></pre>
 <p>となります。</p>
+</body></html>

@@ -1,5 +1,9 @@
-<head><title>fileServer</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="静的ファイルサーバ">静的ファイルサーバ</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>静的ファイルサーバ</title>
+    </head>
+    <body><h1 id="静的ファイルサーバ">静的ファイルサーバ</h1>
 <p>フレームワークを利用せず、Node.jsだけで静的ファイルサーバを作成する方法を紹介していきます。</p>
 <h2 id="ファイルの作成">ファイルの作成</h2>
 <p>最初に、「app.js」というファイルを作成してください。作成後、コードを追加して行きます。</p>
@@ -11,9 +15,9 @@
 | http | HTTPを介してデータを転送させるモジュール |
 | fs | ファイルシステムの操作するモジュール |
 | path | ディレクトリとファイルパスを操作するモジュール |</p>
-<pre><code class="language-JavaScript">const http = require(&#39;http&#39;)
-const fs = require(&#39;fs&#39;)
-const path = require(&#39;path&#39;)</code></pre>
+<pre><code class="language-JavaScript">const http = require('http')
+const fs = require('fs')
+const path = require('path')</code></pre>
 <h2 id="サーバの構築">サーバの構築</h2>
 <p>サーバを作成してリッスンポートも設定していきます。
 今回のリッスンポートは、3000番に設定しておきます。</p>
@@ -35,9 +39,9 @@ const path = require(&#39;path&#39;)</code></pre>
 <h2 id="ファイルパスの設定">ファイルパスの設定</h2>
 <p>ファイルパスを設定するコードを書いていきます。
 ファイル名がないときは、デフォルト名を設定するようにします。コードは、サーバ構築した中に記載していきます。</p>
-<pre><code class="language-JavaScript">let filePath = &#39;.&#39; + req.url;
-if (filePath == &#39;./&#39;) {
-    filePath = &#39;./index.html&#39;
+<pre><code class="language-JavaScript">let filePath = '.' + req.url;
+if (filePath == './') {
+    filePath = './index.html'
 }</code></pre>
 <p>sample.orgというURLを要求したときには、sample.org/index.htmlになります。</p>
 <h2 id="ファイルの拡張子の確認">ファイルの拡張子の確認</h2>
@@ -60,23 +64,23 @@ if (filePath == &#39;./&#39;) {
 </tbody></table>
 <pre><code class="language-JavaScript">let extname = String(path.extname(filePath)).toLowerCase();
 let types = {
-    &#39;.html&#39;: &#39;text/html&#39;,
-    &#39;.js&#39;: &#39;text/javascript&#39;,
-    &#39;.css&#39;: &#39;text/css&#39;,
-    &#39;.json&#39;: &#39;application/json&#39;,
-    &#39;.png&#39;: &#39;image/png&#39;,
-    &#39;.jpg&#39;: &#39;image/jpg&#39;,
-    &#39;.gif&#39;: &#39;image/gif&#39;,
-    &#39;.wav&#39;: &#39;audio/wav&#39;,
-    &#39;.mp4&#39;: &#39;video/mp4&#39;,
-    &#39;.woff&#39;: &#39;application/font-woff&#39;,
-    &#39;.ttf&#39;: &#39;application/font-ttf&#39;,
-    &#39;.eot&#39;: &#39;application/vnd.ms-fontobject&#39;,
-    &#39;.otf&#39;: &#39;application/font-otf&#39;,
-    &#39;.svg&#39;: &#39;application/image/svg+xml&#39;
+    '.html': 'text/html',
+    '.js': 'text/javascript',
+    '.css': 'text/css',
+    '.json': 'application/json',
+    '.png': 'image/png',
+    '.jpg': 'image/jpg',
+    '.gif': 'image/gif',
+    '.wav': 'audio/wav',
+    '.mp4': 'video/mp4',
+    '.woff': 'application/font-woff',
+    '.ttf': 'application/font-ttf',
+    '.eot': 'application/vnd.ms-fontobject',
+    '.otf': 'application/font-otf',
+    '.svg': 'application/image/svg+xml'
 };
 
-let contentType = types[extname] || &#39;application&#39;;</code></pre>
+let contentType = types[extname] || 'application';</code></pre>
 <h2 id="ファイルの読み込み">ファイルの読み込み</h2>
 <table>
 <thead>
@@ -101,70 +105,71 @@ let contentType = types[extname] || &#39;application&#39;;</code></pre>
 })</code></pre>
 <h2 id="エラー処理">エラー処理</h2>
 <p>存在しないファイルが要求されたとき(ENOENT)に、エラーコードを返すページを返す処理を書いていきます。</p>
-<pre><code class="language-JavaScript">if(error.code == &#39;ENOENT&#39;) {
-    fs.readFile(&#39;./404.html&#39;, function(error, content) {
-        res.writeHead(200, { &#39;Content-Type&#39;: contentType });
-        res.end(content, &#39;utf-8&#39;);
+<pre><code class="language-JavaScript">if(error.code == 'ENOENT') {
+    fs.readFile('./404.html', function(error, content) {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content, 'utf-8');
     });
 }
 else {
     res.writeHead(500);
-    res.end(&#39;Sorry, check with the site admin for error: &#39;+error.code+&#39; ..\n&#39;);
+    res.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
     res.end();
 }
 }</code></pre>
 <h2 id="完成コード">完成コード</h2>
 <p>これで、静的ファイルサーバの完成です。</p>
-<pre><code class="language-JavaScript">const http = require(&#39;http&#39;);
-const fs = require(&#39;fs&#39;);
-const path = require(&#39;path&#39;);
+<pre><code class="language-JavaScript">const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 http.createServer(function (req, res) {
-    console.log(&#39;request &#39;, req.url);
+    console.log('request ', req.url);
 
-    let filePath = &#39;.&#39; + req.url;
-    if (filePath == &#39;./&#39;) {
-        filePath = &#39;./index.html&#39;;
+    let filePath = '.' + req.url;
+    if (filePath == './') {
+        filePath = './index.html';
     }
 
     let extname = String(path.extname(filePath)).toLowerCase();
     let types = {
-        &#39;.html&#39;: &#39;text/html&#39;,
-        &#39;.js&#39;: &#39;text/javascript&#39;,
-        &#39;.css&#39;: &#39;text/css&#39;,
-        &#39;.json&#39;: &#39;application/json&#39;,
-        &#39;.png&#39;: &#39;image/png&#39;,
-        &#39;.jpg&#39;: &#39;image/jpg&#39;,
-        &#39;.gif&#39;: &#39;image/gif&#39;,
-        &#39;.wav&#39;: &#39;audio/wav&#39;,
-        &#39;.mp4&#39;: &#39;video/mp4&#39;,
-        &#39;.woff&#39;: &#39;application/font-woff&#39;,
-        &#39;.ttf&#39;: &#39;application/font-ttf&#39;,
-        &#39;.eot&#39;: &#39;application/vnd.ms-fontobject&#39;,
-        &#39;.otf&#39;: &#39;application/font-otf&#39;,
-        &#39;.svg&#39;: &#39;application/image/svg+xml&#39;
+        '.html': 'text/html',
+        '.js': 'text/javascript',
+        '.css': 'text/css',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpg',
+        '.gif': 'image/gif',
+        '.wav': 'audio/wav',
+        '.mp4': 'video/mp4',
+        '.woff': 'application/font-woff',
+        '.ttf': 'application/font-ttf',
+        '.eot': 'application/vnd.ms-fontobject',
+        '.otf': 'application/font-otf',
+        '.svg': 'application/image/svg+xml'
     };
 
-    let contentType = types[extname] || &#39;application&#39;;
+    let contentType = types[extname] || 'application';
 
     fs.readFile(filePath, function(error, content) {
         if (error) {
-            if(error.code == &#39;ENOENT&#39;) {
-                fs.readFile(&#39;./404.html&#39;, function(error, content) {
-                    res.writeHead(200, { &#39;Content-Type&#39;: contentType });
-                    res.end(content, &#39;utf-8&#39;);
+            if(error.code == 'ENOENT') {
+                fs.readFile('./404.html', function(error, content) {
+                    res.writeHead(200, { 'Content-Type': contentType });
+                    res.end(content, 'utf-8');
                 });
             }
             else {
                 res.writeHead(500);
-                res.end(&#39;check with the site: &#39;+error.code+&#39; ..\n&#39;);
+                res.end('check with the site: '+error.code+' ..\n');
                 res.end();
             }
         }
         else {
-            res.writeHead(200, { &#39;Content-Type&#39;: contentType });
-            res.end(content, &#39;utf-8&#39;);
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(content, 'utf-8');
         }
     });
 
 }).listen(3000);</code></pre>
+</body></html>

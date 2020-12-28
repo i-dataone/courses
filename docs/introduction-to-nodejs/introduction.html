@@ -1,5 +1,9 @@
-<head><title>introduction</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="nodejsの紹介">Node.jsの紹介</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>Node.jsの紹介</title>
+    </head>
+    <body><h1 id="nodejsの紹介">Node.jsの紹介</h1>
 <!-- もう少し追加 -->
 <p>Node.jsは、サーバでの処理をJavaScriptで制御できるオープンソースサーバ環境です。フロントの処理もサーバの処理も同じJavaScriptで構築することができるため、Webサイトだけでなく、IoTやスマホアプリなどにも用いられています。また、様々なプラットフォーム（Windows、Linux、Unix、MacOSなど）で実行できます。</p>
 <h2 id="nodejsのインストール">Node.jsのインストール</h2>
@@ -19,26 +23,27 @@ Node.jsのインストールの際は、v~は、バージョンの指定がで�
 <p>コンソールで「HelloWorld」を表示させます。
 以下のように作成したファイルにコードを追加してください。</p>
 <p>HelloWorld.js</p>
-<pre><code class="language-JavaScript">console.log(&#39;Hello world&#39;);</code></pre>
+<pre><code class="language-JavaScript">console.log('Hello world');</code></pre>
 <p>cmd</p>
 <pre><code class="language-shell">C:\&gt; node HelloWorld.js
 Hello world //表示</code></pre>
-<p>cmdのみで&#39;Hello world&#39;が表示されます。</p>
+<p>cmdのみで'Hello world'が表示されます。</p>
 <h3 id="webブラウザでのhello-world">WebブラウザでのHello World</h3>
 <p>Webブラウザに「HelloWorld」を表示させます。
 以下のようにコードを追加してください。</p>
-<pre><code class="language-JavaScript">const http = require(&#39;http&#39;);
+<pre><code class="language-JavaScript">const http = require('http');
 const port = 3000;
 
 const server = http.createServer(function (req, res) {
     res.statusCode = 200;
-    res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;);
-    res.end(&#39;Hello World&#39;);
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
 });
 
 server.listen(port, () =&gt; {
     console.log(`Server running at http:// ${port}`);
 })</code></pre>
 <p>コードの追加後、cmdで<code>node HelloWorld.js</code>を入力しWebサーバを起動しましょう。
-cmdに<code>Server running at http://3000/</code>と表示されていることを確認し、<code>http://localhost:3000</code>にアクセスすると、&#39;Hello World&#39;が表示されています。
+cmdに<code>Server running at http://3000/</code>と表示されていることを確認し、<code>http://localhost:3000</code>にアクセスすると、'Hello World'が表示されています。
 ※実行後にエラーが出る場合は、コードの記述、実行ファイル名、実行ディレクトリなどを再度確認してください。</p>
+</body></html>

@@ -1,10 +1,14 @@
-<head><title>basics</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="基本事項">基本事項</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>基本事項</title>
+    </head>
+    <body><h1 id="基本事項">基本事項</h1>
 <h2 id="プログラムの実行">プログラムの実行</h2>
 <p>Perlプログラムは<strong>宣言</strong>と<strong>命令</strong>から構成されます。プログラムはループと条件付き制御を含め、上から順番に実行されます。各命令はセミコロン「;」で終わります。</p>
 <p>Perlファイルの拡張子は<code>.pl</code>です。
 次のコードを<code>hello.pl</code>というファイル名で保存してください</p>
-<pre><code class="language-Perl">print &quot;hello world\n&quot;;</code></pre>
+<pre><code class="language-Perl">print "hello world\n";</code></pre>
 <p>コマンドプロンプトで<code>perl hello.pl``を入力して実行すると、</code>hello world`と出力されます。</p>
 <p><img src="https://s1.ax1x.com/2020/04/28/J53pAe.png" alt="J53pAe.png"></p>
 <h2 id="コメントの書き方">コメントの書き方</h2>
@@ -20,7 +24,7 @@
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 if($score &gt;= 60){
-  print(&quot;OK&quot;);
+  print("OK");
  }</code></pre>
 <p>とすると、実行結果は
 <code>OK</code>
@@ -31,7 +35,7 @@ if($score &gt;= 60){
 <pre><code class="language-Perl">my $color = green;
 my $score = 60;
 if($color eq green)&amp;&amp;($score = 60){
-  print(&quot;OK&quot;);
+  print("OK");
  }</code></pre>
 <p>を実行すると、結果は</p>
 <p><code>OK</code>
@@ -39,7 +43,7 @@ if($color eq green)&amp;&amp;($score = 60){
 <h4 id="if条件の後置">if条件の後置</h4>
 <p>if文は処理の後でも書けます。たとえば、前のif条件分岐は以下のようにも書けます：</p>
 <pre><code class="language-Perl">my $score = 65;
-print(&quot;OK&quot;); if($score &gt;= 60)</code></pre>
+print("OK"); if($score &gt;= 60)</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
 となります。</p>
@@ -53,9 +57,9 @@ print(&quot;OK&quot;); if($score &gt;= 60)</code></pre>
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 if($score &gt;= 60){
-  print(&quot;OK&quot;);
+  print("OK");
  }else{
-  print(&quot;NG&quot;);
+  print("NG");
  }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -75,11 +79,11 @@ if($score &gt;= 60){
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 if($score &lt; 60)&amp;&amp;($score &lt; 90){
-  print(&quot;NG&quot;);
+  print("NG");
 }elsif($score &gt;= 60)&amp;&amp;($score &lt; 90){
-  print(&quot;OK&quot;);
+  print("OK");
  }else{
-  print(&quot;GREAT&quot;);
+  print("GREAT");
  }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -109,8 +113,8 @@ print $max;</code></pre>
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 unless ($score &lt; 60){
-  print (&quot;OK&quot;);
-  print (&quot;YES&quot;);
+  print ("OK");
+  print ("YES");
 }</code></pre>
 <p>を実行すると、結果は
 <code>OKYES</code>
@@ -125,9 +129,9 @@ unless ($score &lt; 60){
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 unless($score &lt; 60){
- print&quot;OK&quot;;
+ print"OK";
 }else{
- print&quot;NG&quot;
+ print"NG"
 }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -144,11 +148,11 @@ unless($score &lt; 60){
 <p>例えば、</p>
 <pre><code class="language-Perl">my $score = 65;
 unless($score&gt;60){
- print&quot;NG&quot;;
+ print"NG";
 }elsif($score&gt;=60)&amp;&amp;($score&lt;90){
- print&quot;OK&quot;;
+ print"OK";
 }else{
- print&quot;GREAT&quot;;
+ print"GREAT";
 }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -169,22 +173,22 @@ cpan&gt; exit</code></pre>
 <pre><code class="language-Perl">use Switch;
 
 Switch(引数){
-case 1  {print&quot;数字１&quot;}
-case &quot;a&quot;{print&quot;文字a&quot;}
+case 1  {print"数字１"}
+case "a"{print"文字a"}
 ...
-else    {print&quot;その他&quot;}
+else    {print"その他"}
 }</code></pre>
 <p>例えば、</p>
 <pre><code class="language-Perl">use Switch;
 my $number = 10;
 my @score = (50,60,90);
-my %hash = (&#39;Tom&#39;=50,&#39;Lily&#39;=90);
+my %hash = ('Tom'=50,'Lily'=90);
 
 Switch($number){
- case 10       {print&quot;数字10&quot;};
- case &quot;a&quot;      {print&quot;文字a&quot;};
- case(\@score) {print&quot;数字はscore配列の中&quot;}
- else          {print&quot;その他&quot;}
+ case 10       {print"数字10"};
+ case "a"      {print"文字a"};
+ case(\@score) {print"数字はscore配列の中"}
+ else          {print"その他"}
 }</code></pre>
 <p>を実行すると、結果は
 <code>数字10</code></p>
@@ -198,10 +202,10 @@ Switch($number){
 <p>例えば、</p>
 <pre><code class="language-Perl">my $number = 0;
 while($number&lt;5){
- print&quot;number=$number\n&quot;;
+ print"number=$number\n";
  $number++;
 }
-print&quot;ループ完了。&quot;;</code></pre>
+print"ループ完了。";</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-number=0">number=1
 number=2
@@ -219,10 +223,10 @@ number=4
 <p>例えば、</p>
 <pre><code class="language-Perl">my $number = 0;
 do{
- print&quot;number=$number\n&quot;;
+ print"number=$number\n";
  $number++;
 }while($number&lt;5);
-print&quot;ループ完了。&quot;;</code></pre>
+print"ループ完了。";</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-number=0">number=1
 number=2
@@ -237,9 +241,9 @@ number=4
 }</code></pre>
 <p>例えば、</p>
 <pre><code class="language-Perl">for(my $number = 0;$number &lt; 5;$number++){
- print&quot;number = $number\n&quot;;
+ print"number = $number\n";
 }
-print&quot;ループ完了&quot;;</code></pre>
+print"ループ完了";</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-number=0">number=1
 number=2
@@ -257,10 +261,10 @@ number=4
 例えば、</p>
 <pre><code class="language-Perl">my $number = 0;
 until($number&gt;=5){
- print&quot;number = $number\n&quot;;
+ print"number = $number\n";
  $number++;
 }
-print&quot;ループ完了&quot;</code></pre>
+print"ループ完了"</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-number=0">number=1
 number=2
@@ -275,18 +279,18 @@ number=4
 }</code></pre>
 <p>リストの要素は順番に変数に格納するループ処理です。
 例えば、</p>
-<pre><code class="language-Perl">my @color = (&quot;red&quot;,&quot;yellow&quot;,&quot;green&quot;);
+<pre><code class="language-Perl">my @color = ("red","yellow","green");
 foreach my $signal (@color){
- print&quot;$signal\n&quot;;
+ print"$signal\n";
 }</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-red">yellow
 green</code></pre>
 <p>となります。</p>
 <p>実は、for文とforeach文は同じ構文です。for文の変数をリストに指定すれば、foreach文と同じループ処理を行うことができます。このためで、以下の通りに書くと同じ結果ができます。</p>
-<pre><code class="language-Perl">my @color = (&quot;red&quot;,&quot;yellow&quot;,&quot;green&quot;);
+<pre><code class="language-Perl">my @color = ("red","yellow","green");
 for my $signal (@color){
- print&quot;$signal\n&quot;;
+ print"$signal\n";
 }</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-red">yellow
@@ -306,10 +310,10 @@ while ($number &lt;= 5){
     next;
   }
 
-  print &quot;$number\n&quot;;
+  print "$number\n";
 
 }
-print &quot;end\n&quot;;</code></pre>
+print "end\n";</code></pre>
 <p>を実行すると、結果は</p>
 <pre><code class="language-1">3
 4
@@ -328,7 +332,7 @@ end</code></pre>
 <p>例えば：</p>
 <pre><code class="language-Perl">$number = 0;
 while($number &lt; 5){
- print&quot;number = $number\n&quot;；
+ print"number = $number\n"；
 }continue{
  $number = $number+1;
 }</code></pre>
@@ -338,3 +342,4 @@ number = 2
 number = 3
 number = 4</code></pre>
 <p>となります。</p>
+</body></html>

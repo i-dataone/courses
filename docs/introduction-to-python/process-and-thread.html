@@ -1,5 +1,9 @@
-<head><title>process-and-thread</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="マルチプロセスとマルチスレッド">マルチプロセスとマルチスレッド</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>マルチプロセスとマルチスレッド</title>
+    </head>
+    <body><h1 id="マルチプロセスとマルチスレッド">マルチプロセスとマルチスレッド</h1>
 <p>以前に作成したすべてのPythonプログラムは、単一のタスクを実行するプロセスです。つまり、スレッドは1つだけです。コンピュータに同時に複数のタスクを処理させたい場合があります。 プログラミングは複雑ですが、コンピュータの利用効率を大幅に向上させることができます。</p>
 <h2 id="マルチプロセス">マルチプロセス</h2>
 <p>multiprocessingモジュールは、プロセスオブジェクトを表すProcessクラスを提供します。
@@ -8,15 +12,15 @@
 import os
 
 def runprocess(name):
-    print(&#39;Run child process %s (%s)&#39; % (name, os.getpid()))
+    print('Run child process %s (%s)' % (name, os.getpid()))
 
-if __name__==&#39;__main__&#39;:
-    print(&#39;Parent process %s.&#39; % os.getpid())
-    p = Process(target=runprocess, args=(&#39;process1&#39;,))
-    print(&#39;Child process will start.&#39;)
+if __name__=='__main__':
+    print('Parent process %s.' % os.getpid())
+    p = Process(target=runprocess, args=('process1',))
+    print('Child process will start.')
     p.start()
     p.join()
-    print(&#39;Child process end.&#39;)</code></pre>
+    print('Child process end.')</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Parent process 15584.
 Child process start.
@@ -31,17 +35,17 @@ Child process end.</code></pre>
 from multiprocessing import Pool
 
 def runprocess(num):
-    print(&quot;Child Process %s&quot; % num)
+    print("Child Process %s" % num)
     time.sleep(1)
-    print(&#39;process %s end&#39; % num)
-if __name__ == &#39;__main__&#39;:
-    print(&#39;Parent Process start&#39;)
+    print('process %s end' % num)
+if __name__ == '__main__':
+    print('Parent Process start')
     start_time = time.time()
     pool = Pool(3)
-    print(&#39;Child start&#39;)
+    print('Child start')
     for i in range(3):
         pool.apply(runprocess, (i+1,))
-    print(&#39;Parent Process done time: %ss&#39; % (time.time() - start_time))</code></pre>
+    print('Parent Process done time: %ss' % (time.time() - start_time))</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Parent Process start
 Child start
@@ -60,19 +64,19 @@ Parent Process done time: 3.1831817626953125s</code></pre>
 import threading as td
 
 def runthread():
-    print(&#39;Thread %s start:&#39; % td.current_thread().name)
+    print('Thread %s start:' % td.current_thread().name)
     n = 0
     while n &lt; 2:
         n = n + 1
-        print(&#39;Thread %s count %s&#39; % (td.current_thread().name, n))
+        print('Thread %s count %s' % (td.current_thread().name, n))
         time.sleep(1)
-    print(&#39;Thread %s end.&#39; % td.current_thread().name)
-if __name__==&#39;__main__&#39;:
-    print(&#39;Thread %s start:&#39; % td.current_thread().name)
-    t = td.Thread(target=runthread, name=&#39;Childthread&#39;)
+    print('Thread %s end.' % td.current_thread().name)
+if __name__=='__main__':
+    print('Thread %s start:' % td.current_thread().name)
+    t = td.Thread(target=runthread, name='Childthread')
     t.start()
     t.join()
-    print(&#39;Thread %s end.&#39; % td.current_thread().name)</code></pre>
+    print('Thread %s end.' % td.current_thread().name)</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Thread MainThread start:
 Thread Childthread start:
@@ -94,14 +98,14 @@ class CustomizedThread(Thread):
     def run(self):
         i=0
         while i &lt; self.n:
-            print(&#39;Count&#39;, i)
+            print('Count', i)
             i += 1
             time.sleep(1)
-print(&#39;Main thread start&#39;)
+print('Main thread start')
 c = CustomizedThread(3)
 c.start()
 c.join()
-print(&#39;Main thread end&#39;)</code></pre>
+print('Main thread end')</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Main thread start
 Count 0
@@ -123,7 +127,7 @@ class CustomizedThread (threading.Thread):
         self.counter = counter
         self.loop = loop
     def run(self):
-        print (&#39;Thread:&#39; + self.name + &#39; start&#39;)
+        print ('Thread:' + self.name + ' start')
         threadLock.acquire()            #ロックを取得する
         plusminus(self.name, self.counter, self.loop)
         threadLock.release()            #ロックを解除する
@@ -133,17 +137,17 @@ def plusminus(threadName, num, loop):
         time.sleep(1)
         sumup= sumup + int(num)
         loop -=1
-        print(&#39;%s: sum is %d&#39; % (threadName, sumup))
+        print('%s: sum is %d' % (threadName, sumup))
 sumup=0
 threadLock = threading.Lock()
 threads = []
-thread1 = CustomizedThread(&#39;Thread-1&#39;, 1, 2)
-thread2 = CustomizedThread(&#39;Thread-2&#39;, -1, 2)
+thread1 = CustomizedThread('Thread-1', 1, 2)
+thread2 = CustomizedThread('Thread-2', -1, 2)
 thread1.start()
 thread2.start()
 thread1.join()
 thread2.join()
-print (&quot;threads end&quot;)</code></pre>
+print ("threads end")</code></pre>
 <p>Output:</p>
 <pre><code class="language-python">Thread:Thread-1 start
 Thread:Thread-2 start
@@ -153,3 +157,4 @@ Thread-2: sum is 1
 Thread-2: sum is 0
 threads end</code></pre>
 <p>しかし実際には、ロックが追加されたため、同じメソッドを使用する2つのスレッドが同時に実行されませんでした。</p>
+</body></html>

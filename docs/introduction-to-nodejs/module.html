@@ -1,5 +1,9 @@
-<head><title>module</title><link rel="stylesheet" href="../../server/css/index.css"></head>
-<h1 id="モジュール">モジュール</h1>
+<!DOCTYPE html><html lang="ja"><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./style.css">
+        <title>モジュール</title>
+    </head>
+    <body><h1 id="モジュール">モジュール</h1>
 <!-- 文章を修正 -->
 <p>モジュールとは、JavaScriptのライブラリと同じです。Node.jsでの開発では、実装済みのモジュールをインストールするで効率的に開発を進めることができます。Node.js組み込み関数のドキュメント:<a href="https://www.w3schools.com/nodejs/ref_modules.asp">https://www.w3schools.com/nodejs/ref_modules.asp</a></p>
 <h2 id="モジュールの利用">モジュールの利用</h2>
@@ -14,7 +18,7 @@ const 変数 = require(モジュールのファイルパス)</code></pre>
 今回は、動作確認でおこなったHelloWorldコードでもちいた「httpモジュール」を書いていきます。</p>
 <p>Node.jsでrequireを使って「http」読み込んでいきます。</p>
 <pre><code class="language-JavaScript">//httpモジュールの読み込み
-const http = require(&#39;http&#39;)
+const http = require('http')
 //httpの利用
 http.createServer(サーバ側の処理)</code></pre>
 <p>「http」の読み込みができたので、HTTPモジュールにアクセスができるようになり、サーバが作成できました。</p>
@@ -26,3 +30,4 @@ http.createServer(サーバ側の処理)</code></pre>
 };</code></pre>
 <p>このモジュールは、以下の構文で呼び出せます。</p>
 <pre><code class="language-JavaScript">const 変数 = require(モジュールのファイルパス)</code></pre>
+</body></html>
