@@ -1,0 +1,27 @@
+<head><title>introduction</title><link rel="stylesheet" href="../../server/css/index.css"></head>
+<h1 id="webpackの紹介">webpackの紹介</h1>
+<p>webpack（ウェブパック）とはjsファイルをまとめる高機能な静的モジュールバンドラー（複数のファイルを１つにまとめて出力してくれるツール）です。
+まとめることでウェブページのHTTPリクエストの数を減らしたり、高度なウェブアプリケーションの開発に役立ちます。</p>
+<p>現在は主要なフレームワークでの採用が増えていて、ReactやVue.js、またRuby on Railsでも5.1以降ではwebpackが標準採用されています。これらを学ぶための必要の知識と言えるでしょう。</p>
+<h2 id="webpackの機能">webpackの機能</h2>
+<h3 id="システム性能アップ">システム性能アップ</h3>
+<p>HTTP/1.1接続ではブラウザとウェブサーバーの同時接続数が限られるため、複数のjsファイルを1ページで読み込もうとすると時間がかかります。
+それを1つのファイルにまとめることによって、リクエストを1回だけにして性能アップを図れます。</p>
+<h3 id="ローダとプラグイン">ローダとプラグイン</h3>
+<p>webpackにはローダやプラグインといった機能も備わっています。</p>
+<p>ローダを使えばHTMLやCSSファイル、画像など、JavaScript以外の複数ファイルを一緒にバンドルしてJavaScriptで扱うことができます。その点でも、先述のシステム性能アップと同様のメリットがあります。</p>
+<p>プラグインはWebpackの機能を拡張できるもので、追加するとビルド実行時にさまざまな機能を使えます。ローダも機能を追加することができますが、ローダはバンドル前、プラグインはビルド実行時に追加されるという違いがあります。</p>
+<h3 id="モジュール">モジュール</h3>
+<p>複数のJSファイルを1つにまとめるだけなら他のツールでもできますが、webpackの場合は標準仕様のES Modulesが使えたり、node_modulesのモジュールを結合できるといったメリットがあります。</p>
+<p>標準のES Modulesを使うと変数の競合やグローバル汚染を防げるので開発時の安全性が高まります。さらには、コードの可読性が上がり、開発作業の分担やテストがしやすくなり、再利用性や保守性があがります。</p>
+<h2 id="webpackの導入">webpackの導入</h2>
+<p>webpackを導入する手順を説明します。</p>
+<p>Node.jsをインストールしていない人は公式サイトからインストールをしておきましょう。（バージョン13以上）<a href="https://nodejs.org/ja/">https://nodejs.org/ja/</a></p>
+<p>次にCommandLineでwebpackのインストールを行います。</p>
+<p>コンテンツのファイル一式が保存されるフォルダを任意の場所に作成し、CommandLineからcdコマンドでその場所に移動します。</p>
+<pre><code class="language-shell">cd C:¥Users¥MyName¥myproject  #myprojectは仮名です</code></pre>
+<p>プロジェクトの設定情報が記述されたpackage.jsonファイルを生成します。</p>
+<pre><code class="language-shell">npm init -y</code></pre>
+<p>npm経由でWebpackとwebpack-cliをインストールします。</p>
+<pre><code class="language-shell">npm i -D webpack webpack-cli</code></pre>
+<p>以上で、webpackのインストールは完了です。</p>
