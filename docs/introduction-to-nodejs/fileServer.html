@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>静的ファイルサーバ</title>
     </head>
     <body><h1 id="静的ファイルサーバ">静的ファイルサーバ</h1>
@@ -9,15 +12,30 @@
 <p>最初に、「app.js」というファイルを作成してください。作成後、コードを追加して行きます。</p>
 <h2 id="モジュールの読み込み">モジュールの読み込み</h2>
 <p>今回は、3つのモジュールを読み込んでいきます。
-<code>http</code>、<code>fs</code>、<code>path</code>を用意します。
-| モジュール  | 説明 |
-| ---------- | ----- |
-| http | HTTPを介してデータを転送させるモジュール |
-| fs | ファイルシステムの操作するモジュール |
-| path | ディレクトリとファイルパスを操作するモジュール |</p>
-<pre><code class="language-JavaScript">const http = require('http')
-const fs = require('fs')
-const path = require('path')</code></pre>
+<code>http</code>、<code>fs</code>、<code>path</code>を用意します。</p>
+<table>
+<thead>
+<tr>
+<th>モジュール</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>http</td>
+<td>HTTPを介してデータを転送させるモジュール</td>
+</tr>
+<tr>
+<td>fs</td>
+<td>ファイルシステムの操作するモジュール</td>
+</tr>
+<tr>
+<td>path</td>
+<td>ディレクトリとファイルパスを操作するモジュール</td>
+</tr>
+</tbody></table>
+<pre><code class="JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>)
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)</code></pre>
 <h2 id="サーバの構築">サーバの構築</h2>
 <p>サーバを作成してリッスンポートも設定していきます。
 今回のリッスンポートは、3000番に設定しておきます。</p>
@@ -33,15 +51,15 @@ const path = require('path')</code></pre>
 <td>コンピュータでサーバ作成</td>
 </tr>
 </tbody></table>
-<pre><code class="language-JavaScript">http.createServer(function (req, res) {
-    //処理を記載
-}).listen(3000);</code></pre>
+<pre><code class="JavaScript">http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-comment">//処理を記載</span>
+}).listen(<span class="hljs-number">3000</span>);</code></pre>
 <h2 id="ファイルパスの設定">ファイルパスの設定</h2>
 <p>ファイルパスを設定するコードを書いていきます。
 ファイル名がないときは、デフォルト名を設定するようにします。コードは、サーバ構築した中に記載していきます。</p>
-<pre><code class="language-JavaScript">let filePath = '.' + req.url;
-if (filePath == './') {
-    filePath = './index.html'
+<pre><code class="JavaScript"><span class="hljs-keyword">let</span> filePath = <span class="hljs-string">'.'</span> + req.url;
+<span class="hljs-keyword">if</span> (filePath == <span class="hljs-string">'./'</span>) {
+    filePath = <span class="hljs-string">'./index.html'</span>
 }</code></pre>
 <p>sample.orgというURLを要求したときには、sample.org/index.htmlになります。</p>
 <h2 id="ファイルの拡張子の確認">ファイルの拡張子の確認</h2>
@@ -62,25 +80,25 @@ if (filePath == './') {
 <td>文字列を小文字に変換するメソッド</td>
 </tr>
 </tbody></table>
-<pre><code class="language-JavaScript">let extname = String(path.extname(filePath)).toLowerCase();
-let types = {
-    '.html': 'text/html',
-    '.js': 'text/javascript',
-    '.css': 'text/css',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.jpg': 'image/jpg',
-    '.gif': 'image/gif',
-    '.wav': 'audio/wav',
-    '.mp4': 'video/mp4',
-    '.woff': 'application/font-woff',
-    '.ttf': 'application/font-ttf',
-    '.eot': 'application/vnd.ms-fontobject',
-    '.otf': 'application/font-otf',
-    '.svg': 'application/image/svg+xml'
+<pre><code class="JavaScript"><span class="hljs-keyword">let</span> extname = <span class="hljs-built_in">String</span>(path.extname(filePath)).toLowerCase();
+<span class="hljs-keyword">let</span> types = {
+    <span class="hljs-string">'.html'</span>: <span class="hljs-string">'text/html'</span>,
+    <span class="hljs-string">'.js'</span>: <span class="hljs-string">'text/javascript'</span>,
+    <span class="hljs-string">'.css'</span>: <span class="hljs-string">'text/css'</span>,
+    <span class="hljs-string">'.json'</span>: <span class="hljs-string">'application/json'</span>,
+    <span class="hljs-string">'.png'</span>: <span class="hljs-string">'image/png'</span>,
+    <span class="hljs-string">'.jpg'</span>: <span class="hljs-string">'image/jpg'</span>,
+    <span class="hljs-string">'.gif'</span>: <span class="hljs-string">'image/gif'</span>,
+    <span class="hljs-string">'.wav'</span>: <span class="hljs-string">'audio/wav'</span>,
+    <span class="hljs-string">'.mp4'</span>: <span class="hljs-string">'video/mp4'</span>,
+    <span class="hljs-string">'.woff'</span>: <span class="hljs-string">'application/font-woff'</span>,
+    <span class="hljs-string">'.ttf'</span>: <span class="hljs-string">'application/font-ttf'</span>,
+    <span class="hljs-string">'.eot'</span>: <span class="hljs-string">'application/vnd.ms-fontobject'</span>,
+    <span class="hljs-string">'.otf'</span>: <span class="hljs-string">'application/font-otf'</span>,
+    <span class="hljs-string">'.svg'</span>: <span class="hljs-string">'application/image/svg+xml'</span>
 };
 
-let contentType = types[extname] || 'application';</code></pre>
+<span class="hljs-keyword">let</span> contentType = types[extname] || <span class="hljs-string">'application'</span>;</code></pre>
 <h2 id="ファイルの読み込み">ファイルの読み込み</h2>
 <table>
 <thead>
@@ -94,82 +112,82 @@ let contentType = types[extname] || 'application';</code></pre>
 <td>ファイルの内容全体を非同期に読み込むメソッド</td>
 </tr>
 </tbody></table>
-<pre><code class="language-JavaScript">fs.readFile(path[,options], callback)
-//path:ファイル名
-//options: 文字コードなど
-//callback: 機能(error, data)
-//dataは、ファイルの内容</code></pre>
+<pre><code class="JavaScript">fs.readFile(path[,options], callback)
+<span class="hljs-comment">//path:ファイル名</span>
+<span class="hljs-comment">//options: 文字コードなど</span>
+<span class="hljs-comment">//callback: 機能(error, data)</span>
+<span class="hljs-comment">//dataは、ファイルの内容</span></code></pre>
 <p>filePathを用いて、ファイルを読み込む処理を書いていきます。</p>
-<pre><code class="language-JavaScript">fs.readFile(filePath, function(error, content){
-    //処理を記載
+<pre><code class="JavaScript">fs.readFile(filePath, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, content</span>)</span>{
+    <span class="hljs-comment">//処理を記載</span>
 })</code></pre>
 <h2 id="エラー処理">エラー処理</h2>
 <p>存在しないファイルが要求されたとき(ENOENT)に、エラーコードを返すページを返す処理を書いていきます。</p>
-<pre><code class="language-JavaScript">if(error.code == 'ENOENT') {
-    fs.readFile('./404.html', function(error, content) {
-        res.writeHead(200, { 'Content-Type': contentType });
-        res.end(content, 'utf-8');
+<pre><code class="JavaScript"><span class="hljs-keyword">if</span>(error.code == <span class="hljs-string">'ENOENT'</span>) {
+    fs.readFile(<span class="hljs-string">'./404.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, content</span>) </span>{
+        res.writeHead(<span class="hljs-number">200</span>, { <span class="hljs-string">'Content-Type'</span>: contentType });
+        res.end(content, <span class="hljs-string">'utf-8'</span>);
     });
 }
-else {
-    res.writeHead(500);
-    res.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+<span class="hljs-keyword">else</span> {
+    res.writeHead(<span class="hljs-number">500</span>);
+    res.end(<span class="hljs-string">'Sorry, check with the site admin for error: '</span>+error.code+<span class="hljs-string">' ..\n'</span>);
     res.end();
 }
 }</code></pre>
 <h2 id="完成コード">完成コード</h2>
 <p>これで、静的ファイルサーバの完成です。</p>
-<pre><code class="language-JavaScript">const http = require('http');
-const fs = require('fs');
-const path = require('path');
+<pre><code class="JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
 
-http.createServer(function (req, res) {
-    console.log('request ', req.url);
+http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'request '</span>, req.url);
 
-    let filePath = '.' + req.url;
-    if (filePath == './') {
-        filePath = './index.html';
+    <span class="hljs-keyword">let</span> filePath = <span class="hljs-string">'.'</span> + req.url;
+    <span class="hljs-keyword">if</span> (filePath == <span class="hljs-string">'./'</span>) {
+        filePath = <span class="hljs-string">'./index.html'</span>;
     }
 
-    let extname = String(path.extname(filePath)).toLowerCase();
-    let types = {
-        '.html': 'text/html',
-        '.js': 'text/javascript',
-        '.css': 'text/css',
-        '.json': 'application/json',
-        '.png': 'image/png',
-        '.jpg': 'image/jpg',
-        '.gif': 'image/gif',
-        '.wav': 'audio/wav',
-        '.mp4': 'video/mp4',
-        '.woff': 'application/font-woff',
-        '.ttf': 'application/font-ttf',
-        '.eot': 'application/vnd.ms-fontobject',
-        '.otf': 'application/font-otf',
-        '.svg': 'application/image/svg+xml'
+    <span class="hljs-keyword">let</span> extname = <span class="hljs-built_in">String</span>(path.extname(filePath)).toLowerCase();
+    <span class="hljs-keyword">let</span> types = {
+        <span class="hljs-string">'.html'</span>: <span class="hljs-string">'text/html'</span>,
+        <span class="hljs-string">'.js'</span>: <span class="hljs-string">'text/javascript'</span>,
+        <span class="hljs-string">'.css'</span>: <span class="hljs-string">'text/css'</span>,
+        <span class="hljs-string">'.json'</span>: <span class="hljs-string">'application/json'</span>,
+        <span class="hljs-string">'.png'</span>: <span class="hljs-string">'image/png'</span>,
+        <span class="hljs-string">'.jpg'</span>: <span class="hljs-string">'image/jpg'</span>,
+        <span class="hljs-string">'.gif'</span>: <span class="hljs-string">'image/gif'</span>,
+        <span class="hljs-string">'.wav'</span>: <span class="hljs-string">'audio/wav'</span>,
+        <span class="hljs-string">'.mp4'</span>: <span class="hljs-string">'video/mp4'</span>,
+        <span class="hljs-string">'.woff'</span>: <span class="hljs-string">'application/font-woff'</span>,
+        <span class="hljs-string">'.ttf'</span>: <span class="hljs-string">'application/font-ttf'</span>,
+        <span class="hljs-string">'.eot'</span>: <span class="hljs-string">'application/vnd.ms-fontobject'</span>,
+        <span class="hljs-string">'.otf'</span>: <span class="hljs-string">'application/font-otf'</span>,
+        <span class="hljs-string">'.svg'</span>: <span class="hljs-string">'application/image/svg+xml'</span>
     };
 
-    let contentType = types[extname] || 'application';
+    <span class="hljs-keyword">let</span> contentType = types[extname] || <span class="hljs-string">'application'</span>;
 
-    fs.readFile(filePath, function(error, content) {
-        if (error) {
-            if(error.code == 'ENOENT') {
-                fs.readFile('./404.html', function(error, content) {
-                    res.writeHead(200, { 'Content-Type': contentType });
-                    res.end(content, 'utf-8');
+    fs.readFile(filePath, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, content</span>) </span>{
+        <span class="hljs-keyword">if</span> (error) {
+            <span class="hljs-keyword">if</span>(error.code == <span class="hljs-string">'ENOENT'</span>) {
+                fs.readFile(<span class="hljs-string">'./404.html'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error, content</span>) </span>{
+                    res.writeHead(<span class="hljs-number">200</span>, { <span class="hljs-string">'Content-Type'</span>: contentType });
+                    res.end(content, <span class="hljs-string">'utf-8'</span>);
                 });
             }
-            else {
-                res.writeHead(500);
-                res.end('check with the site: '+error.code+' ..\n');
+            <span class="hljs-keyword">else</span> {
+                res.writeHead(<span class="hljs-number">500</span>);
+                res.end(<span class="hljs-string">'check with the site: '</span>+error.code+<span class="hljs-string">' ..\n'</span>);
                 res.end();
             }
         }
-        else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
+        <span class="hljs-keyword">else</span> {
+            res.writeHead(<span class="hljs-number">200</span>, { <span class="hljs-string">'Content-Type'</span>: contentType });
+            res.end(content, <span class="hljs-string">'utf-8'</span>);
         }
     });
 
-}).listen(3000);</code></pre>
+}).listen(<span class="hljs-number">3000</span>);</code></pre>
 </body></html>

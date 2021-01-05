@@ -1,20 +1,23 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>オブジェクト指向プログラミング</title>
     </head>
     <body><h1 id="オブジェクト指向プログラミング">オブジェクト指向プログラミング</h1>
 <h2 id="クラスとインスタンス">クラスとインスタンス</h2>
 <p>Pythonのクラスはclassキーワードで定義されます。</p>
-<pre><code class="language-python">class classname(object):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">classname</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
     statements</code></pre>
 <p>クラスには<code>__init__()</code>と呼ばれる特別な関数（コンストラクタ）があり、クラスがインスタンス化されると自動的に呼び出されます。__init__メソッドでインスタンスの作成時に変数を宣言できます。__init__関数の最初のパラメーターは常にselfです。しかし、selfはPythonのキーワードではないため、任意の名前で置き換えると通常どおり実行できます。これは作成されたインスタンス自体を表します。クラスで定義されている他の関数もパラメータselfを宣言する必要があります。</p>
-<pre><code class="language-python">class fruit:
-    def __init__(self, name, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name, price</span>):</span>
         self.name = name
         self.price = price
-    def prt(self):
-        print('fruit!')</code></pre>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'fruit!'</span>)</code></pre>
 <p>ここにいくつかのクラスの特殊メソッドがあります：</p>
 <table>
 <thead>
@@ -45,157 +48,157 @@
 </tr>
 </tbody></table>
 <p>クラスに新しい関数を定義でき、クラスに既存の関数を直接追加できます。しかし、インスタンスの初期化変数を関数のパラメータに追加する必要があります：</p>
-<pre><code class="language-python">class fruit:
-    def __init__(self, name, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name, price</span>):</span>
         self.name = name
         self.price = price
-def prt(self):          　#selfが必要
-        print('fruit!')
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>          　<span class="hljs-comment">#selfが必要</span>
+        print(<span class="hljs-string">'fruit!'</span>)
 fruit.prt = prt</code></pre>
 <p>fruitクラスをインスタンス化：</p>
-<pre><code class="language-python">a = fruit('apple','20')  #インスタンスを作成します
-a.prt()                  #インスタンスの関数を呼び出します。</code></pre>
+<pre><code class="python">a = fruit(<span class="hljs-string">'apple'</span>,<span class="hljs-string">'20'</span>)  <span class="hljs-comment">#インスタンスを作成します</span>
+a.prt()                  <span class="hljs-comment">#インスタンスの関数を呼び出します。</span></code></pre>
 <p>クラスfruitの初期化関数では2つの変数が定義されているため、インスタンスのパラメーターが二個未満の場合、エラーが発生します。</p>
 <p>外部コードがクラスの一部のフィールド属性値を変更させたくない場合は、これらのフィールドをプライベート属性に変更できます。Pythonでは、インスタンスの変数名が<code>__</code>で始まる場合はプライベート変数（プライベート）になり、内部からのみアクセスでき、外部からはアクセスできません。
 例：</p>
-<pre><code class="language-python">class fruit:
-    def __init__(self, name, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name, price</span>):</span>
         self.name = name
         self.price = price
-        self.__innerprice = 10
-    def prt(self):
-        print('fruit!')
-a = fruit('apple','20')
+        self.__innerprice = <span class="hljs-number">10</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'fruit!'</span>)
+a = fruit(<span class="hljs-string">'apple'</span>,<span class="hljs-string">'20'</span>)
 print(a.__innerprice)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Traceback (most recent call last):
-  File ..., line 9, in &lt;module&gt;
+<pre><code class="python">Traceback (most recent call last):
+  File ..., line <span class="hljs-number">9</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
     print(a.__innerprice)
-AttributeError: 'fruit' object has no attribute '__innerprice'</code></pre>
+AttributeError: <span class="hljs-string">'fruit'</span> <span class="hljs-built_in">object</span> has no attribute <span class="hljs-string">'__innerprice'</span></code></pre>
 <p>同様に、クラスのプライベート関数も関数名の前に<code>__</code>を追加します。</p>
 <h2 id="継承">継承</h2>
 <p>クラスを定義する時に既存のクラスから継承できます。このクラスは他のクラスのフィールドと関数を継承できます。新しいクラスは「派生クラス」「子クラス」「サブクラス」と呼ばれ、継承されたクラスは「基底クラス」「親クラス」「スーパークラス」などと呼ばれます。
 継承の構文は次のようになります：</p>
-<pre><code class="language-python">class subclassname(superclassname):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">subclassname</span>(<span class="hljs-params">superclassname</span>):</span>
     statements</code></pre>
 <p>例：</p>
-<pre><code class="language-python">class fruit:
-    def __init__(self, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price</span>):</span>
         self.price = price
-    def prt(self):
-        print('fruit!')
-class apple(fruit):
-    def __init__(self, price, color):   #親クラスのコンストラクタを呼び出します
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'fruit!'</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">apple</span>(<span class="hljs-params">fruit</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price, color</span>):</span>   <span class="hljs-comment">#親クラスのコンストラクタを呼び出します</span>
         fruit.__init__(self,price)
-        self.color = color              #フィールドを追加します
-    def colorprt(self):                 #新しい関数を追加します
-        print('apple is '+ self.color)
-a = apple(20, 'red')
-a.prt()                                 #親クラスの関数を呼び出します
-a.colorprt()                            #子クラスの関数を呼び出します</code></pre>
+        self.color = color              <span class="hljs-comment">#フィールドを追加します</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">colorprt</span>(<span class="hljs-params">self</span>):</span>                 <span class="hljs-comment">#新しい関数を追加します</span>
+        print(<span class="hljs-string">'apple is '</span>+ self.color)
+a = apple(<span class="hljs-number">20</span>, <span class="hljs-string">'red'</span>)
+a.prt()                                 <span class="hljs-comment">#親クラスの関数を呼び出します</span>
+a.colorprt()                            <span class="hljs-comment">#子クラスの関数を呼び出します</span></code></pre>
 <p>クラスは複数の親クラスから継承することもできます：</p>
-<pre><code class="language-python">class price:
-    def __init__(self, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">price</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price</span>):</span>
         self.price = price
-    def prt(self):
-        print('price!')
-class color:
-    def __init__(self, color):
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'price!'</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">color</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, color</span>):</span>
         self.color = color
-    def prt(self):
-        print('color!')
-class cherry(price, color):
-    pass
-c = cherry(20)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'color!'</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">cherry</span>(<span class="hljs-params">price, color</span>):</span>
+    <span class="hljs-keyword">pass</span>
+c = cherry(<span class="hljs-number">20</span>)
 c.prt()</code></pre>
 <p>Output:<code>price!</code></p>
 <p>cherryクラスがpriceとcolorから派生し、独自のコンストラクタがありません。その場合は順序どおり(price)にコンストラクタを継承します。priceにはコンストラクタがない場合、後ろのcolorのコンストラクタを継承します。親クラスの同名の関数の呼び出しは同じ順です。</p>
 <p>親クラスのコンストラクターを呼び出す方法は2つあります：</p>
-<pre><code class="language-python">class apple(price, color):
-    def __init__(self, price, color):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">apple</span>(<span class="hljs-params">price, color</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price, color</span>):</span>
         price.__init__(self, price)
         color.__init__(self, color)
-class banana(price,color):
-    def __init__(self, price, color):
-        super().__init__(self, price, color)</code></pre>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">banana</span>(<span class="hljs-params">price,color</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price, color</span>):</span>
+        <span class="hljs-built_in">super</span>().__init__(self, price, color)</code></pre>
 <p>appleクラスは2つの親クラスのコンストラクタを呼び出します。つまり2回__init__関数呼び出します。bananaクラスは<code>super()</code>関数ですべての親クラスを初期化します。初期化された変数は親クラスのコンストラクタ内のすべての変数を含む必要があります。</p>
 <h2 id="オーバーライド">オーバーライド</h2>
 <p>サブクラスは親クラスの関数内容を変更できます。この操作はオーバーライドと呼ばれます。
 例：</p>
-<pre><code class="language-python">class fruit:
-    def __init__(self, price):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, price</span>):</span>
         self.price = price
-    def prt(self):
-        print('fruit!')
-class cherry(fruit):
-    def prt(self):
-        print('cherry!')
-c = cherry(20)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'fruit!'</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">cherry</span>(<span class="hljs-params">fruit</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prt</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-string">'cherry!'</span>)
+c = cherry(<span class="hljs-number">20</span>)
 c.prt()</code></pre>
 <p>Output:<code>cherry!</code></p>
 <p>親クラスがオーバーライドされる関数を呼び出したい場合には<code>super().</code>を使いできます。</p>
 <h2 id="属性">属性</h2>
 <p>型チェックや合法性検証など、インスタンス属性へのアクセスと変更以外の処理ロジックを追加したい場合があります：</p>
-<pre><code class="language-python">class fruit:
-    def setamount(self, value):
-        if not isinstance(value, int):
-            print('fail')
-            return
-        if value&lt;0:
-            print('fail')
-            return
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setamount</span>(<span class="hljs-params">self, value</span>):</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(value, <span class="hljs-built_in">int</span>):
+            print(<span class="hljs-string">'fail'</span>)
+            <span class="hljs-keyword">return</span>
+        <span class="hljs-keyword">if</span> value&lt;<span class="hljs-number">0</span>:
+            print(<span class="hljs-string">'fail'</span>)
+            <span class="hljs-keyword">return</span>
         self.amount=value
-    def getamount(self):
-        return self.amount</code></pre>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getamount</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> self.amount</code></pre>
 <p>このクラスでは、<code>getamount</code>と<code>setamount</code>の2つの関数が定義されています。この関数は受けた値を確認また渡します。このクラスをインスタンス化した後、2つの関数を呼び出す必要があります。コードを簡略化するためにプロパティとして定義できます。
 例：</p>
-<pre><code class="language-python">class fruit:
-    @property
-    def amount(self):
-        return self._amount
-    @amount.setter
-    def amount(self,value):
-        if not isinstance(value, int):
-            print('fail')
-        if value&lt; 0:
-            print('fail')
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>:</span>
+<span class="hljs-meta">    @property</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">amount</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> self._amount
+<span class="hljs-meta">    @amount.setter</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">amount</span>(<span class="hljs-params">self,value</span>):</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">isinstance</span>(value, <span class="hljs-built_in">int</span>):
+            print(<span class="hljs-string">'fail'</span>)
+        <span class="hljs-keyword">if</span> value&lt; <span class="hljs-number">0</span>:
+            print(<span class="hljs-string">'fail'</span>)
         self._amount=value
 f=fruit4()
-f.amount=-3</code></pre>
+f.amount=-<span class="hljs-number">3</span></code></pre>
 <p>Output:<code>fail</code></p>
 <p>Pythonの組み込み<code>@property</code>デコレータは、関数をプロパティ呼び出しに変換します。property.setterデコレータは数値チェックと戻す役割を担当します。</p>
 <h2 id="インターフェース">インターフェース</h2>
 <p>インターフェイスは抽象クラスであり、インスタンス化することはできません。インターフェースはサブクラスのメソッドを規制するための型です。インターフェイスクラスから継承されたサブクラスは、インターフェイスクラスの関数をオーバーライドする必要があります。型チェックを実行して、サブクラスが特定のメソッドを実装していることを確認します。
 abcモジュールでインターフェースクラスを定義できます。例：</p>
-<pre><code class="language-python">from abc import ABCMeta, abstractmethod
+<pre><code class="python"><span class="hljs-keyword">from</span> abc <span class="hljs-keyword">import</span> ABCMeta, abstractmethod
 
-class fruit(metaclass=ABCMeta):
-    @abstractmethod
-    def price(self):
-        pass
-    @abstractmethod
-    def amount(self):
-        pass
-class apple(fruit):
-    pass
-class banana(fruit):
-    def price(self):
-        print(20)
-    def amount(self):
-        print(50)</code></pre>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fruit</span>(<span class="hljs-params">metaclass=ABCMeta</span>):</span>
+<span class="hljs-meta">    @abstractmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">price</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">pass</span>
+<span class="hljs-meta">    @abstractmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">amount</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">pass</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">apple</span>(<span class="hljs-params">fruit</span>):</span>
+    <span class="hljs-keyword">pass</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">banana</span>(<span class="hljs-params">fruit</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">price</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-number">20</span>)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">amount</span>(<span class="hljs-params">self</span>):</span>
+        print(<span class="hljs-number">50</span>)</code></pre>
 <p>fruitを継承したappleクラスはpriceとamount関数をオーバーライドしないため、エラーが発生します。</p>
 <h2 id="列挙">列挙</h2>
 <p>定数を定義したい場合は列挙型クラスを使用できます。
 例：</p>
-<pre><code class="language-python">from enum import Enum
+<pre><code class="python"><span class="hljs-keyword">from</span> enum <span class="hljs-keyword">import</span> Enum
 
-Week = Enum('Week',
-             ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))</code></pre>
+Week = Enum(<span class="hljs-string">'Week'</span>,
+             (<span class="hljs-string">'Mon'</span>, <span class="hljs-string">'Tue'</span>, <span class="hljs-string">'Wed'</span>, <span class="hljs-string">'Thu'</span>, <span class="hljs-string">'Fri'</span>, <span class="hljs-string">'Sat'</span>, <span class="hljs-string">'Sun'</span>))</code></pre>
 <p>イテレータを使用してすべての定数を取得できます。</p>
-<pre><code class="language-python">for name, member in Week.__members__.items():
-    print(name, ',', member, ',', member.value)</code></pre>
+<pre><code class="python"><span class="hljs-keyword">for</span> name, member <span class="hljs-keyword">in</span> Week.__members__.items():
+    print(name, <span class="hljs-string">','</span>, member, <span class="hljs-string">','</span>, member.value)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Mon , Week.Mon , 1
+<pre><code class="python">Mon , Week.Mon , 1
 Tue , Week.Tue , 2
 Wed , Week.Wed , 3
 Thu , Week.Thu , 4
@@ -204,11 +207,11 @@ Sat , Week.Sat , 6
 Sun , Week.Sun , 7</code></pre>
 <p>value属性はメンバーに自動的に割り当てられるint定数です。デフォルトでは1から始まります。
 メンバーに特定の値を割り当てたい場合は、独自の列挙クラスを定義できます。</p>
-<pre><code class="language-python">from enum import Enum, unique
-@unique                             #値が重複しないことを確保
-class Week(Enum):
-    Mon = 1;Tue = 2;Wed = 3;Thu = 4;Fri = 5;Sat = 6;Sun = 7
+<pre><code class="python"><span class="hljs-keyword">from</span> enum <span class="hljs-keyword">import</span> Enum, unique
+<span class="hljs-meta">@unique                             </span><span class="hljs-comment">#値が重複しないことを確保</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Week</span>(<span class="hljs-params">Enum</span>):</span>
+    Mon = <span class="hljs-number">1</span>;Tue = <span class="hljs-number">2</span>;Wed = <span class="hljs-number">3</span>;Thu = <span class="hljs-number">4</span>;Fri = <span class="hljs-number">5</span>;Sat = <span class="hljs-number">6</span>;Sun = <span class="hljs-number">7</span>
 
-print(Week.Mon,' ',Week['Mon'],' ',Week(1),' ',Week.Mon.value) #異なる表示方法</code></pre>
+print(Week.Mon,<span class="hljs-string">' '</span>,Week[<span class="hljs-string">'Mon'</span>],<span class="hljs-string">' '</span>,Week(<span class="hljs-number">1</span>),<span class="hljs-string">' '</span>,Week.Mon.value) <span class="hljs-comment">#異なる表示方法</span></code></pre>
 <p>Output:<code>Week.Mon   Week.Mon   Week.Mon   1</code></p>
 </body></html>

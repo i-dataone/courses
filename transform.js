@@ -6,6 +6,7 @@ const path = require("path")
 
 const marked = require("marked")
 const jsdom = require("jsdom");
+const hljs = require("highlight.js");
 const { JSDOM } = jsdom;
 
 const inputRootPath = "./courses"
@@ -17,6 +18,13 @@ const courseNames = fs.readdirSync(inputRootPath)
 const template = fs.readFileSync(templatePath, "utf-8")
 
 fs.copyFileSync(cssPath, path.join(outputRootPath, "style.css"))
+
+marked.setOptions({
+    langPrefix: '',
+    highlight(code, lang) {
+    return hljs.highlightAuto(code, [lang]).value
+    }
+});
 
 for(let courseName of courseNames){
     const inputCoursePath = path.join(inputRootPath, courseName)

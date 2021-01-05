@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>ファイル操作</title>
     </head>
     <body><h1 id="ファイル操作">ファイル操作</h1>
@@ -17,18 +20,18 @@
 <h2 id="ファイルの開閉関数">ファイルの開閉関数</h2>
 <h3 id="open関数">open関数</h3>
 <p><code>open</code>関数の書き方は以下の通りです：</p>
-<pre><code class="language-Perl">open(ファイルハンドル名, "ファイル名");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"ファイル名"</span>);</code></pre>
 <p>例：</p>
-<pre><code class="language-Perl">open(DATA, "file.txt");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(DATA, <span class="hljs-string">"file.txt"</span>);</code></pre>
 <p>ここでは、<code>file.txt</code>というファイルを開いて、<code>DATA</code>というファイルハンドルを設定しています。
 あるいは</p>
-<pre><code class="language-Perl">open(ファイルハンドル名, "モード", "ファイル名");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"モード"</span>, <span class="hljs-string">"ファイル名"</span>);</code></pre>
 <p>ファイルは開けない場合は、<code>die</code>関数を使います。書き方は</p>
-<pre><code class="language-Perl">open(ファイルハンドル名, "ファイル名") or die(処理);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"ファイル名"</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(処理);</code></pre>
 <p>あるいは</p>
-<pre><code class="language-Perl">open(ファイルハンドル名, "ファイル名") || die(処理);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"ファイル名"</span>) || <span class="hljs-keyword">die</span>(処理);</code></pre>
 <p>例：</p>
-<pre><code class="language-Perl">open(DATA, "file.txt") or die("Error");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(DATA, <span class="hljs-string">"file.txt"</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">"Error"</span>);</code></pre>
 <h4 id="open関数のモード">open関数のモード</h4>
 <p>モードは以下のように用意されています。</p>
 <ul>
@@ -43,7 +46,7 @@
 </ul>
 <h3 id="sysopen関数">Sysopen関数</h3>
 <p>Sysopen関数はopen関数と似ていますが、書き方は違います、Sysopen関数の書き方は以下の通りです：</p>
-<pre><code class="language-Perl">Sysopen(ファイルハンドル名, "ファイル名",モード) ;</code></pre>
+<pre><code class="Perl">Sysopen(ファイルハンドル名, <span class="hljs-string">"ファイル名"</span>,モード) ;</code></pre>
 <p>Sysopenのモードは以下のように用意されています：</p>
 <ul>
 <li>O_RDWR     読み書き両用、ファイル先頭にポイントする</li>
@@ -57,68 +60,68 @@
 </ul>
 <h3 id="close関数">close関数</h3>
 <p>close関数の書き方は以下の通りです：</p>
-<pre><code class="language-Perl">close(ファイルハンドル名);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">close</span>(ファイルハンドル名);</code></pre>
 <p>例えば：</p>
-<pre><code class="language-Perl">open(DATA, "file.txt");
-close(DATA);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(DATA, <span class="hljs-string">"file.txt"</span>);
+<span class="hljs-keyword">close</span>(DATA);</code></pre>
 <p>ファイルは閉めない場合で、「die」関数を使います。書き方は</p>
-<pre><code class="language-Perl">close(ファイルハンドル名) || die(処理);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">close</span>(ファイルハンドル名) || <span class="hljs-keyword">die</span>(処理);</code></pre>
 <h2 id="ファイルの読み書き">ファイルの読み書き</h2>
 <h3 id="ファイルの読み込む">ファイルの読み込む</h3>
 <p>まずは「hello.dat」というファイルで以下のようにデータを格納します：</p>
-<pre><code class="language-1">2
+<pre><code class="1">2
 3
 4
 5</code></pre>
 <p>次のコードを実行すると、</p>
-<pre><code class="language-Perl">open(IN,"&lt;","hello.dat")or die("ファイルは開けません");
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(IN,<span class="hljs-string">"&lt;"</span>,<span class="hljs-string">"hello.dat"</span>)<span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">"ファイルは開けません"</span>);
 
-while(&lt;IN&gt;) {
- print $_;
+<span class="hljs-keyword">while</span>(&lt;IN&gt;) {
+ <span class="hljs-keyword">print</span> $_;
 }
 
-close(IN);</code></pre>
+<span class="hljs-keyword">close</span>(IN);</code></pre>
 <p>結果は</p>
-<pre><code class="language-1">2
+<pre><code class="1">2
 3
 4
 5</code></pre>
 <p>となります。</p>
 <h3 id="ファイルの書き込む">ファイルの書き込む</h3>
 <p>まずは「hello.dat」というファイルに以下のようにデータを格納します：</p>
-<pre><code class="language-1">2
+<pre><code class="1">2
 3
 4
 5</code></pre>
 <p>以下の文を実行すると、</p>
-<pre><code class="language-Perl">open(OUT,"&gt;","hello.dat")or die("ファイルは開けません");
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(OUT,<span class="hljs-string">"&gt;"</span>,<span class="hljs-string">"hello.dat"</span>)<span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">"ファイルは開けません"</span>);
 
-print OUT "6\n";
-print OUT "7\n";
+<span class="hljs-keyword">print</span> OUT <span class="hljs-string">"6\n"</span>;
+<span class="hljs-keyword">print</span> OUT <span class="hljs-string">"7\n"</span>;
 
-close(OUT);</code></pre>
+<span class="hljs-keyword">close</span>(OUT);</code></pre>
 <p>「hello.dat」の内容は</p>
-<pre><code class="language-6">7</code></pre>
+<pre><code class="6">7</code></pre>
 <p>となります。</p>
 <h3 id="追加書き込み">追加書き込み</h3>
 <p>追加書き込みの書き方は：</p>
-<pre><code class="language-Perl">1. open(ファイルハンドル名, "&gt;&gt;", "ファイル名");
-2. open(ファイルハンドル名, "&gt;&gt; ファイル名");</code></pre>
+<pre><code class="Perl"><span class="hljs-number">1</span>. <span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"&gt;&gt;"</span>, <span class="hljs-string">"ファイル名"</span>);
+<span class="hljs-number">2</span>. <span class="hljs-keyword">open</span>(ファイルハンドル名, <span class="hljs-string">"&gt;&gt; ファイル名"</span>);</code></pre>
 <p>の二種類があります。引数が二つ以内あれば、2番の書き方で書きます。引数が三つ以上あれば、1番の書き方で書きます。</p>
 <p>まずは「hello.dat」というファイルに以下のようにデータを格納します：</p>
-<pre><code class="language-1">2
+<pre><code class="1">2
 3
 4
 5</code></pre>
 <p>次のコードを実行すると、</p>
-<pre><code class="language-Perl">open(OUT,"&gt;&gt; hello.dat")or die("ファイルは開けません");
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(OUT,<span class="hljs-string">"&gt;&gt; hello.dat"</span>)<span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>(<span class="hljs-string">"ファイルは開けません"</span>);
 
-print OUT "6\n";
-print OUT "7\n";
+<span class="hljs-keyword">print</span> OUT <span class="hljs-string">"6\n"</span>;
+<span class="hljs-keyword">print</span> OUT <span class="hljs-string">"7\n"</span>;
 
-close(OUT);</code></pre>
+<span class="hljs-keyword">close</span>(OUT);</code></pre>
 <p>「hello.dat」の内容は</p>
-<pre><code class="language-1">2
+<pre><code class="1">2
 3
 4
 5
@@ -128,22 +131,22 @@ close(OUT);</code></pre>
 <h2 id="ファイルの変更">ファイルの変更</h2>
 <h3 id="ファイル名の変更">ファイル名の変更</h3>
 <p>ファイル名の変更はrename関数を使います。書き方は下記です：</p>
-<pre><code class="language-Perl">rename("旧名","新名");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">rename</span>(<span class="hljs-string">"旧名"</span>,<span class="hljs-string">"新名"</span>);</code></pre>
 <h3 id="ファイルの削除">ファイルの削除</h3>
 <p>ファイル名の変更はunlink関数を使います。書き方は下記です：</p>
-<pre><code class="language-Perl">unlink("ファイル名");</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">unlink</span>(<span class="hljs-string">"ファイル名"</span>);</code></pre>
 <h3 id="ファイルのコピー">ファイルのコピー</h3>
 <p>ファイル名の変更はwhile文で実現します。書き方は下記です：</p>
-<pre><code class="language-Perl">while(&lt;コピー元ファイルハンドル&gt;){
- print コピー先ファイルハンドル $_;
+<pre><code class="Perl"><span class="hljs-keyword">while</span>(&lt;コピー元ファイルハンドル&gt;){
+ <span class="hljs-keyword">print</span> コピー先ファイルハンドル $_;
 }</code></pre>
 <p>例：</p>
-<pre><code class="language-Perl">open(FILE1,"&lt;file1.txt");
-open(FILE2,"&gt;file1.txt");
-while(&lt;FILE1&gt;){
- print FILE2 $_;
+<pre><code class="Perl"><span class="hljs-keyword">open</span>(FILE1,<span class="hljs-string">"&lt;file1.txt"</span>);
+<span class="hljs-keyword">open</span>(FILE2,<span class="hljs-string">"&gt;file1.txt"</span>);
+<span class="hljs-keyword">while</span>(&lt;FILE1&gt;){
+ <span class="hljs-keyword">print</span> FILE2 $_;
 }
-close(FILE1);
-close(FILE2);</code></pre>
+<span class="hljs-keyword">close</span>(FILE1);
+<span class="hljs-keyword">close</span>(FILE2);</code></pre>
 <p>これを実行すると、file1.txtの内容はfile2.txtにコピーされます。</p>
 </body></html>

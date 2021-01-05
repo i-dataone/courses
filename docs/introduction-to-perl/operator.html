@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>演算子</title>
     </head>
     <body><h1 id="演算子">演算子</h1>
@@ -93,12 +96,12 @@
 <h2 id="変数の演算子">変数の演算子</h2>
 <p>算術演算子は変数にも使えます。</p>
 <p>例えば：</p>
-<pre><code class="language-Perl">$a = 5;
-$b = 10;
+<pre><code class="Perl">$a = <span class="hljs-number">5</span>;
+$b = <span class="hljs-number">10</span>;
 $c = $a + $b;
-print"\$c=$c\n"</code></pre>
+<span class="hljs-keyword">print</span><span class="hljs-string">"\$c=$c\n"</span></code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-Perl">$c=15</code></pre>
+<pre><code class="Perl">$c=<span class="hljs-number">15</span></code></pre>
 <p>となります。</p>
 <h2 id="ビット演算子">ビット演算子</h2>
 <table>
@@ -136,13 +139,13 @@ print"\$c=$c\n"</code></pre>
 ビットXORは二つの同じ位置のヒットを比較して、両方のビットの値が異なると「1」にします。
 ビットNOTは本来の値の各ヒットを入れ替えます。例えば、1の場合は0にします。</p>
 <p>例えば、a = 60，b = 13の時は次のようになります：</p>
-<pre><code class="language-Perl">$a = 0011 1100
-$b = 0000 1101
+<pre><code class="Perl">$a = <span class="hljs-number">0011</span> <span class="hljs-number">1100</span>
+$b = <span class="hljs-number">0000</span> <span class="hljs-number">1101</span>
 
-$a&amp;$b = 0000 1100
-$a|$b = 0011 1101
-$a^$b = 0011 0001
-~$a  = 1100 0011</code></pre>
+$a&amp;$b = <span class="hljs-number">0000</span> <span class="hljs-number">1100</span>
+$a|$b = <span class="hljs-number">0011</span> <span class="hljs-number">1101</span>
+$a^$b = <span class="hljs-number">0011</span> <span class="hljs-number">0001</span>
+~$a  = <span class="hljs-number">1100</span> <span class="hljs-number">0011</span></code></pre>
 <h3 id="シフト演算子">シフト演算子</h3>
 <table>
 <thead>
@@ -165,10 +168,10 @@ $a^$b = 0011 0001
 </tbody></table>
 <p>シフト演算子はビットを左あるいは右へ移動させるための演算子です。
 例えば、<code>a = 60</code>の時は次のようになります：</p>
-<pre><code class="language-Perl">$a = 0011 1100
+<pre><code class="Perl">$a = <span class="hljs-number">0011</span> <span class="hljs-number">1100</span>
 
-$a&lt;&lt;2 = 0001 1000
-$a&gt;&gt;2 = 0001 1110</code></pre>
+$a&lt;&lt;<span class="hljs-number">2</span> = <span class="hljs-number">0001</span> <span class="hljs-number">1000</span>
+$a&gt;&gt;<span class="hljs-number">2</span> = <span class="hljs-number">0001</span> <span class="hljs-number">1110</span></code></pre>
 <h2 id="論理演算子">論理演算子</h2>
 <table>
 <thead>

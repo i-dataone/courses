@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>Perl関数</title>
     </head>
     <body><h1 id="perl関数">Perl関数</h1>
@@ -17,24 +20,24 @@
 <h3 id="ファイル表示">ファイル表示</h3>
 <p>ファイルを表示するにはglob関数を使います。
 例えば、</p>
-<pre><code class="language-Perl">my $dir = "/tmp/*";
-my @files = glob($dir);</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $dir = <span class="hljs-string">"/tmp/*"</span>;
+<span class="hljs-keyword">my</span> @files = <span class="hljs-keyword">glob</span>($dir);</code></pre>
 <p>と実行する時、結果は<code>/tmp</code>ディレクトリの全てのファイルを表示します。</p>
 <h3 id="ファイルの作成">ファイルの作成</h3>
 <p>ファイル表示するには<code>mkdir</code>関数を使います。</p>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $dir = "/tmp/Perl";
-mkdir($dir);
-print "ディレクトリ作成成功\n"</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $dir = <span class="hljs-string">"/tmp/Perl"</span>;
+<span class="hljs-keyword">mkdir</span>($dir);
+<span class="hljs-keyword">print</span> <span class="hljs-string">"ディレクトリ作成成功\n"</span></code></pre>
 <p>と実行する時、結果は</p>
 <p><code>ディレクトリ作成成功</code></p>
 <p>になります。</p>
 <h3 id="ファイルの切り替える">ファイルの切り替える</h3>
 <p>ファイル表示するのはchdir関数を使います。</p>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $dir = "/Hello";
-chdir($dir);
-print "ディレクトリの位置は $dir\n です。"</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $dir = <span class="hljs-string">"/Hello"</span>;
+<span class="hljs-keyword">chdir</span>($dir);
+<span class="hljs-keyword">print</span> <span class="hljs-string">"ディレクトリの位置は $dir\n です。"</span></code></pre>
 <p>と実行すると、結果は</p>
 <p><code>ディレクトリの位置は /Hello です。</code></p>
 <p>になります。</p>

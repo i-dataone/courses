@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>Node.jsの紹介</title>
     </head>
     <body><h1 id="nodejsの紹介">Node.jsの紹介</h1>
@@ -9,7 +12,7 @@
 <h2 id="nodejsのインストール">Node.jsのインストール</h2>
 <h3 id="windowsプラットフォーム">windowsプラットフォーム</h3>
 <p>windows開発者は、Node.jsの公式サイトで直接ダウンロードすることができます<a href="https://nodejs.org/ja/download/">https://nodejs.org/ja/download/</a>。インストールした後に、コマンドプロンプト（以後「cmd」という）で以下のコマンドを実行してください。</p>
-<pre><code class="language-shell">C:\&gt; node --version
+<pre><code class="shell">C:\&gt; node --version
 v14.15.1</code></pre>
 <p>Node.jsのバージョンが表示されれば、無事にインストールができています。もし、バージョンが表示されない場合は、再度インストールを行っていください。</p>
 <h3 id="macosプラットフォーム">MacOSプラットフォーム</h3>
@@ -23,25 +26,25 @@ Node.jsのインストールの際は、v~は、バージョンの指定がで�
 <p>コンソールで「HelloWorld」を表示させます。
 以下のように作成したファイルにコードを追加してください。</p>
 <p>HelloWorld.js</p>
-<pre><code class="language-JavaScript">console.log('Hello world');</code></pre>
+<pre><code class="JavaScript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello world'</span>);</code></pre>
 <p>cmd</p>
-<pre><code class="language-shell">C:\&gt; node HelloWorld.js
+<pre><code class="shell">C:\&gt; node HelloWorld.js
 Hello world //表示</code></pre>
 <p>cmdのみで'Hello world'が表示されます。</p>
 <h3 id="webブラウザでのhello-world">WebブラウザでのHello World</h3>
 <p>Webブラウザに「HelloWorld」を表示させます。
 以下のようにコードを追加してください。</p>
-<pre><code class="language-JavaScript">const http = require('http');
-const port = 3000;
+<pre><code class="JavaScript"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>);
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;
 
-const server = http.createServer(function (req, res) {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+<span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">req, res</span>) </span>{
+    res.statusCode = <span class="hljs-number">200</span>;
+    res.setHeader(<span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'text/plain'</span>);
+    res.end(<span class="hljs-string">'Hello World'</span>);
 });
 
-server.listen(port, () =&gt; {
-    console.log(`Server running at http:// ${port}`);
+server.listen(port, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Server running at http:// <span class="hljs-subst">${port}</span>`</span>);
 })</code></pre>
 <p>コードの追加後、cmdで<code>node HelloWorld.js</code>を入力しWebサーバを起動しましょう。
 cmdに<code>Server running at http://3000/</code>と表示されていることを確認し、<code>http://localhost:3000</code>にアクセスすると、'Hello World'が表示されています。

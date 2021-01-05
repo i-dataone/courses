@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>基本事項</title>
     </head>
     <body><h1 id="基本事項">基本事項</h1>
@@ -8,7 +11,7 @@
 <p>Perlプログラムは<strong>宣言</strong>と<strong>命令</strong>から構成されます。プログラムはループと条件付き制御を含め、上から順番に実行されます。各命令はセミコロン「;」で終わります。</p>
 <p>Perlファイルの拡張子は<code>.pl</code>です。
 次のコードを<code>hello.pl</code>というファイル名で保存してください</p>
-<pre><code class="language-Perl">print "hello world\n";</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">print</span> <span class="hljs-string">"hello world\n"</span>;</code></pre>
 <p>コマンドプロンプトで<code>perl hello.pl``を入力して実行すると、</code>hello world`と出力されます。</p>
 <p><img src="https://s1.ax1x.com/2020/04/28/J53pAe.png" alt="J53pAe.png"></p>
 <h2 id="コメントの書き方">コメントの書き方</h2>
@@ -17,14 +20,14 @@
 <h2 id="条件分岐">条件分岐</h2>
 <h3 id="if条件分岐">If条件分岐</h3>
 <p>If条件分岐の基本文法：</p>
-<pre><code class="language-Perl">if(条件){
+<pre><code class="Perl">if(条件){
   条件に合わせる場合の処理；
  }</code></pre>
 <p>条件を書くために<code>&lt;</code>,<code>&gt;</code>,<code>==</code>,<code>&lt;=</code>,<code>&gt;=</code>,<code>!=</code>等の演算子が使えます。</p>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-if($score &gt;= 60){
-  print("OK");
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">if</span>($score &gt;= <span class="hljs-number">60</span>){
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"OK"</span>);
  }</code></pre>
 <p>とすると、実行結果は
 <code>OK</code>
@@ -32,34 +35,34 @@ if($score &gt;= 60){
 <p>If条件分岐の条件には数字だけではなく、文字列も使えます。</p>
 <p>条件は<code>eq</code>(==) <code>ne</code>(!=) <code>gt</code>(&gt;) <code>lt</code>(&lt;) <code>ge</code>(&gt;=) <code>le</code>(&lt;=) 、なお、文字列を比較する時、文字コードの順番は<code>0-9 &lt; A-Z &lt; a-z</code>です、例えば「aA」&gt;「Aa」。は論理演算子には<code>&amp;&amp;</code>（AND）,<code>||</code>（OR）,<code>&amp;&amp;</code>（AND）,<code>!</code>（NOT）があります。</p>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $color = green;
-my $score = 60;
-if($color eq green)&amp;&amp;($score = 60){
-  print("OK");
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $color = green;
+<span class="hljs-keyword">my</span> $score = <span class="hljs-number">60</span>;
+<span class="hljs-keyword">if</span>($color eq green)&amp;&amp;($score = <span class="hljs-number">60</span>){
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"OK"</span>);
  }</code></pre>
 <p>を実行すると、結果は</p>
 <p><code>OK</code>
 となります。</p>
 <h4 id="if条件の後置">if条件の後置</h4>
 <p>if文は処理の後でも書けます。たとえば、前のif条件分岐は以下のようにも書けます：</p>
-<pre><code class="language-Perl">my $score = 65;
-print("OK"); if($score &gt;= 60)</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">print</span>(<span class="hljs-string">"OK"</span>); <span class="hljs-keyword">if</span>($score &gt;= <span class="hljs-number">60</span>)</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
 となります。</p>
 <h3 id="ifelse条件分岐">if...else条件分岐</h3>
 <p>If...else条件分岐の基本文法：</p>
-<pre><code class="language-Perl">if(条件){  
+<pre><code class="Perl"><span class="hljs-keyword">if</span>(条件){  
  条件に合わせる場合の処理;
- }else{
+ }<span class="hljs-keyword">else</span>{
  条件に合わせない場合の処理;
  }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-if($score &gt;= 60){
-  print("OK");
- }else{
-  print("NG");
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">if</span>($score &gt;= <span class="hljs-number">60</span>){
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"OK"</span>);
+ }<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"NG"</span>);
  }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -69,21 +72,21 @@ if($score &gt;= 60){
 となります。</p>
 <h3 id="ifelsif条件分岐">if...elsif...条件分岐</h3>
 <p>If...elsif...条件分岐の基本文法：</p>
-<pre><code class="language-Perl">if(条件1){  
- 条件1に合わせる場合の処理;
- }elsif(条件2){
- 条件2に合わせる場合の処理;
- }else{
- 条件1も条件2も合わせない場合の処理;
+<pre><code class="Perl"><span class="hljs-keyword">if</span>(条件<span class="hljs-number">1</span>){  
+ 条件<span class="hljs-number">1</span>に合わせる場合の処理;
+ }<span class="hljs-keyword">elsif</span>(条件<span class="hljs-number">2</span>){
+ 条件<span class="hljs-number">2</span>に合わせる場合の処理;
+ }<span class="hljs-keyword">else</span>{
+ 条件<span class="hljs-number">1</span>も条件<span class="hljs-number">2</span>も合わせない場合の処理;
  }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-if($score &lt; 60)&amp;&amp;($score &lt; 90){
-  print("NG");
-}elsif($score &gt;= 60)&amp;&amp;($score &lt; 90){
-  print("OK");
- }else{
-  print("GREAT");
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">if</span>($score &lt; <span class="hljs-number">60</span>)&amp;&amp;($score &lt; <span class="hljs-number">90</span>){
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"NG"</span>);
+}<span class="hljs-keyword">elsif</span>($score &gt;= <span class="hljs-number">60</span>)&amp;&amp;($score &lt; <span class="hljs-number">90</span>){
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"OK"</span>);
+ }<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"GREAT"</span>);
  }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -95,64 +98,64 @@ if($score &lt; 60)&amp;&amp;($score &lt; 90){
 となります。</p>
 <h3 id="三項演算子">三項演算子</h3>
 <p>三項演算子の基本文法：</p>
-<pre><code class="language-Perl">(条件)?　値a : 値b;</code></pre>
+<pre><code class="Perl">(条件)?　値a : 値b;</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $a = 50;
-my $b = 60;
-my $max = ($a &gt; $b)? $a : $b;
-print $max;</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $a = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">my</span> $b = <span class="hljs-number">60</span>;
+<span class="hljs-keyword">my</span> $max = ($a &gt; $b)? $a : $b;
+<span class="hljs-keyword">print</span> $max;</code></pre>
 <p>を実行すると、結果は
 <code>60</code>
 となります。</p>
 <h3 id="unless条件分岐">unless条件分岐</h3>
 <p>unless条件分岐の基本文法：</p>
-<pre><code class="language-Perl">unless (条件){
-  条件に合わせない場合の処理 1;
-  条件に合わせない場合の処理 2;
+<pre><code class="Perl"><span class="hljs-keyword">unless</span> (条件){
+  条件に合わせない場合の処理 <span class="hljs-number">1</span>;
+  条件に合わせない場合の処理 <span class="hljs-number">2</span>;
 }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-unless ($score &lt; 60){
-  print ("OK");
-  print ("YES");
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">unless</span> ($score &lt; <span class="hljs-number">60</span>){
+  <span class="hljs-keyword">print</span> (<span class="hljs-string">"OK"</span>);
+  <span class="hljs-keyword">print</span> (<span class="hljs-string">"YES"</span>);
 }</code></pre>
 <p>を実行すると、結果は
 <code>OKYES</code>
 となります。</p>
 <h3 id="unlesselse条件分岐">unless...else条件分岐</h3>
 <p>unless...else条件分岐の基本文法：</p>
-<pre><code class="language-Perl">unless(条件)｛
+<pre><code class="Perl"><span class="hljs-keyword">unless</span>(条件)｛
  条件に合わせない場合の処理;
- ｝else{
+ ｝<span class="hljs-keyword">else</span>{
  条件に合わせる場合の処理;
  }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-unless($score &lt; 60){
- print"OK";
-}else{
- print"NG"
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">unless</span>($score &lt; <span class="hljs-number">60</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"OK"</span>;
+}<span class="hljs-keyword">else</span>{
+ <span class="hljs-keyword">print</span><span class="hljs-string">"NG"</span>
 }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
 となります。</p>
 <h3 id="unlesselsif条件分岐">unless...elsif条件分岐</h3>
 <p>unless...else条件分岐の基本文法：</p>
-<pre><code class="language-Perl">unless(条件1)｛
- 条件1に合わせない場合の処理;
- ｝elsif(条件2){
- 条件2に合わせる場合の処理;
- } else{
+<pre><code class="Perl"><span class="hljs-keyword">unless</span>(条件<span class="hljs-number">1</span>)｛
+ 条件<span class="hljs-number">1</span>に合わせない場合の処理;
+ ｝<span class="hljs-keyword">elsif</span>(条件<span class="hljs-number">2</span>){
+ 条件<span class="hljs-number">2</span>に合わせる場合の処理;
+ } <span class="hljs-keyword">else</span>{
   その他の場合の処理;
  }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $score = 65;
-unless($score&gt;60){
- print"NG";
-}elsif($score&gt;=60)&amp;&amp;($score&lt;90){
- print"OK";
-}else{
- print"GREAT";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $score = <span class="hljs-number">65</span>;
+<span class="hljs-keyword">unless</span>($score&gt;<span class="hljs-number">60</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"NG"</span>;
+}<span class="hljs-keyword">elsif</span>($score&gt;=<span class="hljs-number">60</span>)&amp;&amp;($score&lt;<span class="hljs-number">90</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"OK"</span>;
+}<span class="hljs-keyword">else</span>{
+ <span class="hljs-keyword">print</span><span class="hljs-string">"GREAT"</span>;
 }</code></pre>
 <p>を実行すると、結果は
 <code>OK</code>
@@ -166,48 +169,48 @@ unless($score&gt;60){
 <p>Switchの実行はSwitchモジュールに基づいています。このモジュールはデフォルトではインストールされません。
 Switchモジュールのインストール：
 コマンドプロンプトを開いて、以下の命令を入力します：</p>
-<pre><code class="language-cmd">cpan
+<pre><code class="cmd">cpan
 cpan&gt; install Switch
-cpan&gt; exit</code></pre>
+cpan&gt; <span class="hljs-keyword">exit</span></code></pre>
 <p>switch条件分岐の基本文法：</p>
-<pre><code class="language-Perl">use Switch;
+<pre><code class="Perl"><span class="hljs-keyword">use</span> Switch;
 
 Switch(引数){
-case 1  {print"数字１"}
-case "a"{print"文字a"}
+case <span class="hljs-number">1</span>  {<span class="hljs-keyword">print</span><span class="hljs-string">"数字１"</span>}
+case <span class="hljs-string">"a"</span>{<span class="hljs-keyword">print</span><span class="hljs-string">"文字a"</span>}
 ...
-else    {print"その他"}
+<span class="hljs-keyword">else</span>    {<span class="hljs-keyword">print</span><span class="hljs-string">"その他"</span>}
 }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">use Switch;
-my $number = 10;
-my @score = (50,60,90);
-my %hash = ('Tom'=50,'Lily'=90);
+<pre><code class="Perl"><span class="hljs-keyword">use</span> Switch;
+<span class="hljs-keyword">my</span> $number = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">my</span> @score = (<span class="hljs-number">50</span>,<span class="hljs-number">60</span>,<span class="hljs-number">90</span>);
+<span class="hljs-keyword">my</span> %hash = (<span class="hljs-string">'Tom'</span>=<span class="hljs-number">50</span>,<span class="hljs-string">'Lily'</span>=<span class="hljs-number">90</span>);
 
 Switch($number){
- case 10       {print"数字10"};
- case "a"      {print"文字a"};
- case(\@score) {print"数字はscore配列の中"}
- else          {print"その他"}
+ case <span class="hljs-number">10</span>       {<span class="hljs-keyword">print</span><span class="hljs-string">"数字10"</span>};
+ case <span class="hljs-string">"a"</span>      {<span class="hljs-keyword">print</span><span class="hljs-string">"文字a"</span>};
+ case(\@score) {<span class="hljs-keyword">print</span><span class="hljs-string">"数字はscore配列の中"</span>}
+ <span class="hljs-keyword">else</span>          {<span class="hljs-keyword">print</span><span class="hljs-string">"その他"</span>}
 }</code></pre>
 <p>を実行すると、結果は
 <code>数字10</code></p>
 <h2 id="繰り返し処理">繰り返し処理</h2>
 <h3 id="while文">while文</h3>
 <p>while文の基本文法：</p>
-<pre><code class="language-Perl">while(条件){
+<pre><code class="Perl"><span class="hljs-keyword">while</span>(条件){
  実行処理;
  ループ処理;
 }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $number = 0;
-while($number&lt;5){
- print"number=$number\n";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $number = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>($number&lt;<span class="hljs-number">5</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"number=$number\n"</span>;
  $number++;
 }
-print"ループ完了。";</code></pre>
+<span class="hljs-keyword">print</span><span class="hljs-string">"ループ完了。"</span>;</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-number=0">number=1
+<pre><code class="number=0">number=1
 number=2
 number=3
 number=4
@@ -215,20 +218,20 @@ number=4
 <p>と0から4まで5回ループ処理を行われました。</p>
 <h3 id="dowhile文">do...while文</h3>
 <p>do...while文の基本文法：</p>
-<pre><code class="language-Perl">do{
+<pre><code class="Perl"><span class="hljs-keyword">do</span>{
  実行処理;
  ループ処理;
-}while(条件);</code></pre>
+}<span class="hljs-keyword">while</span>(条件);</code></pre>
 <p>*　do ... whileループはwhileループに似ていますが、do...whileループが少なくとも1回ループ実行されることが保証されます。</p>
 <p>例えば、</p>
-<pre><code class="language-Perl">my $number = 0;
-do{
- print"number=$number\n";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $number = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">do</span>{
+ <span class="hljs-keyword">print</span><span class="hljs-string">"number=$number\n"</span>;
  $number++;
-}while($number&lt;5);
-print"ループ完了。";</code></pre>
+}<span class="hljs-keyword">while</span>($number&lt;<span class="hljs-number">5</span>);
+<span class="hljs-keyword">print</span><span class="hljs-string">"ループ完了。"</span>;</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-number=0">number=1
+<pre><code class="number=0">number=1
 number=2
 number=3
 number=4
@@ -236,16 +239,16 @@ number=4
 <p>と0から4まで5回ループ処理を行われました。</p>
 <h3 id="for文">for文</h3>
 <p>for文の基本文法：</p>
-<pre><code class="language-Perl">for(初期化;条件;ループ処理){
+<pre><code class="Perl">for(初期化;条件;ループ処理){
  実行処理;
 }</code></pre>
 <p>例えば、</p>
-<pre><code class="language-Perl">for(my $number = 0;$number &lt; 5;$number++){
- print"number = $number\n";
+<pre><code class="Perl"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">my</span> $number = <span class="hljs-number">0</span>;$number &lt; <span class="hljs-number">5</span>;$number++){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"number = $number\n"</span>;
 }
-print"ループ完了";</code></pre>
+<span class="hljs-keyword">print</span><span class="hljs-string">"ループ完了"</span>;</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-number=0">number=1
+<pre><code class="number=0">number=1
 number=2
 number=3
 number=4
@@ -253,20 +256,20 @@ number=4
 <p>と0から4まで5回ループ処理を行われました。</p>
 <h3 id="until文">until文</h3>
 <p>until文の基本文法：</p>
-<pre><code class="language-Perl">until(条件){
+<pre><code class="Perl"><span class="hljs-keyword">until</span>(条件){
  実行処理;
  ループ処理;
 }</code></pre>
 <p>while文とuntil文の違い：while文は条件に合う場合でループ処理を実行するのに対して、until文は条件に合わない場合でループ処理を実行します。
 例えば、</p>
-<pre><code class="language-Perl">my $number = 0;
-until($number&gt;=5){
- print"number = $number\n";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $number = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">until</span>($number&gt;=<span class="hljs-number">5</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"number = $number\n"</span>;
  $number++;
 }
-print"ループ完了"</code></pre>
+<span class="hljs-keyword">print</span><span class="hljs-string">"ループ完了"</span></code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-number=0">number=1
+<pre><code class="number=0">number=1
 number=2
 number=3
 number=4
@@ -274,48 +277,48 @@ number=4
 <p>と0から4まで5回ループ処理を行われました。</p>
 <h3 id="foreach文">foreach文</h3>
 <p>foreach文の基本文法：</p>
-<pre><code class="language-Perl">foreach 変数(リスト){
+<pre><code class="Perl"><span class="hljs-keyword">foreach</span> 変数(リスト){
  実行処理;
 }</code></pre>
 <p>リストの要素は順番に変数に格納するループ処理です。
 例えば、</p>
-<pre><code class="language-Perl">my @color = ("red","yellow","green");
-foreach my $signal (@color){
- print"$signal\n";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> @color = (<span class="hljs-string">"red"</span>,<span class="hljs-string">"yellow"</span>,<span class="hljs-string">"green"</span>);
+<span class="hljs-keyword">foreach</span> <span class="hljs-keyword">my</span> $signal (@color){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"$signal\n"</span>;
 }</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-red">yellow
+<pre><code class="red">yellow
 green</code></pre>
 <p>となります。</p>
 <p>実は、for文とforeach文は同じ構文です。for文の変数をリストに指定すれば、foreach文と同じループ処理を行うことができます。このためで、以下の通りに書くと同じ結果ができます。</p>
-<pre><code class="language-Perl">my @color = ("red","yellow","green");
-for my $signal (@color){
- print"$signal\n";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> @color = (<span class="hljs-string">"red"</span>,<span class="hljs-string">"yellow"</span>,<span class="hljs-string">"green"</span>);
+<span class="hljs-keyword">for</span> <span class="hljs-keyword">my</span> $signal (@color){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"$signal\n"</span>;
 }</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-red">yellow
+<pre><code class="red">yellow
 green</code></pre>
 <p>となります。</p>
 <h3 id="next文">next文</h3>
 <p>「next」演算子は実行しているループを指示する位置をスキップして次のループを行います。</p>
 <p>next文の基本文法：</p>
-<pre><code class="language-Perl">next;</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">next</span>;</code></pre>
 <p>例えば：</p>
-<pre><code class="language-Perl">my $number = 0;
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $number = <span class="hljs-number">0</span>;
 
-while ($number &lt;= 5){
+<span class="hljs-keyword">while</span> ($number &lt;= <span class="hljs-number">5</span>){
   $number++;
 
-  if ($number == 2){
-    next;
+  <span class="hljs-keyword">if</span> ($number == <span class="hljs-number">2</span>){
+    <span class="hljs-keyword">next</span>;
   }
 
-  print "$number\n";
+  <span class="hljs-keyword">print</span> <span class="hljs-string">"$number\n"</span>;
 
 }
-print "end\n";</code></pre>
+<span class="hljs-keyword">print</span> <span class="hljs-string">"end\n"</span>;</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-1">3
+<pre><code class="1">3
 4
 5
 6
@@ -324,20 +327,20 @@ end</code></pre>
 <h2 id="continue文">continue文</h2>
 <p>「next」演算子は実行しているループを指示する位置をスキップして次のループを行います。</p>
 <p>next文の基本文法：</p>
-<pre><code class="language-Perl">while(条件)｛
+<pre><code class="Perl"><span class="hljs-keyword">while</span>(条件)｛
 　処理；
-｝continue{
+｝<span class="hljs-keyword">continue</span>{
   処理;
 }</code></pre>
 <p>例えば：</p>
-<pre><code class="language-Perl">$number = 0;
-while($number &lt; 5){
- print"number = $number\n"；
-}continue{
- $number = $number+1;
+<pre><code class="Perl">$number = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>($number &lt; <span class="hljs-number">5</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"number = $number\n"</span>；
+}<span class="hljs-keyword">continue</span>{
+ $number = $number+<span class="hljs-number">1</span>;
 }</code></pre>
 <p>を実行すると、結果は</p>
-<pre><code class="language-number">number = 1
+<pre><code class="number">number = 1
 number = 2
 number = 3
 number = 4</code></pre>

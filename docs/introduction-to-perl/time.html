@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>Perl時間操作</title>
     </head>
     <body><h1 id="perl時間操作">Perl時間操作</h1>
@@ -13,28 +16,28 @@
 <h2 id="ローカルタイム関数">ローカルタイム関数</h2>
 <p>ローカルタイムを取得するには<code>localtime</code>関数を使います：
 直接<code>localtime</code>を使用すると、システム時間を以下のように返します。</p>
-<pre><code class="language-Perl">localtime();</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">localtime</span>();</code></pre>
 <p>例えば：</p>
-<pre><code class="language-Perl">$day = localtime();
-print"今日は$dayです。\n"</code></pre>
+<pre><code class="Perl">$day = <span class="hljs-keyword">localtime</span>();
+<span class="hljs-keyword">print</span><span class="hljs-string">"今日は$dayです。\n"</span></code></pre>
 <p>今日はThu May 21 16:31:08 2020です。</p>
 <h2 id="グリニッジ標準時関数">グリニッジ標準時関数</h2>
 <p>グリニッジ標準時関数とローカルタイム関数は似ていますが、返す時間はグリニッジ標準時です。</p>
-<pre><code class="language-Perl"> gmtime();</code></pre>
+<pre><code class="Perl"> <span class="hljs-keyword">gmtime</span>();</code></pre>
 <p>例えば：</p>
-<pre><code class="language-Perl">$local_time = localtime();
-print "ローカル時間は：：$local_time\n";
+<pre><code class="Perl">$local_time = <span class="hljs-keyword">localtime</span>();
+<span class="hljs-keyword">print</span> <span class="hljs-string">"ローカル時間は：：$local_time\n"</span>;
 
-$gmt_time = gmtime();
-print "グリニッジ時間は：$gmt_time\n";</code></pre>
+$gmt_time = <span class="hljs-keyword">gmtime</span>();
+<span class="hljs-keyword">print</span> <span class="hljs-string">"グリニッジ時間は：$gmt_time\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-ローカル時間は：May">グリニッジ時間は：May 21 07:39:55 2020</code></pre>
+<pre><code class="ローカル時間は：May">グリニッジ時間は：May 21 07:39:55 2020</code></pre>
 <p>となります。</p>
 <p>この例から、日本時間とグリニッジ標準時は9時間差があると確認できます。</p>
 <h2 id="時間フォーマット化">時間フォーマット化</h2>
 <p>関数strftime（）は、時刻を望むフォーマットに変換できます。書き方は：</p>
-<pre><code class="language-Perl"> use POSIX qw(strftime);
- strftime "記号",時間関数;</code></pre>
+<pre><code class="Perl"> <span class="hljs-keyword">use</span> POSIX <span class="hljs-string">qw(strftime)</span>;
+ strftime <span class="hljs-string">"記号"</span>,時間関数;</code></pre>
 <p>以下がフォーマットされる記号です。</p>
 <ul>
 <li>%a   曜日の略称（ Sun..Sat）</li>
@@ -60,9 +63,9 @@ print "グリニッジ時間は：$gmt_time\n";</code></pre>
 <li>%Y   年（2001）</li>
 </ul>
 <p>例えば：</p>
-<pre><code class="language-Perl">use POSIX qw(strftime);
-$date = strftime "%Y-%m-%d %H:%M:%S", localtime;
-print"ローカル時間は：$date\n";</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">use</span> POSIX <span class="hljs-string">qw(strftime)</span>;
+$date = strftime <span class="hljs-string">"%Y-%m-%d %H:%M:%S"</span>, <span class="hljs-keyword">localtime</span>;
+<span class="hljs-keyword">print</span><span class="hljs-string">"ローカル時間は：$date\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
 <p><code>ローカル時間は：2020-05-21 14:15:11</code></p>
 <p>となります。</p>

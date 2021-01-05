@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>パッケージ管理ツール</title>
     </head>
     <body><h1 id="パッケージ管理ツール">パッケージ管理ツール</h1>
@@ -11,37 +14,37 @@
 <p>npmは、Node.jsをインストールした際に、自動的にインストールされています。</p>
 <h3 id="npmのバージョン確認">npmのバージョン確認</h3>
 <p>まず、インストールされているかを確認します。</p>
-<pre><code class="language-shell">C:\&gt; npm --version
+<pre><code class="shell">C:\&gt; npm --version
 6.14.8 //npmのバージョンが表示</code></pre>
 <p>今回は、npmのバージョン6.14.8がインストールされていることがわかりました。</p>
 <h3 id="npmの初期化">npmの初期化</h3>
 <p>開発を始める際に、まずはnpmを初期化する必要があります。npmを初期化することで、カレントディレクトリに<code>package.json</code>を作成ができます。<code>package.json</code>は、開発時にそこで使われるパッケージを管理するために使われるファイルです。</p>
-<pre><code class="language-shell">C:\&gt; npm init
+<pre><code class="shell">C:\&gt; npm init
 //実行後に、プロジェクト名やバージョン情報などが聞かれる</code></pre>
 <h3 id="npmでパッケージをインストールする">npmでパッケージをインストールする</h3>
 <p>目的のパッケージをインストールするには、以下のコマンドを実行します。</p>
-<pre><code class="language-shell">C:\&gt; npm install パッケージ名</code></pre>
+<pre><code class="shell">C:\&gt; npm install パッケージ名</code></pre>
 <p>「install」コマンドでパッケージをインストールすることができます。</p>
 <p>省略記法としては、以下のコマンドが実行可能です。</p>
-<pre><code class="language-shell">C:\&gt; npm i パッケージ名</code></pre>
+<pre><code class="shell">C:\&gt; npm i パッケージ名</code></pre>
 <p>インストールが完了すると、カレントフォルダの配下に<code>node_modules</code>ファイルに配置されます。</p>
 <h2 id="npmのアンインストール">npmのアンインストール</h2>
 <p>目的のパッケージをアンインストールするには、以下のコマンドを実行します。</p>
-<pre><code class="language-shell">C:\&gt; npm un パッケージ名</code></pre>
+<pre><code class="shell">C:\&gt; npm un パッケージ名</code></pre>
 <p>「un」コマンドでパッケージをアンインストールすることができます。</p>
 <h2 id="代表なパッケージ紹介">代表なパッケージ紹介</h2>
 <h3 id="express">Express</h3>
 <p>Expressは、Node.jsのアプリ開発で使えるMVCフレームワークです。Webアプリを軽量かつ効率的に開発することができます。</p>
 <p>インストールのコマンドは、以下のようになります。</p>
-<pre><code class="language-shell">npm install express</code></pre>
+<pre><code class="shell">npm install express</code></pre>
 <p>公式リファレンス<a href="https://expressjs.com/">https://expressjs.com/</a></p>
 <h3 id="promise">promise</h3>
 <p>promiseは、Node.jsで非同期処理を可読性の高い実装することができるパッケージです。Node.jsでは非同期処理は、コールバック関数が使われますが、処理が複雑になると、処理内容がわかりづらくなります。promiseを利用することで、コールバック関数を明確になり、可読性・保守性が高くなります。</p>
 <p>インストールのコマンドは、以下のようになります。</p>
-<pre><code class="language-shell">npm install promise</code></pre>
+<pre><code class="shell">npm install promise</code></pre>
 <h3 id="socketio"><span>Socket.io</span></h3>
 <p>Socket.ioは、双方向のリアルタイムアプリを実装できます。チャットアプリなどが実装することができます。</p>
 <p>インストールのコマンドは、以下のようになります。</p>
-<pre><code class="language-shell">npm install socket.io</code></pre>
+<pre><code class="shell">npm install socket.io</code></pre>
 <p>公式リファレンス<a href="https://socket.io/">https://socket.io/</a></p>
 </body></html>

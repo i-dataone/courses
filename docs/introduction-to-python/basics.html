@@ -1,17 +1,20 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>Pythonの基礎文法</title>
     </head>
     <body><h1 id="pythonの基礎文法">Pythonの基礎文法</h1>
 <p>基礎知識を学ぶ前に、注意すべき点がいくつかあります。HelloWorldコードの例を見ましょう。最初に新しいHelloworld.pyファイルを作ります。テキストエディタとして、Sublime、notepad++などが使えます。統合開発環境にはpycharmを推奨します。</p>
 <p>Helloworld.py中のコード：</p>
-<pre><code class="language-python"># -*- coding: UTF-8 -*-
-hello = True
-if hello:
-    print ("Hello")
-else:
-    print ("World")</code></pre>
+<pre><code class="python"><span class="hljs-comment"># -*- coding: UTF-8 -*-</span>
+hello = <span class="hljs-literal">True</span>
+<span class="hljs-keyword">if</span> hello:
+    <span class="hljs-built_in">print</span> (<span class="hljs-string">"Hello"</span>)
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-built_in">print</span> (<span class="hljs-string">"World"</span>)</code></pre>
 <p>この.pyファイルはCMDで<code>python Helloworld.py</code>を実行でき、IDEに導入して実行することもできます。コードの一行目には使用するエンコード方法を宣言します。後はif条件分岐で判断した後、<code>print()</code>関数で
 <code>Hello</code>を出力します。</p>
 <!--
@@ -24,38 +27,38 @@ else:
 そのためインデントのルールを厳守する必要があります。たとえばコードを</p>
 <!-- 他の言語とは異なり、文末にセミコロンをつける必要がありません。Pythonのコードブロック..⇒  Pythonは他の言語とは異なり、文末にセミコロンをつける必要がなく、コードブロック -->
 
-<pre><code class="language-python">hello = True
-if hello:
-    print ("Hello")
-else:
-　print ("World")</code></pre>
+<pre><code class="python">hello = <span class="hljs-literal">True</span>
+<span class="hljs-keyword">if</span> hello:
+    <span class="hljs-built_in">print</span> (<span class="hljs-string">"Hello"</span>)
+<span class="hljs-keyword">else</span>:
+　<span class="hljs-built_in">print</span> (<span class="hljs-string">"World"</span>)</code></pre>
 <p>で実行したら、エラーが発生します。コードブロックで同じインデント（Space、TAB）数を使用する必要があります。行の間隔を明確にするためTABをお勧めします<!--ます⇒します-->。またIDEの自動エラー訂正機能によってある程度でこのようなエラーを回避できます。</p>
 <h2 id="複数行に一つの文を表示">複数行に一つの文を表示</h2>
 <p>文を複数の行に分割する場合、バックスラッシュ<code>\</code>を使います。</p>
-<pre><code class="language-python">helloworld = "hello" + \
-             "world"</code></pre>
+<pre><code class="python">helloworld = <span class="hljs-string">"hello"</span> + \
+             <span class="hljs-string">"world"</span></code></pre>
 <h2 id="1行に複数のステートメントを表示">1行に複数のステートメントを表示</h2>
 <p>ステートメントをセミコロンで分割します。</p>
-<pre><code class="language-python">x = "hello"; y="world"; print(x,y)</code></pre>
+<pre><code class="python">x = <span class="hljs-string">"hello"</span>; y=<span class="hljs-string">"world"</span>; print(x,y)</code></pre>
 <h2 id="引用符">引用符</h2>
 <p>引用符<code>'</code>、二重引用符<code>"</code>、三重引用符<code>'''</code>,<code>"""</code>を使用して文字列を表すことができます。<code>'</code>と<code>"</code>の違いはありませんが、三重引用符は複数行で表示できます。</p>
-<pre><code class="language-python">x = """hello,
-world"""</code></pre>
+<pre><code class="python">x = <span class="hljs-string">"""hello,
+world"""</span></code></pre>
 <h2 id="コメント">コメント</h2>
 <p>コードをコメントしたい場合：</p>
 <ul>
 <li>行コメント：コメントの頭に<code>#</code>をつけます</li>
 </ul>
-<pre><code class="language-python"> hello="hello" # It's a hello.</code></pre>
+<pre><code class="python"> hello=<span class="hljs-string">"hello"</span> <span class="hljs-comment"># It's a hello.</span></code></pre>
 <p>　または</p>
 <!--"は"追加-->
 
-<pre><code class="language-python"> # It's a hello.</code></pre>
+<pre><code class="python"> <span class="hljs-comment"># It's a hello.</span></code></pre>
 <ul>
 <li>複数行コメント:三重引用符を頭と尾につけます。</li>
 </ul>
-<pre><code class="language-python"> """
+<pre><code class="python"> <span class="hljs-string">"""
  hello="hello"
  world="world"
- """</code></pre>
+ """</span></code></pre>
 </body></html>

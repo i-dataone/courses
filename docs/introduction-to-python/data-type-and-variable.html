@@ -1,19 +1,22 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>データ型と変数</title>
     </head>
     <body><h1 id="データ型と変数">データ型と変数</h1>
 <h2 id="変数">変数</h2>
 <p>Pythonでは、変数は任意のデータ型の変数名で表されます。変数名は、大文字と小文字の英語、数字、アンダースコア<code>_</code>またそれらの組み合わせです。数字で始めることはできません。等号<code>=</code>は、変数に値を割り当てるために使用されます。</p>
-<pre><code class="language-python">a_1 = 1</code></pre>
+<pre><code class="python">a_1 = 1</code></pre>
 <p>例として整数変数を宣言します。Pythonで新しい変数を宣言するとき、型宣言の必要がありません、コンパイラが自動的に変数値の型を判断します。</p>
-<pre><code class="language-python">a = 1
-b, c = 1, "hello"</code></pre>
+<pre><code class="python">a = <span class="hljs-number">1</span>
+b, c = <span class="hljs-number">1</span>, <span class="hljs-string">"hello"</span></code></pre>
 <p>例の二行目には複数のオブジェクトに対して異なるタイプの変数を同時に指定できます。</p>
 <p>静的型付け言語とは異なり、動的型付け言語は変数宣言の後でも変数のデータ型を変更できます。</p>
-<pre><code class="language-python">a = 123     #整数
-a = 'Hello' #文字列
+<pre><code class="python">a = <span class="hljs-number">123</span>     <span class="hljs-comment">#整数</span>
+a = <span class="hljs-string">'Hello'</span> <span class="hljs-comment">#文字列</span>
 print(a)</code></pre>
 <p>Output: <code>Hello</code></p>
 <h2 id="標準データ型">標準データ型</h2>
@@ -25,10 +28,10 @@ print(a)</code></pre>
 <li>float</li>
 <li>complex</li>
 </ul>
-<pre><code class="language-python">a=1000      # 整数型
-b=1000.00   # 浮動小数点型
-c=1.23e+5   # 科学表記の123000
-d=2.25j     # 複素数</code></pre>
+<pre><code class="python">a=<span class="hljs-number">1000</span>      <span class="hljs-comment"># 整数型</span>
+b=<span class="hljs-number">1000.00</span>   <span class="hljs-comment"># 浮動小数点型</span>
+c=<span class="hljs-number">1.23e+5</span>   <span class="hljs-comment"># 科学表記の123000</span>
+d=<span class="hljs-number">2.25j</span>     <span class="hljs-comment"># 複素数</span></code></pre>
 <p>Pythonは実部と虚部で構成される複素数型を処理できます。<code>a+bj</code>または<code>complex(a,b)</code>として表します。実部aと虚部bの両方が浮動小数点型です</p>
 <h3 id="文字列型string">文字列型String</h3>
 <p>文字列は一重引用符<code>'</code>または二重引用符<code>"</code>で囲まれた任意のテキストです。文字列の中に引用符を含める場合、エスケープ文字<code>\</code>を使います。
@@ -36,12 +39,12 @@ d=2.25j     # 複素数</code></pre>
 <code>You're learning python</code>が出力されます。</p>
 <p>それに、Pythonではrを使ってエスケープせずに直接に文字列を表すこともできます。
 例えば</p>
-<pre><code class="language-python">print('\\\t\\')</code></pre>
+<pre><code class="python">print(<span class="hljs-string">'\\\t\\'</span>)</code></pre>
 <p>は<code>\    \</code>を出力し、</p>
-<pre><code class="language-python">print(r'\\\t\\')</code></pre>
+<pre><code class="python">print(<span class="hljs-string">r'\\\t\\'</span>)</code></pre>
 <p>は<code>\\\t\\</code>を出力します。</p>
 <p>Pythonの文字列型はユニコード型のため、文字の16進エンコーディングがわかっている場合、<code>\u</code>をつけて文字を出力できます</p>
-<pre><code class="language-python">print("こちらは\u65e5\u672c")</code></pre>
+<pre><code class="python">print(<span class="hljs-string">"こちらは\u65e5\u672c"</span>)</code></pre>
 <p>Output: <code>こちらは日本</code></p>
 <h4 id="スライス操作">スライス操作</h4>
 <p>Python文字列型の便利な点の一つは、文字列インデックスに従って直接<!--"に"削除-->スライス操作できることです：</p>
@@ -59,22 +62,22 @@ d=2.25j     # 複素数</code></pre>
 <p>部分文字列を取得したい場合は、[開始位置：終了位置]を使用して、対応する文字列を切り取り<!--取りきり⇒切り取り-->できます。ここで、インデックスは0から始まり、左からには正数を使い、右からには負の数を使用します。 マークは、開始または終了を示すために空にすることができます。</p>
 <p>[Head：tail]取得された部分文字列には、開始位置の文字が含まれますが、終了位置の文字は含まれません。</p>
 <p>例：</p>
-<pre><code class="language-python">s = 'Hello,world!!!'
-print(s[0:5])</code></pre>
+<pre><code class="python">s = <span class="hljs-string">'Hello,world!!!'</span>
+print(s[<span class="hljs-number">0</span>:<span class="hljs-number">5</span>])</code></pre>
 <p>Output: <code>Hello</code></p>
-<pre><code class="language-python">print(s[-3:])</code></pre>
+<pre><code class="python">print(s[-<span class="hljs-number">3</span>:])</code></pre>
 <p>Output: <code>!!!</code></p>
 <p>また三個目のパラメータを導入することができます。これは値を取る間隔です。</p>
-<pre><code class="language-python">print(s[::2])</code></pre>
+<pre><code class="python">print(s[::<span class="hljs-number">2</span>])</code></pre>
 <p>Output: <code>Hlowrd!</code></p>
 <p>-1の場合は逆順にします。</p>
-<pre><code class="language-python">print(s[::-1])</code></pre>
+<pre><code class="python">print(s[::-<span class="hljs-number">1</span>])</code></pre>
 <p>Output: <code>!!!dlrow,olleH</code></p>
 <h4 id="フォーマッティング">フォーマッティング</h4>
 <ul>
 <li>文字列に多変数を代入して出力するには<code>%</code>を使います。例：</li>
 </ul>
-<pre><code class="language-python">print('%s, you are in the Class %d.' % ('Alice', 2))</code></pre>
+<pre><code class="python">print(<span class="hljs-string">'%s, you are in the Class %d.'</span> % (<span class="hljs-string">'Alice'</span>, <span class="hljs-number">2</span>))</code></pre>
 <p>Output: <code>Alice, you are in the Class 2.</code></p>
 <p>%sは文字列で置き換えることを意味し、%dは整数で置き換えることを意味します。順序は正確に対応します。変数が一つしかない場合は括弧を省略できます。</p>
 <p>一般的なプレースホルダーは</p>
@@ -112,16 +115,16 @@ print(s[0:5])</code></pre>
 <li>もう一つの方法は文字列の<code>format</code>メソッドを使用することです。</li>
 </ul>
 <p>例：</p>
-<pre><code class="language-python">print('Hello, {0}\'s number is {1:04d}.'.format('Bob', 2))</code></pre>
+<pre><code class="python">print(<span class="hljs-string">'Hello, {0}\'s number is {1:04d}.'</span>.<span class="hljs-built_in">format</span>(<span class="hljs-string">'Bob'</span>, <span class="hljs-number">2</span>))</code></pre>
 <p>Output:<code>Hello, Bob's number is 0002.</code></p>
 <h3 id="ブール型boolean">ブール型Boolean</h3>
 <p>ブール値には、TrueとFalseの2つの値があります。and、or、notで論理演算を操作できます。</p>
-<pre><code class="language-python">&gt;&gt;&gt; True and False
-False
-&gt;&gt;&gt; True or False
-True
-&gt;&gt;&gt; not 1 &gt; 2
-True</code></pre>
+<pre><code class="python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-literal">True</span> <span class="hljs-keyword">and</span> <span class="hljs-literal">False</span>
+<span class="hljs-literal">False</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-literal">True</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">False</span>
+<span class="hljs-literal">True</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">not</span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>
+<span class="hljs-literal">True</span></code></pre>
 <h3 id="リスト型list">リスト型List</h3>
 <p>リストは<code>[]</code>を使って表されるPythonの最も一般的な複合データ型です。
 変数[head：tail]を使用してリスト内の値をカットすることもできます。開始位置のデフォルトは0で終了位置のデフォルトは-1です。前述の文字列は本質的に複数の文字のリストです。</p>
@@ -131,8 +134,8 @@ True</code></pre>
 <li><p>インデックスを使用してリスト内の要素を操作します。</p>
 </li>
 </ul>
-<pre><code class="language-python">list1 = ['Apple', 'Banana', 1, 2]
-print(list1[0], list1[-1])
+<pre><code class="python">list1 = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+print(list1[<span class="hljs-number">0</span>], list1[-<span class="hljs-number">1</span>])
 </code></pre>
 <p>Output: <code>Apple 2</code></p>
 <ul>
@@ -140,8 +143,8 @@ print(list1[0], list1[-1])
 </ul>
 <p>リストはネストできます。
 例：</p>
-<pre><code class="language-python">list1 = ['Apple', 'Banana', [1, 2], 3]
-print(list1[2][0])
+<pre><code class="python">list1 = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], <span class="hljs-number">3</span>]
+print(list1[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>])
 </code></pre>
 <p>Output: <code>1</code></p>
 <ul>
@@ -150,48 +153,48 @@ print(list1[2][0])
 <li><p>pop(index)、del()で指定された位置の要素を削除できます。</p>
 </li>
 </ul>
-<pre><code class="language-python">list1 = ['Apple', 'Banana', 1, 2]
-del(list1[2])
-list1.pop(2)
+<pre><code class="python">list1 = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+<span class="hljs-keyword">del</span>(list1[<span class="hljs-number">2</span>])
+list1.pop(<span class="hljs-number">2</span>)
 print(list1)</code></pre>
 <p>Output: <code>['Apple', 'Banana']</code></p>
 <h3 id="タプル型tuple">タプル型Tuple</h3>
 <p>タプルはリストに非常に似ていますが、タプルの方は不変のため、いったん初期化されると、変更できません。</p>
-<pre><code class="language-python">tuple1 = ('Apple', 'Banana', 'melon')
-print(tuple1[0])
+<pre><code class="python">tuple1 = (<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-string">'melon'</span>)
+print(tuple1[<span class="hljs-number">0</span>])
 </code></pre>
 <p>Output: <code>Apple</code></p>
 <p>このタプルを追加または削除することはできませんが、要素を取り出すことはできます。</p>
 <p>一つの注意すべき点は、タプルで整数が1つだけ定義されている場合です：</p>
-<pre><code class="language-python">tuple1 = (1)</code></pre>
+<pre><code class="python">tuple1 = (1)</code></pre>
 <p>このtuple1変数はタプル型ではなく、整数型として定義されています。括弧は演算子として扱われました。その場合、明確にするためにカンマを追加する必要があります：</p>
-<pre><code class="language-python">tuple1 = (1,)</code></pre>
+<pre><code class="python">tuple1 = (1,)</code></pre>
 <p>誤解しないように、Pythonは要素が1つだけのタプルを出力するときにコンマも追加します。</p>
 <h3 id="辞書型dictionary">辞書型Dictionary</h3>
 <p>Pythonにはディクショナリdict集合型が組み込まれています。他の言語ではmapとも呼ばれます。key-valueでストレージを使用し、検索速度がはやいです。
 キーはクエリのインデックスとして使用されるため、ユニークにする必要があります。キーは不変でなければならないので、数値、文字列、またはタプルをできますが、リストは使用できません（リストの可変の属性）。</p>
 <p>以下はdictの例です：</p>
-<pre><code class="language-python">dict1 = {'Apple': 1, 'Banana': 2, 'Cherry': 3}
-print(dict1['Apple'])
+<pre><code class="python">dict1 = {<span class="hljs-string">'Apple'</span>: <span class="hljs-number">1</span>, <span class="hljs-string">'Banana'</span>: <span class="hljs-number">2</span>, <span class="hljs-string">'Cherry'</span>: <span class="hljs-number">3</span>}
+print(dict1[<span class="hljs-string">'Apple'</span>])
 
-dict1['Apple'] = 5    # 更新
-dict1['Durian'] = 4   # 追加</code></pre>
+dict1[<span class="hljs-string">'Apple'</span>] = <span class="hljs-number">5</span>    <span class="hljs-comment"># 更新</span>
+dict1[<span class="hljs-string">'Durian'</span>] = <span class="hljs-number">4</span>   <span class="hljs-comment"># 追加</span></code></pre>
 <p>Output: <code>1</code></p>
 <p><code>get(key)</code>関数でも<!--も⇒でも-->キーの値を得られます。</p>
 <h3 id="集合型set">集合型Set</h3>
 <p>Set型の変数には値が重複する要素は<!--が⇒は-->存在できません。辞書型に似ていますがvalueがなく、keyのみがあります。新しいSetを宣言するには、リスト型を提供することが必要です。またSet型は順序を付けられたコレクション型ではありません。重複要素はSet内で自動的に上書きされます。</p>
-<pre><code class="language-python">set1 = set([1, 1, 2, 3])
+<pre><code class="python">set1 = <span class="hljs-built_in">set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 print(set1)</code></pre>
 <p>Output: <code>{1, 2, 3}</code></p>
 <p><code>add(element)</code>を使って要素をSetに追加できます。重複元素を追加する場合はエラーは<!--が⇒は-->出てきませんが、追加できません。<code>remove(element)</code>で要素を削除できます。</p>
 <p>Setの原理はdictと同じなので、可変型を入れることができません。次の例では、リスト要素を入れるとエラーがでます。</p>
-<pre><code class="language-python">set1 = set([[1,2,3], 1, 2, 3])
+<pre><code class="python">set1 = <span class="hljs-built_in">set</span>([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
 print(set1)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Traceback (most recent call last):
-  File ..., line 1, in &lt;module&gt;
-    s=set([[1,2,],1,2,3])
-TypeError: unhashable type: 'list'</code></pre>
+<pre><code class="python">Traceback (most recent call last):
+  File ..., line <span class="hljs-number">1</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+    s=<span class="hljs-built_in">set</span>([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,],<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+TypeError: unhashable <span class="hljs-built_in">type</span>: <span class="hljs-string">'list'</span></code></pre>
 <h2 id="データ型変換">データ型変換</h2>
 <p>Pythonにはデータ型を自動的に変換する関数があります。一般的な方法は以下のようになります。</p>
 <table>
@@ -231,24 +234,24 @@ TypeError: unhashable type: 'list'</code></pre>
 </tr>
 </tbody></table>
 <p><code>input()</code>でキーボードから入力したパラメータは文字列型です。パラメータを計算する場合は、パラメータを数値型に変換する必要があります。文字列は<code>int()</code>関数で整数型に変換できます。</p>
-<pre><code class="language-python">input1 = '1'
-input2 = '2'
-print(type(input1))
-print(int(input1)+int(input2))</code></pre>
+<pre><code class="python">input1 = <span class="hljs-string">'1'</span>
+input2 = <span class="hljs-string">'2'</span>
+print(<span class="hljs-built_in">type</span>(input1))
+print(<span class="hljs-built_in">int</span>(input1)+<span class="hljs-built_in">int</span>(input2))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class 'str'&gt;
+<pre><code class="python">&lt;class 'str'&gt;
 3</code></pre>
 <p><code>eval()</code>を使う場合：</p>
-<pre><code class="language-python">input1 = '1'
-input2 = '2'
-print(eval(input1+"+"+input2))
-print(eval(input1+input2))</code></pre>
+<pre><code class="python">input1 = <span class="hljs-string">'1'</span>
+input2 = <span class="hljs-string">'2'</span>
+print(<span class="hljs-built_in">eval</span>(input1+<span class="hljs-string">"+"</span>+input2))
+print(<span class="hljs-built_in">eval</span>(input1+input2))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">3
+<pre><code class="python">3
 12</code></pre>
 <p>文字列の本質は文字のリストであるため、文字列を直接に文字リストに変換することもできます。</p>
-<pre><code class="language-python">str1 = 'Hello'
-print(list(str1))</code></pre>
+<pre><code class="python">str1 = <span class="hljs-string">'Hello'</span>
+print(<span class="hljs-built_in">list</span>(str1))</code></pre>
 <p>Output:
 <code>['H', 'e', 'l', 'l', 'o']</code></p>
 <h2 id="一般的な演算子">一般的な演算子</h2>
@@ -281,20 +284,20 @@ print(list(str1))</code></pre>
 </tbody></table>
 <p>注意すべきなのは、<code>/</code>で得られた結果は正確な浮動小数点型、整数部分のみを取得する場合（切り捨て）に<code>//</code>を使うことです。</p>
 <p>例：</p>
-<pre><code class="language-python">&gt;&gt;&gt; 7/2
-3.5
-&gt;&gt;&gt; 7//2
-3
-&gt;&gt;&gt; -7//2
--4</code></pre>
+<pre><code class="python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">7</span>/<span class="hljs-number">2</span>
+<span class="hljs-number">3.5</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-number">7</span>//<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>-<span class="hljs-number">7</span>//<span class="hljs-number">2</span>
+-<span class="hljs-number">4</span></code></pre>
 <p><code>+</code>、<code>*</code>演算子はコレクションに適用できます。
 例：</p>
-<pre><code class="language-python">list1 = [1, 2, 3]
-list2 = [4, 5, 6]
-print(list1*2)      #list1を二回で出力する
-print(list1+list2)  #list1とlist2の組み合わせのリストを出力する</code></pre>
+<pre><code class="python">list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list2 = [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]
+print(list1*<span class="hljs-number">2</span>)      <span class="hljs-comment">#list1を二回で出力する</span>
+print(list1+list2)  <span class="hljs-comment">#list1とlist2の組み合わせのリストを出力する</span></code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[1, 2, 3, 1, 2, 3]
+<pre><code class="python">[1, 2, 3, 1, 2, 3]
 [1, 2, 3, 4, 5, 6]</code></pre>
 <h3 id="比較演算子">比較演算子</h3>
 <hr>
@@ -324,20 +327,20 @@ print(list1+list2)  #list1とlist2の組み合わせのリストを出力する<
 </tr>
 </tbody></table>
 <p>コレクション型に適用できますが、例を挙げて結果を観察します。</p>
-<pre><code class="language-python">list1 = [1, 2, 3]
-list2 = [1, 2, 3]
-list3 = [1, 2, 2, 2]
-list4 = [1, 2, 'Hi']
+<pre><code class="python">list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list2 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+list3 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>]
+list4 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'Hi'</span>]
 print(list1==list2)
 print(list1&gt;list3)
 print(list1&gt;list4)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">True
-True
+<pre><code class="python"><span class="hljs-literal">True</span>
+<span class="hljs-literal">True</span>
 Traceback (most recent call last):
-  File ..., line 7, in &lt;module&gt;
+  File ..., line <span class="hljs-number">7</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
     print(list1&gt;list4)
-TypeError: '&gt;' not supported between instances of 'int' and 'str'</code></pre>
+TypeError: <span class="hljs-string">'&gt;'</span> <span class="hljs-keyword">not</span> supported between instances of <span class="hljs-string">'int'</span> <span class="hljs-keyword">and</span> <span class="hljs-string">'str'</span></code></pre>
 <p>一個目のprint()関数はlist1とlist2の要素が等しいかどうかを判別します。等しいのでTureを返します；</p>
 <p>二個目のprint()関数はlist1がlist2より大きいかどうかを判別します。評価するのはリストのサイズでも合計の大きさでもなく、リストの要素を一個ずつ比較します。二つの要素が等しくない関係を判断すると、結果をすぐに返します；</p>
 <p>三個目のprint()関数はlist1がlist4より大きいかどうかを判別します。3番目の要素のタイプが異なるため、エラーが出力されました。
@@ -401,16 +404,16 @@ TypeError: '&gt;' not supported between instances of 'int' and 'str'</code></pre
 </tr>
 </tbody></table>
 <p>例：</p>
-<pre><code class="language-python">a = 10
-b = 20
-c= False
-print(a and b)
-print(c or a)
-print(not c)</code></pre>
+<pre><code class="python">a = <span class="hljs-number">10</span>
+b = <span class="hljs-number">20</span>
+c= <span class="hljs-literal">False</span>
+print(a <span class="hljs-keyword">and</span> b)
+print(c <span class="hljs-keyword">or</span> a)
+print(<span class="hljs-keyword">not</span> c)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">20
-10
-True</code></pre>
+<pre><code class="python"><span class="hljs-number">20</span>
+<span class="hljs-number">10</span>
+<span class="hljs-literal">True</span></code></pre>
 <h3 id="他の演算子">他の演算子</h3>
 <hr>
 <h4 id="in演算子">in演算子</h4>
@@ -431,11 +434,11 @@ True</code></pre>
 <td>指定された集合で値が見つからない場合はTrueを返し、そうでないの場合はFalseを返します。</td>
 </tr>
 </tbody></table>
-<pre><code class="language-python">a = 1
-b = [1, 2, 3]
-print(a in b)</code></pre>
+<pre><code class="python">a = <span class="hljs-number">1</span>
+b = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+print(a <span class="hljs-keyword">in</span> b)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">True</code></pre>
+<pre><code class="python"><span class="hljs-literal">True</span></code></pre>
 <h4 id="is演算子">is演算子</h4>
 <p>2つのオブジェクトのメモリ内の参照を比較するために使用されます。</p>
 <table>
@@ -455,10 +458,10 @@ print(a in b)</code></pre>
 </tr>
 </tbody></table>
 <p>例：</p>
-<pre><code class="language-python">a=20;b=20;c=30;d=b
-print(a is d)
-print(a is not c)</code></pre>
+<pre><code class="python">a=<span class="hljs-number">20</span>;b=<span class="hljs-number">20</span>;c=<span class="hljs-number">30</span>;d=b
+print(a <span class="hljs-keyword">is</span> d)
+print(a <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> c)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">True
-True</code></pre>
+<pre><code class="python"><span class="hljs-literal">True</span>
+<span class="hljs-literal">True</span></code></pre>
 </body></html>

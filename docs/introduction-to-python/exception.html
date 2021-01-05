@@ -1,109 +1,112 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>例外処理</title>
     </head>
     <body><h1 id="例外処理">例外処理</h1>
 <p>プログラミングでは、構文の書き込みエラーやデータの問題などにより、実行中にさまざまなエラーが発生するかもしれません。 Pythonには、エラー処理に役立つ組み込みの例外処理メカニズムがあります。</p>
 <h2 id="try">try</h2>
 <p>例外キャッチの構文は次のようになります。</p>
-<pre><code class="language-python">try:
+<pre><code class="python"><span class="hljs-keyword">try</span>:
     statements
-except:
+<span class="hljs-keyword">except</span>:
     executed when an exception occurs</code></pre>
 <p>一部のコードが間違っていると思われる場合は、このコードをtryで囲って実行します。実行時にエラーが発生する場合、後続のコードは実行を継続せず、exceptステートメントブロックのエラー処理コードに直接ジャンプします。</p>
 <p>例：</p>
-<pre><code class="language-python">try:
-    i = a + 2
-    i = i + 1
-    print('succeed')
-except NameError as e:
-    print('except:', e)
-except (ValueError、OSError) as e:
-    print('except:', e)</code></pre>
+<pre><code class="python"><span class="hljs-keyword">try</span>:
+    i = a + <span class="hljs-number">2</span>
+    i = i + <span class="hljs-number">1</span>
+    print(<span class="hljs-string">'succeed'</span>)
+<span class="hljs-keyword">except</span> NameError <span class="hljs-keyword">as</span> e:
+    print(<span class="hljs-string">'except:'</span>, e)
+<span class="hljs-keyword">except</span> (ValueError、OSError) <span class="hljs-keyword">as</span> e:
+    print(<span class="hljs-string">'except:'</span>, e)</code></pre>
 <p>Output:<code>except: name 'a' is not defined</code></p>
 <p>try文には、異なる特定の例外を処理するために複数のexcept句を含めることができます。
 except文ブロックの後にelseを追加できます。エラーが発生しない場合はelse文のブロックを実行します。</p>
-<pre><code class="language-python">try:
-    i = 2
+<pre><code class="python"><span class="hljs-keyword">try</span>:
+    i = <span class="hljs-number">2</span>
     print(i)
-except NameError as e:
-    print('except:', e)
-else:
-    print('succeed')</code></pre>
+<span class="hljs-keyword">except</span> NameError <span class="hljs-keyword">as</span> e:
+    print(<span class="hljs-string">'except:'</span>, e)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">'succeed'</span>)</code></pre>
 <p>Pythonの例外は実際にはクラスであり、すべてのエラータイプはBaseExceptionから継承されます。例外タイプがわからない場合にExceptionを使えば十分です。詳細は公式ドキュメントを参照してください<a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">https://docs.python.org/3/library/exceptions.html#exception-hierarchy</a>。複数のexceptを使う場合は異常の範囲が小さいものから大きいものへと配置する必要があります。</p>
 <p>try文にfinallyを最後に追加できます。このブロックは例外が発生したかどうかに関係なく最後に実行されます。</p>
-<pre><code class="language-python">try:
-    i = 2
+<pre><code class="python"><span class="hljs-keyword">try</span>:
+    i = <span class="hljs-number">2</span>
     print(i)
-except NameError as e:
-    print('except:', e)
-else:
-    print('succeed')
-finally:
-    print('finished')</code></pre>
+<span class="hljs-keyword">except</span> NameError <span class="hljs-keyword">as</span> e:
+    print(<span class="hljs-string">'except:'</span>, e)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">'succeed'</span>)
+<span class="hljs-keyword">finally</span>:
+    print(<span class="hljs-string">'finished'</span>)</code></pre>
 <h2 id="raise">raise</h2>
 <p>エラーはクラスであるため、エラーをキャプチャするとクラスのインスタンスがキャプチャされます。定義した関数は特定の条件によってエラーを発生させます。
 例：</p>
-<pre><code class="language-python">x = 1
-if x &gt; 0:
-    raise Exception('Bigger than 0!!!')</code></pre>
+<pre><code class="python">x = <span class="hljs-number">1</span>
+<span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">'Bigger than 0!!!'</span>)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Traceback (most recent call last):
-  File ..., line 3, in &lt;module&gt;
-    raise Exception('Bigger than 0!!!')
-Exception: Bigger than 0!!!</code></pre>
+<pre><code class="python">Traceback (most recent call last):
+  File ..., line <span class="hljs-number">3</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">'Bigger than 0!!!'</span>)
+Exception: Bigger than <span class="hljs-number">0</span>!!!</code></pre>
 <p>exceptの中にraiseでエラーのタイプを変換できます。しかしこの二つのタイプはできるだけ包含関係になります。</p>
-<pre><code class="language-python">try:
-    10 / 0
-except ZeroDivisionError:
-    raise ValueError('input error!')</code></pre>
+<pre><code class="python"><span class="hljs-keyword">try</span>:
+    <span class="hljs-number">10</span> / <span class="hljs-number">0</span>
+<span class="hljs-keyword">except</span> ZeroDivisionError:
+    <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">'input error!'</span>)</code></pre>
 <h2 id="カスタム例外">カスタム例外</h2>
 <p>新しい例外クラスを作成することにより、独自の例外を作れます。 このクラスは例外クラスから直接または間接的に継承します。</p>
 <p>例：</p>
-<pre><code class="language-python">class MinusError(ValueError):
-    def __init__(self, value):
+<pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinusError</span>(<span class="hljs-params">ValueError</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, value</span>):</span>
         self.value = value
-    def __str__(self):
-        return repr(self.value)
-i = -1
-if i&lt;0:
-    try:
-        raise MinusError(i)
-    except MinusError as e:
-        print(e.value,' is smaller than 0')</code></pre>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">repr</span>(self.value)
+i = -<span class="hljs-number">1</span>
+<span class="hljs-keyword">if</span> i&lt;<span class="hljs-number">0</span>:
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">raise</span> MinusError(i)
+    <span class="hljs-keyword">except</span> MinusError <span class="hljs-keyword">as</span> e:
+        print(e.value,<span class="hljs-string">' is smaller than 0'</span>)</code></pre>
 <p>MinusErrorクラスは__init__関数をオーバーライドして、valueパラメータを渡すことができます。</p>
 <h2 id="assert">assert</h2>
 <p>assert式は簡単な式を判断するために使用されます。式の条件がfalseの場合、例外を発生させます。
 例：</p>
-<pre><code class="language-python">n = 5
-assert n &lt; 0, 'n is not a positive number!'
+<pre><code class="python">n = <span class="hljs-number">5</span>
+<span class="hljs-keyword">assert</span> n &lt; <span class="hljs-number">0</span>, <span class="hljs-string">'n is not a positive number!'</span>
 print(n)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Traceback (most recent call last):
-  File ..., line 2, in &lt;module&gt;
-    assert n &lt; 0, 'n is not a positive number!'
-AssertionError: n is not a positive number!</code></pre>
+<pre><code class="python">Traceback (most recent call last):
+  File ..., line <span class="hljs-number">2</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+    <span class="hljs-keyword">assert</span> n &lt; <span class="hljs-number">0</span>, <span class="hljs-string">'n is not a positive number!'</span>
+AssertionError: n <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> a positive number!</code></pre>
 <p><code>-O</code>パラメータを使用して、Pythonインタープリタの起動するときにassertを閉じることができます。</p>
 <h2 id="logging">logging</h2>
 <p>assertと比較して、loggingはエラーを発生させません。出力またはファイルに保存します。
 例：</p>
-<pre><code class="language-python">import logging
+<pre><code class="python"><span class="hljs-keyword">import</span> logging
 logging.basicConfig(level=logging.INFO)
-n = 1
-logging.info('n = %d' % n)</code></pre>
+n = <span class="hljs-number">1</span>
+logging.info(<span class="hljs-string">'n = %d'</span> % n)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">INFO:root:n = 1</code></pre>
+<pre><code class="python">INFO:root:n = 1</code></pre>
 <p>二行目はloggingのレベル。<code>debug``info``warning``error``critical</code>の五つのレベルがあります。これらのレベルを実際の状況に応じて選択します。</p>
 <h2 id="warning">warning</h2>
 <p>互換性などの問題により、警告メッセージを生成する場合があります。
 例：</p>
-<pre><code class="language-python">import warnings
-filea = '/Users/python/test'
-if filea is not None:
-    warnings.warn('file argument deprecated', DeprecationWarning)</code></pre>
+<pre><code class="python"><span class="hljs-keyword">import</span> warnings
+filea = <span class="hljs-string">'/Users/python/test'</span>
+<span class="hljs-keyword">if</span> filea <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+    warnings.warn(<span class="hljs-string">'file argument deprecated'</span>, DeprecationWarning)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">....py:4: DeprecationWarning: file argument is deprecated
-  warnings.warn('file argument is deprecated', DeprecationWarning)</code></pre>
+<pre><code class="python">....py:<span class="hljs-number">4</span>: DeprecationWarning: file argument <span class="hljs-keyword">is</span> deprecated
+  warnings.warn(<span class="hljs-string">'file argument is deprecated'</span>, DeprecationWarning)</code></pre>
 <p>警告を例外に変換する場合はPythonインタープリタの起動するときに<code>-W error</code>を使用します。</p>
 </body></html>

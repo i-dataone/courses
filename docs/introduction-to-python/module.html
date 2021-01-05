@@ -1,25 +1,28 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>モジュール</title>
     </head>
     <body><h1 id="モジュール">モジュール</h1>
 <p>Pythonでは、.pyファイルはモジュールと呼ばれます。プログラムを作成するときに、Pythonでビルドされたモジュールやサードパーティのモジュールなど他のモジュールを参照することがよくあります。
 定義するときに組み込み関数と同じ名前を付けないようにしてください。Python組み込み関数のドキュメント: <a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></p>
 <p>モジュールを定義したら、import文を使用してモジュールを導入できます。構文は次になります：</p>
-<pre><code class="language-python">import module1(, module2, ....)</code></pre>
+<pre><code class="python"><span class="hljs-keyword">import</span> module1(, module2, ....)</code></pre>
 <p>例として組み込まれたmathモジュールをインポートして自然対数の底と円周率を出力します。</p>
-<pre><code class="language-python">#!/usr/bin/python
-# -*- coding: UTF-8 -*-
+<pre><code class="python"><span class="hljs-comment">#!/usr/bin/python</span>
+<span class="hljs-comment"># -*- coding: UTF-8 -*-</span>
 
-import math
+<span class="hljs-keyword">import</span> math
 print(math.e, math.pi)</code></pre>
 <p>Output:<code>2.718281828459045 3.141592653589793</code></p>
 <p>1行目のコメントは、システムのデフォルトライブラリの位置です。コンパイラはその位置でモジュールを探します。モジュールのパスを検索する順は：1.現在のディレクトリ、2.シェルパス変数PYTHONPATHの下の各ディレクトリ、3.デフォルトのパス。これにより、.pyファイルをLinuxとMacで直接実行できます。2行目のコメントは.pyファイル自体が標準のUTF-8エンコーディングを使用していることを表します。</p>
 <p>fromは指定された部分をモジュールから今の.pyファイルにインポートできます。<code>*</code>を使用してモジュール全体をインポートすることができます。使いやすいように.pyでモジュールの名前を変更することもできます。</p>
-<pre><code class="language-python">from math import *
-from time import localtime
-import numpy as np</code></pre>
+<pre><code class="python"><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> localtime
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</code></pre>
 <p>パッケージからモジュールのインポートも(from..)importを使います。
 例のパッケージの構造は次のとおりです：</p>
 <p>execute.py
@@ -27,29 +30,29 @@ package1
 |-- <strong>init</strong>.py
 |-- calculate.py</p>
 <p>execute.pyにcalculate.pyを使うのは：</p>
-<pre><code class="language-python">import package1.calculate</code></pre>
+<pre><code class="python"><span class="hljs-keyword">import</span> package1.calculate</code></pre>
 <p>モジュールの一つの指定する関数のみを使いたい場合:</p>
-<pre><code class="language-python">from package1.calculate import function</code></pre>
+<pre><code class="python"><span class="hljs-keyword">from</span> package1.calculate <span class="hljs-keyword">import</span> function</code></pre>
 <h2 id="常用モジュール">常用モジュール</h2>
 <h3 id="組み込みモジュール">組み込みモジュール</h3>
 <h4 id="time、datatimeとcalendar">time、datatimeとcalendar</h4>
 <p>timeモジュールには、3つの主要な時間表現形式があります:timestampは1970年1月1日00:00:00から秒単位で計算されたオフセットを表します；struct_timeは時間タプルで表します；フォーマット時間はフォーマットされた構造は時間をより読みやすくします。カスタム形式と固定形式を含みます。
 例：</p>
-<pre><code class="language-python">import time
-from datetime import datetime
+<pre><code class="python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
 
-print(time.time())                       #timestampを出力する
-print(time.localtime())                  #現地時間をstructtimeタプルで出力する
-print(datetime.now())                    #現在のdatetime形式の時刻を出力する
-print(datetime(2020,5,28,12,37))         #カスタム時間のdatatimeを出力する
+print(time.time())                       <span class="hljs-comment">#timestampを出力する</span>
+print(time.localtime())                  <span class="hljs-comment">#現地時間をstructtimeタプルで出力する</span>
+print(datetime.now())                    <span class="hljs-comment">#現在のdatetime形式の時刻を出力する</span>
+print(datetime(<span class="hljs-number">2020</span>,<span class="hljs-number">5</span>,<span class="hljs-number">28</span>,<span class="hljs-number">12</span>,<span class="hljs-number">37</span>))         <span class="hljs-comment">#カスタム時間のdatatimeを出力する</span>
 print(time.strptime
-    ('2020-05-28 12:37:06', '%Y-%m-%d %X'))
-    #文字列をstructtimeに変換する（datetimeと同様）
+    (<span class="hljs-string">'2020-05-28 12:37:06'</span>, <span class="hljs-string">'%Y-%m-%d %X'</span>))
+    <span class="hljs-comment">#文字列をstructtimeに変換する（datetimeと同様）</span>
 print(time.strftime
-    ("%Y-%m-%d %X",time.localtime()))
-    #カスタム形式で現地時間(str)を出力する（datetimeと同様）</code></pre>
+    (<span class="hljs-string">"%Y-%m-%d %X"</span>,time.localtime()))
+    <span class="hljs-comment">#カスタム形式で現地時間(str)を出力する（datetimeと同様）</span></code></pre>
 <p>Output:</p>
-<pre><code class="language-python">1590637020.0
+<pre><code class="python">1590637020.0
 time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=37, tm_sec=21, tm_wday=3, tm_yday=149, tm_isdst=0)
 2020-05-28 12:37:21.352358
 2020-05-28 12:37:00
@@ -57,42 +60,42 @@ time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=37, tm_s
 2020-05-28 12:37:21</code></pre>
 <p>struct_timeタプルの<code>tm_wday</code>は曜日を表し（0は日曜日）、<code>tm_yday</code>は年間通算日を表し、<code>tm_isdst</code>は夏時間かどうかを表します。</p>
 <p>時間の加算と減算の操作:</p>
-<pre><code class="language-python">import time
-from datetime import datetime, timedelta
+<pre><code class="python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timedelta
 
 t1 = time.time()
-t2 = t1+10                      #秒単位でタイムスタンプを加算する
+t2 = t1+<span class="hljs-number">10</span>                      <span class="hljs-comment">#秒単位でタイムスタンプを加算する</span>
 print(time.localtime(t2))
-a = datetime(2020, 5, 31, 12, 40)
-print(a + timedelta(days=1))</code></pre>
+a = datetime(<span class="hljs-number">2020</span>, <span class="hljs-number">5</span>, <span class="hljs-number">31</span>, <span class="hljs-number">12</span>, <span class="hljs-number">40</span>)
+print(a + timedelta(days=<span class="hljs-number">1</span>))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=40, tm_sec=33, tm_wday=3, tm_yday=149, tm_isdst=0)
+<pre><code class="python">time.struct_time(tm_year=2020, tm_mon=5, tm_mday=28, tm_hour=12, tm_min=40, tm_sec=33, tm_wday=3, tm_yday=149, tm_isdst=0)
 2020-06-01 12:40:00</code></pre>
 <p>タイムゾーン変換：</p>
 <p>まず<code>utcnow()</code>で現在の時間また特定の時間を<code>replace()</code>でUTC時刻を取得して任意のタイムゾーンの時刻に変換します。またはpytzサードパーティのライブラリを使用できます。</p>
-<pre><code class="language-python">from datetime import datetime, timedelta,timezone
-from pytz import timezone as tz
+<pre><code class="python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, timedelta,timezone
+<span class="hljs-keyword">from</span> pytz <span class="hljs-keyword">import</span> timezone <span class="hljs-keyword">as</span> tz
 
-setdate=datetime(2020, 5, 1, 12, 0)
-central = tz('GMT')
-loc_d = central.localize(setdate)           #変換前の時間とタイムゾーンを設定する
-tokyo_d = loc_d.astimezone(tz('Asia/Tokyo'))
-#タイムゾーンコードでタイムゾーンを変換する
+setdate=datetime(<span class="hljs-number">2020</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">12</span>, <span class="hljs-number">0</span>)
+central = tz(<span class="hljs-string">'GMT'</span>)
+loc_d = central.localize(setdate)           <span class="hljs-comment">#変換前の時間とタイムゾーンを設定する</span>
+tokyo_d = loc_d.astimezone(tz(<span class="hljs-string">'Asia/Tokyo'</span>))
+<span class="hljs-comment">#タイムゾーンコードでタイムゾーンを変換する</span>
 print(tokyo_d)
-dt = setdate.replace(tzinfo=timezone.utc)   #UTC時間に変換する
-tokyo_dt = dt.astimezone(timezone(timedelta(hours=9)))　#プラス9時間
+dt = setdate.replace(tzinfo=timezone.utc)   <span class="hljs-comment">#UTC時間に変換する</span>
+tokyo_dt = dt.astimezone(timezone(timedelta(hours=<span class="hljs-number">9</span>)))　<span class="hljs-comment">#プラス9時間</span>
 print(tokyo_dt)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">2020-05-01 21:00:00+09:00
+<pre><code class="python">2020-05-01 21:00:00+09:00
 2020-05-01 21:00:00+09:00</code></pre>
 <p>カレンダークラスは月間カレンダーで操作できます。カレンダークラスは月間カレンダーで操作できます。たとえば月間カレンダーを出力します：</p>
-<pre><code class="language-python">import calendar
+<pre><code class="python"><span class="hljs-keyword">import</span> calendar
 
-cal = calendar.month(2020, 6)
-print(type(cal))
+cal = calendar.month(<span class="hljs-number">2020</span>, <span class="hljs-number">6</span>)
+print(<span class="hljs-built_in">type</span>(cal))
 print(cal)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class 'str'&gt;
+<pre><code class="python">&lt;class 'str'&gt;
      June 2020
 Mo Tu We Th Fr Sa Su
  1  2  3  4  5  6  7
@@ -102,20 +105,20 @@ Mo Tu We Th Fr Sa Su
 29 30</code></pre>
 <p>実際に出力されるのはフォーマットされた文字列です。
 カレンダークラスを通じて、特定の月の日数範囲、最初の日の曜日、その他の情報を取得できます。たとえば1か月の日をループ処理します：</p>
-<pre><code class="language-python">from datetime import datetime, date, timedelta
-import calendar
+<pre><code class="python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime, date, timedelta
+<span class="hljs-keyword">import</span> calendar
 
-def get_month_range(startday=None):
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_month_range</span>(<span class="hljs-params">startday=<span class="hljs-literal">None</span></span>):</span>
     _, days_in_month = calendar.monthrange(startday.year, startday.month)
     endday = startday + timedelta(days=days_in_month)
-    return (startday, endday)
-oneday = timedelta(days=1)
-firstday, lastday = get_month_range(datetime(2020,6,1))
-while firstday &lt; lastday:
-    print('%d. %d'%(first_day.month,firstday.day))
+    <span class="hljs-keyword">return</span> (startday, endday)
+oneday = timedelta(days=<span class="hljs-number">1</span>)
+firstday, lastday = get_month_range(datetime(<span class="hljs-number">2020</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>))
+<span class="hljs-keyword">while</span> firstday &lt; lastday:
+    print(<span class="hljs-string">'%d. %d'</span>%(first_day.month,firstday.day))
     firstday += oneday</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">1. 1
+<pre><code class="python">1. 1
 2. 2
 ...
 6. 30</code></pre>
@@ -123,24 +126,24 @@ while firstday &lt; lastday:
 <h4 id="json">json</h4>
 <p>jsonモジュールは、JSONデータをエンコードおよびデコードするためのシンプルな方法を提供します。 2つの主な関数は<code>dumps()</code>と<code>loads()</code>で、他のシリアライゼーション関数ライブラリより少ないです。JSON仕様に従うには、リストと辞書型をお勧めします。</p>
 <p>例：</p>
-<pre><code class="language-python">import json
-from collections import OrderedDict
+<pre><code class="python"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
 
-#辞書型データ
+<span class="hljs-comment">#辞書型データ</span>
 data = {
-    'type': 'fruit',
-    'name': 'apple',
-    'amount': 20
+    <span class="hljs-string">'type'</span>: <span class="hljs-string">'fruit'</span>,
+    <span class="hljs-string">'name'</span>: <span class="hljs-string">'apple'</span>,
+    <span class="hljs-string">'amount'</span>: <span class="hljs-number">20</span>
 }
 
 json_str = json.dumps(data)
 datanew = json.loads(json_str)
-print(type(data))
-print(type(json_str))
+print(<span class="hljs-built_in">type</span>(data))
+print(<span class="hljs-built_in">type</span>(json_str))
 ordereddata = json.loads(json_str,object_pairs_hook=OrderedDict)
 print(ordereddata)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">&lt;class 'dict'&gt;
+<pre><code class="python">&lt;class 'dict'&gt;
 &lt;class 'str'&gt;
 OrderedDict([('type', 'fruit'), ('name', 'apple'), ('amount', 20)])</code></pre>
 <p>jsonオブジェクトを読み取るときに、他のパラメータを設定してデータを<code>OrderedDict</code>などのタイプに変換できます。</p>
@@ -180,15 +183,15 @@ OrderedDict([('type', 'fruit'), ('name', 'apple'), ('amount', 20)])</code></pre>
 <h4 id="glob">glob</h4>
 <p>globはUnixスタイルのパス操作の拡張モジュールであり、同じサフィックスファイルなどを操作することに便利です。
 例：</p>
-<pre><code class="language-python">import glob
+<pre><code class="python"><span class="hljs-keyword">import</span> glob
 
-for fname in glob.glob("**/*.py",recursive=True):
-    print(fname)        #現在のパスにあるすべてのpyファイル名
-for fname in glob.glob("./tmp/*.py"):
-    print(fname)        #現在のパスファイルtmpの下のPyファイル名
-for fname in glob.glob("./f[!0-9].py"):
+<span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> glob.glob(<span class="hljs-string">"**/*.py"</span>,recursive=<span class="hljs-literal">True</span>):
+    print(fname)        <span class="hljs-comment">#現在のパスにあるすべてのpyファイル名</span>
+<span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> glob.glob(<span class="hljs-string">"./tmp/*.py"</span>):
+    print(fname)        <span class="hljs-comment">#現在のパスファイルtmpの下のPyファイル名</span>
+<span class="hljs-keyword">for</span> fname <span class="hljs-keyword">in</span> glob.glob(<span class="hljs-string">"./f[!0-9].py"</span>):
     print(fname)
-    #正規表現範囲ワイルドカード、現在のパスファイルの下のfで始まる数字以外のpyファイル名</code></pre>
+    <span class="hljs-comment">#正規表現範囲ワイルドカード、現在のパスファイルの下のfで始まる数字以外のpyファイル名</span></code></pre>
 <p>以下は、いくつかのワイルドカードの説明です</p>
 <table>
 <thead>
@@ -224,60 +227,60 @@ for fname in glob.glob("./f[!0-9].py"):
 <p>NumPy（Numerical Python）は多数の次元配列および行列演算をサポートしています。さらに、配列演算用の多数の数学関数ライブラリも提供しています。Pythonで数学モデル、統計分析また機械学習などを学びたい場合、numpyを理解しておく必要があります。numpyの内容と関数が多すぎるため、例として一般的な関数を紹介します。</p>
 <p>NumPyで一般的に使用される基本配列単位はN次元配列オブジェクトndarrayです。
 例として値を指定する多次元配列を作成して配列とサイズ、次元を出力します。<code>asarray()</code>を使用してPythonコレクション型をndarrayに変換できます。</p>
-<pre><code class="language-python">import numpy as np
-a = np.array([[1,  2],  [3,  4]])
-b= (1, 2, 3, 4)
+<pre><code class="python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+a = np.array([[<span class="hljs-number">1</span>,  <span class="hljs-number">2</span>],  [<span class="hljs-number">3</span>,  <span class="hljs-number">4</span>]])
+b= (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
 print(a)
 print(np.asarray(b))
-print(a.shape)      #配列の次元
-print(a.size)       #要素の数</code></pre>
+print(a.shape)      <span class="hljs-comment">#配列の次元</span>
+print(a.size)       <span class="hljs-comment">#要素の数</span></code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[[1 2]
+<pre><code class="python">[[1 2]
  [3 4]]
 [1 2 3 4]
 (2, 2)
 4</code></pre>
 <p>指定されたサイズの配列を作成します。</p>
-<pre><code class="language-python">import numpy as np
-x = np.empty([2,2], dtype = int) #サイズとデータタイプを指定します
-print (x)</code></pre>
+<pre><code class="python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+x = np.empty([<span class="hljs-number">2</span>,<span class="hljs-number">2</span>], dtype = <span class="hljs-built_in">int</span>) <span class="hljs-comment">#サイズとデータタイプを指定します</span>
+<span class="hljs-built_in">print</span> (x)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[[ -969198761 -1933286699]
+<pre><code class="python">[[ -969198761 -1933286699]
  [ 1116264138  1701634856]]</code></pre>
 <p>初期値はランダムに割り当てられることに注意してください。 すべてが0また1の行列を生成したい場合は、<code>zeros()</code>、<code>ones()</code>を使います。指定された範囲の乱数配列を生成する場合は、randomが使えます:</p>
-<pre><code class="language-python">from numpy import random as nr
-y = nr.randint(10, size=(3, 2))</code></pre>
+<pre><code class="python"><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> random <span class="hljs-keyword">as</span> nr
+y = nr.randint(<span class="hljs-number">10</span>, size=(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>))</code></pre>
 <p>算術シーケンスを生成する場合は<code>linspace()</code>また<code>arange()</code>を使います。
 例：</p>
-<pre><code class="language-python">a = np.arange(1, 11, 2)         #3番目のパラメータはステップサイズ
-b = np.linspace(1, 10, num=5)   #3番目のパラメータは生成される数</code></pre>
+<pre><code class="python">a = np.arange(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">2</span>)         <span class="hljs-comment">#3番目のパラメータはステップサイズ</span>
+b = np.linspace(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, num=<span class="hljs-number">5</span>)   <span class="hljs-comment">#3番目のパラメータは生成される数</span></code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[1 3 5 7 9]
+<pre><code class="python">[1 3 5 7 9]
 [ 1.    3.25  5.5   7.75 10.  ]</code></pre>
 <p>出力によれば、arangeは出力数を丸めました。 シーケンスインデックスとして使用する場合は<code>arange()</code>を使用し、厳密な算術シーケンスを取得する場合は、<code>linspace()</code>を使用してください。</p>
 <p>Pythonの集合タイプとは異なり、numpyの算術演算子は要素レベルに適用されます。</p>
-<pre><code class="language-python">a = np.arange(1,5)
-print(a*2)</code></pre>
+<pre><code class="python">a = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)
+print(a*<span class="hljs-number">2</span>)</code></pre>
 <p>Output:<code>[2 4 6 8]</code></p>
 <p>行列の乗算は<code>@</code>（python3.5以降）演算子または<code>dot()</code>関数を使います。2つの行列を乗算するのは対応する2つの各要素の乗算を表します。行列の形状が異なる場合はエラーが発生します。
 例：</p>
-<pre><code class="language-python">a = np.identity(2)          #単位行列を生成します
-b = np.array([[1, 2], [3, 4]])
+<pre><code class="python">a = np.identity(<span class="hljs-number">2</span>)          <span class="hljs-comment">#単位行列を生成します</span>
+b = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]])
 print(a@b)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[[1. 2.]
+<pre><code class="python">[[1. 2.]
  [3. 4.]]</code></pre>
 <p>比較演算子を使用して、指定された条件を満たす要素の配列を取得できます。</p>
-<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
-print(x[x &gt; 5])</code></pre>
+<pre><code class="python">x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]])
+print(x[x &gt; <span class="hljs-number">5</span>])</code></pre>
 <p>さまざまな関数で操作することもできます。行列を操作する関数のほとんどは、axisパラメータで処理したい行列の軸（行と列）を指定できます。</p>
-<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
+<pre><code class="python">x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]])
 print(x)
-print(x.sum())
-print('sums by column:', x.sum(axis=0))
-print('sums by row:', x.sum(axis=1))</code></pre>
+print(x.<span class="hljs-built_in">sum</span>())
+print(<span class="hljs-string">'sums by column:'</span>, x.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">0</span>))
+print(<span class="hljs-string">'sums by row:'</span>, x.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[[1 2 3]
+<pre><code class="python">[[1 2 3]
  [4 5 6]
  [7 8 9]]
 45
@@ -288,27 +291,27 @@ sums by row: [ 6 15 24]</code></pre>
 「～するには、...を使います。」「...を使うことで、～できます。」
 -->
 <p>例：</p>
-<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6],[7, 8, 9]])
-for i in x:
+<pre><code class="python">x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],[<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>]])
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> x:
     print(i)
-for ele in x.flat:
-    print(ele,　end=" ")</code></pre>
+<span class="hljs-keyword">for</span> ele <span class="hljs-keyword">in</span> x.flat:
+    print(ele,　end=<span class="hljs-string">" "</span>)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[1 2 3]
+<pre><code class="python">[1 2 3]
 [4 5 6]
 [7 8 9]
 1 2 3 4 5 6 7 8 9 </code></pre>
 <p>配列の形状を変更する場合には一般的に<code>reshape()</code>を使います。
 例：</p>
-<pre><code class="language-python">x = np.array([[1, 2, 3],[4, 5, 6]])
-x2 = x.reshape(1,-1,order='C')      #(行、列、列で値を取る)
-x3 = x.T                            #行列xの転置行列
+<pre><code class="python">x = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],[<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+x2 = x.reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,order=<span class="hljs-string">'C'</span>)      <span class="hljs-comment">#(行、列、列で値を取る)</span>
+x3 = x.T                            <span class="hljs-comment">#行列xの転置行列</span>
 print(x2)
 print(x3)
-x.resize((1, 6))
-print('resized x: ', x)</code></pre>
+x.resize((<span class="hljs-number">1</span>, <span class="hljs-number">6</span>))
+print(<span class="hljs-string">'resized x: '</span>, x)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">[[1 2 3 4 5 6]]
+<pre><code class="python">[[1 2 3 4 5 6]]
 [[1 4]
  [2 5]
  [3 6]]

@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>Pythonの紹介</title>
     </head>
     <body><h1 id="pythonの紹介">Pythonの紹介</h1>
@@ -13,15 +16,15 @@
 <h2 id="pythonのインストール">Pythonのインストール</h2>
 <h3 id="windowsプラットフォーム">Windowsプラットフォーム</h3>
 <p>Windows開発者は公式サイトで<!-- に⇒で -->直接ダウンロードできます<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>。また、<!--"また、"追加-->インストーラーで自動環境変数を設定するのをチェックできます。インストールした後、CommandLineで<code>python</code>を実行し、</p>
-<pre><code class="language-shell">C:\&gt; python
+<pre><code class="shell">C:\&gt; python
 Python 3.8.x ...[MSC v... 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; _</code></pre>
+<span class="hljs-meta">&gt;</span><span class="bash">&gt;&gt; _</span></code></pre>
 <p>のインタラクティブ環境が出ればインストールは成功しています。終了したい場合
 <code>exit()</code>を実行してください。もしインストールの時に環境変数設定をチェックしていなければ、PythonのPATHを手動で追加してください。</p>
 <h3 id="unixlinuxプラットフォーム">Unix/Linuxプラットフォーム</h3>
 <p>まずソースパッケージをダウンロードします。コンパイル用のパッケージをインストールする<!--"する"追加-->必要があります。</p>
-<pre><code class="language-bash">yum install -y gcc patch libffi-devel python-devel  zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</code></pre>
+<pre><code class="bash">yum install -y gcc patch libffi-devel python-devel  zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</code></pre>
 <p>そしてソースを解凍し、<code>./configure --prefix=/opt/python38</code>でconfigureを<!--"を"追加-->操作します。そしてmakeとmake installをコンパイルします。後で必要があればパス変数を変えます。</p>
 <h3 id="macosプラットフォーム">MacOSプラットフォーム</h3>
 <p>公式ウェブサイトでダウンロードしてインストールでき、Homebrewで<code>brew install python3</code>を実行してもできます。環境変数の設定はLinuxの場合と同様です。</p>

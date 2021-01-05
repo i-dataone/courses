@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>正規表現</title>
     </head>
     <body><h1 id="正規表現">正規表現</h1>
@@ -12,24 +15,24 @@ Perlはマッチ.置換.転換の三つの演算子があります。この三�
 <h3 id="結合演算子の省略">結合演算子の省略</h3>
 <p><code>=~</code>の左側の変数はデフォルト<code>$_</code>です。デフォルトの場合には、左側の変数<code>$_</code>と結合演算子が省略できます。
 例えば：</p>
-<pre><code class="language-Perl">if($_ =~ /a/){
- print"文字列にaがあります。";
+<pre><code class="Perl"><span class="hljs-keyword">if</span>($_ =~ <span class="hljs-regexp">/a/</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"文字列にaがあります。"</span>;
 }</code></pre>
 <p>を</p>
-<pre><code class="language-Perl">if(/a/){
- print"文字列にaがあります。";
+<pre><code class="Perl"><span class="hljs-keyword">if</span>(<span class="hljs-regexp">/a/</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"文字列にaがあります。"</span>;
 }</code></pre>
 <p>に省略できます。</p>
 <h2 id="マッチ演算子">マッチ演算子</h2>
 <p>前のような、<code>/a/</code>は左側の変数に一致するがどうかを判断したい部分、この部分はパターンと定義されています。<code>//</code>はマッチ演算子と呼ばれて、正式な記述方法は<code>m+区切り文字+パターン+区切り文字</code>です。デフォルトの区切り文字は<code>/</code>です、この場合には「m」が省略できます、<code>//</code>で表示します。区切り文字はその他の場合には「m」が省略出来ません、例えば、<code>m%%</code>で表示することもできます。
 例えば</p>
-<pre><code class="language-Perl">my $moji = "Hello World";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $moji = <span class="hljs-string">"Hello World"</span>;
 
-if($moji =~ /Hello/){
- print"match";
+<span class="hljs-keyword">if</span>($moji =~ <span class="hljs-regexp">/Hello/</span>){
+ <span class="hljs-keyword">print</span><span class="hljs-string">"match"</span>;
 }</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-match"></code></pre>
+<pre><code class="match"></code></pre>
 <p>となります。</p>
 <h3 id="マッチした部分文字列">マッチした部分文字列</h3>
 <p>マッチした後、三つ特殊変数が存在します：</p>
@@ -40,36 +43,36 @@ if($moji =~ /Hello/){
 </ul>
 <p>これらの3つの変数を組み合わせると、元の文字列が得られます。</p>
 <p>例えば：</p>
-<pre><code class="language-Perl">my $moji = "apple is 500yen";
-$moji =~ m/is/;
-print "マッチした部分の前の文字列: $`\n";
-print "マッチした文字列: $&amp;\n";
-print "マッチした部分の後の文字列: $'\n";</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $moji = <span class="hljs-string">"apple is 500yen"</span>;
+$moji =~ <span class="hljs-regexp">m/is/</span>;
+<span class="hljs-keyword">print</span> <span class="hljs-string">"マッチした部分の前の文字列: $`\n"</span>;
+<span class="hljs-keyword">print</span> <span class="hljs-string">"マッチした文字列: $&amp;\n"</span>;
+<span class="hljs-keyword">print</span> <span class="hljs-string">"マッチした部分の後の文字列: $'\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-マッチした部分の前の文字列:apple">マッチした文字列:is
+<pre><code class="マッチした部分の前の文字列:apple">マッチした文字列:is
 マッチした部分の後の文字列:500yen</code></pre>
 <h2 id="置換演算子">置換演算子</h2>
 <p>置換演算子の書き方は</p>
-<pre><code class="language-Perl">s/置換元パターン/置換先パターン/;</code></pre>
+<pre><code class="Perl">s/置換元パターン/置換先パターン/;</code></pre>
 <p>です。</p>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji = "Hello World";
-$moji =~ s/World/Japan/;
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $moji = <span class="hljs-string">"Hello World"</span>;
+$moji =~ <span class="hljs-regexp">s/World/Japan/</span>;
 
-print "$moji\n";</code></pre>
+<span class="hljs-keyword">print</span> <span class="hljs-string">"$moji\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-Hello"></code></pre>
+<pre><code class="Hello"></code></pre>
 <p>となります。</p>
 <h2 id="転換演算子">転換演算子</h2>
 <p>転換演算子の書き方は</p>
-<pre><code class="language-Perl">tr/転換元パターン/転換先パターン/;</code></pre>
+<pre><code class="Perl"><span class="hljs-keyword">tr</span>/転換元パターン/転換先パターン/;</code></pre>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji = "hello world";
-$moji =~ tr/a-z/A-Z/;
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $moji = <span class="hljs-string">"hello world"</span>;
+$moji =~ <span class="hljs-regexp">tr/a-z/A-Z/</span>;
 
-print "$moji\n";</code></pre>
+<span class="hljs-keyword">print</span> <span class="hljs-string">"$moji\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-HELLO"></code></pre>
+<pre><code class="HELLO"></code></pre>
 <p>となります。</p>
 <h2 id="修飾子">修飾子</h2>
 <p>修飾子を使ってパターンがマッチする時の動作を変更できます。使い方は<code>演算子の書き方+修飾子</code>です。たとえば、マッチ演算子使う時、もし大小文字を区別したくないなら、書き方は<code>m/パターン/i</code>です、この中の<code>/i</code>は大小文字を区別しないようにする修飾子です。
@@ -93,30 +96,30 @@ print "$moji\n";</code></pre>
 </ul>
 <p>これらの2つの方法を組み合わせると、元の文字列がマッチできます。
 書き方は</p>
-<pre><code class="language-Perl">/^パターン/
+<pre><code class="Perl">/^パターン/
 /パターン$/
 /^パターン$/</code></pre>
 <p>例えば</p>
-<pre><code class="language-Perl">my $moji1 = "apple is 500yen";
-my $moji2 = "apple";
+<pre><code class="Perl"><span class="hljs-keyword">my</span> $moji1 = <span class="hljs-string">"apple is 500yen"</span>;
+<span class="hljs-keyword">my</span> $moji2 = <span class="hljs-string">"apple"</span>;
 
-if ($moji1 =~ /^app/){
-  print "文字列の先頭は「app」を含みます。¥n";
-}else{
-  print"文字列の先頭は「app」を含みません。¥n"
+<span class="hljs-keyword">if</span> ($moji1 =~ <span class="hljs-regexp">/^app/</span>){
+  <span class="hljs-keyword">print</span> <span class="hljs-string">"文字列の先頭は「app」を含みます。¥n"</span>;
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">print</span><span class="hljs-string">"文字列の先頭は「app」を含みません。¥n"</span>
 }
-if ($moji1 =~ /is$/){
-  print "文字列の末尾は「is」を含みます。¥n";
-}else{
-  print"文字列の末尾は「is」を含みません。¥n"
+<span class="hljs-keyword">if</span> ($moji1 =~ <span class="hljs-regexp">/is$/</span>){
+  <span class="hljs-keyword">print</span> <span class="hljs-string">"文字列の末尾は「is」を含みます。¥n"</span>;
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">print</span><span class="hljs-string">"文字列の末尾は「is」を含みません。¥n"</span>
 }
-if ($moji2 =~ /^apple$/){
-  print "文字列は「apple」です。¥n";
-}else{
-  print"文字列は「apple」ではありません。¥n"
+<span class="hljs-keyword">if</span> ($moji2 =~ <span class="hljs-regexp">/^apple$/</span>){
+  <span class="hljs-keyword">print</span> <span class="hljs-string">"文字列は「apple」です。¥n"</span>;
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">print</span><span class="hljs-string">"文字列は「apple」ではありません。¥n"</span>
 }</code></pre>
 <p>と実行すると、結果は</p>
-<pre><code class="language-文字列の先頭は「app」を含みます。">文字列の末尾は「is」を含みません。
+<pre><code class="文字列の先頭は「app」を含みます。">文字列の末尾は「is」を含みません。
 文字列は「apple」です。</code></pre>
 <p>となります。</p>
 </body></html>

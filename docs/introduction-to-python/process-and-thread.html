@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>マルチプロセスとマルチスレッド</title>
     </head>
     <body><h1 id="マルチプロセスとマルチスレッド">マルチプロセスとマルチスレッド</h1>
@@ -8,21 +11,21 @@
 <h2 id="マルチプロセス">マルチプロセス</h2>
 <p>multiprocessingモジュールは、プロセスオブジェクトを表すProcessクラスを提供します。
 例：</p>
-<pre><code class="language-python">from multiprocessing import Process
-import os
+<pre><code class="python"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Process
+<span class="hljs-keyword">import</span> os
 
-def runprocess(name):
-    print('Run child process %s (%s)' % (name, os.getpid()))
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">runprocess</span>(<span class="hljs-params">name</span>):</span>
+    print(<span class="hljs-string">'Run child process %s (%s)'</span> % (name, os.getpid()))
 
-if __name__=='__main__':
-    print('Parent process %s.' % os.getpid())
-    p = Process(target=runprocess, args=('process1',))
-    print('Child process will start.')
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">'__main__'</span>:
+    print(<span class="hljs-string">'Parent process %s.'</span> % os.getpid())
+    p = Process(target=runprocess, args=(<span class="hljs-string">'process1'</span>,))
+    print(<span class="hljs-string">'Child process will start.'</span>)
     p.start()
     p.join()
-    print('Child process end.')</code></pre>
+    print(<span class="hljs-string">'Child process end.'</span>)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Parent process 15584.
+<pre><code class="python">Parent process 15584.
 Child process start.
 Run child process process1 (14624)
 Child process end.</code></pre>
@@ -31,23 +34,23 @@ Child process end.</code></pre>
 <code>start()</code>関数は子プロセスを起動します。<code>join()</code>関数は子プロセスが終了した後に実行を継続できます（現在の位置でメインプロセスをブロックし、joinの子プロセスの終了後にメインプロセスを実行し続けます）。</p>
 <p>複数のプロセスがある場合、プロセスプールを作成できます。
 例：</p>
-<pre><code class="language-python">import time
-from multiprocessing import Pool
+<pre><code class="python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool
 
-def runprocess(num):
-    print("Child Process %s" % num)
-    time.sleep(1)
-    print('process %s end' % num)
-if __name__ == '__main__':
-    print('Parent Process start')
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">runprocess</span>(<span class="hljs-params">num</span>):</span>
+    print(<span class="hljs-string">"Child Process %s"</span> % num)
+    time.sleep(<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">'process %s end'</span> % num)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
+    print(<span class="hljs-string">'Parent Process start'</span>)
     start_time = time.time()
-    pool = Pool(3)
-    print('Child start')
-    for i in range(3):
-        pool.apply(runprocess, (i+1,))
-    print('Parent Process done time: %ss' % (time.time() - start_time))</code></pre>
+    pool = Pool(<span class="hljs-number">3</span>)
+    print(<span class="hljs-string">'Child start'</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):
+        pool.apply(runprocess, (i+<span class="hljs-number">1</span>,))
+    print(<span class="hljs-string">'Parent Process done time: %ss'</span> % (time.time() - start_time))</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Parent Process start
+<pre><code class="python">Parent Process start
 Child start
 Child Process 1
 process 1 end
@@ -60,25 +63,25 @@ Parent Process done time: 3.1831817626953125s</code></pre>
 <h2 id="マルチスレッド">マルチスレッド</h2>
 <p>マルチタスクは、複数のプロセスまたはプロセス内の複数のスレッドで実行できます。Python標準ライブラリは2つのモジュールを提供します：_threadとthreading。_threadは低レベルモジュール、threadingは高レベルモジュールであり、_threadをカプセル化しています。
 例：</p>
-<pre><code class="language-python">import time
-import threading as td
+<pre><code class="python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> threading <span class="hljs-keyword">as</span> td
 
-def runthread():
-    print('Thread %s start:' % td.current_thread().name)
-    n = 0
-    while n &lt; 2:
-        n = n + 1
-        print('Thread %s count %s' % (td.current_thread().name, n))
-        time.sleep(1)
-    print('Thread %s end.' % td.current_thread().name)
-if __name__=='__main__':
-    print('Thread %s start:' % td.current_thread().name)
-    t = td.Thread(target=runthread, name='Childthread')
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">runthread</span>():</span>
+    print(<span class="hljs-string">'Thread %s start:'</span> % td.current_thread().name)
+    n = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> n &lt; <span class="hljs-number">2</span>:
+        n = n + <span class="hljs-number">1</span>
+        print(<span class="hljs-string">'Thread %s count %s'</span> % (td.current_thread().name, n))
+        time.sleep(<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">'Thread %s end.'</span> % td.current_thread().name)
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">'__main__'</span>:
+    print(<span class="hljs-string">'Thread %s start:'</span> % td.current_thread().name)
+    t = td.Thread(target=runthread, name=<span class="hljs-string">'Childthread'</span>)
     t.start()
     t.join()
-    print('Thread %s end.' % td.current_thread().name)</code></pre>
+    print(<span class="hljs-string">'Thread %s end.'</span> % td.current_thread().name)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Thread MainThread start:
+<pre><code class="python">Thread MainThread start:
 Thread Childthread start:
 Thread Childthread count 1
 Thread Childthread count 2
@@ -88,26 +91,26 @@ Thread MainThread end.</code></pre>
 <h3 id="カスタムスレッド">カスタムスレッド</h3>
 <p>threadクラスを継承してスレッドをカスタマイズできます。
 例：</p>
-<pre><code class="language-python">from threading import Thread
-import time
+<pre><code class="python"><span class="hljs-keyword">from</span> threading <span class="hljs-keyword">import</span> Thread
+<span class="hljs-keyword">import</span> time
 
-class CustomizedThread(Thread):
-    def __init__(self, n):
-        super().__init__()
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomizedThread</span>(<span class="hljs-params">Thread</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, n</span>):</span>
+        <span class="hljs-built_in">super</span>().__init__()
         self.n = n
-    def run(self):
-        i=0
-        while i &lt; self.n:
-            print('Count', i)
-            i += 1
-            time.sleep(1)
-print('Main thread start')
-c = CustomizedThread(3)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self</span>):</span>
+        i=<span class="hljs-number">0</span>
+        <span class="hljs-keyword">while</span> i &lt; self.n:
+            print(<span class="hljs-string">'Count'</span>, i)
+            i += <span class="hljs-number">1</span>
+            time.sleep(<span class="hljs-number">1</span>)
+print(<span class="hljs-string">'Main thread start'</span>)
+c = CustomizedThread(<span class="hljs-number">3</span>)
 c.start()
 c.join()
-print('Main thread end')</code></pre>
+print(<span class="hljs-string">'Main thread end'</span>)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Main thread start
+<pre><code class="python">Main thread start
 Count 0
 Count 1
 Count 2
@@ -117,44 +120,44 @@ Main thread end</code></pre>
 <p>マルチスレッドでは、変数がすべてのスレッドで共有されるため、どのスレッドでも変更できます。たとえばスレッド1がリスト内のすべての要素を後ろから前へ削除し、スレッド2が要素を前から後ろへ読み取って印刷します。スレッド2はスレッド1がまだ削除してないいくつかの要素を出力します。これはデータが同期されていない状況です。これを回避するために、ロックの概念が導入されました。
 ロックには2つの状態：ロックとロック解除があります。 一つのスレッドが関数（データの共有など）にアクセスする場合はロックを取得する必要があります。別のスレッドがすでにロックを取得している場合は、このスレッドを一時停止（同期的にブロックする）し、ロックしたスレッドがアクセスを終了してロックを解放するまで待機します。 その後、二番目のスレッドを続行します。
 例：</p>
-<pre><code class="language-python">import threading
-import time
+<pre><code class="python"><span class="hljs-keyword">import</span> threading
+<span class="hljs-keyword">import</span> time
 
-class CustomizedThread (threading.Thread):
-    def __init__(self, name, counter, loop):
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomizedThread</span> (<span class="hljs-params">threading.Thread</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, name, counter, loop</span>):</span>
         threading.Thread.__init__(self)
         self.name = name
         self.counter = counter
         self.loop = loop
-    def run(self):
-        print ('Thread:' + self.name + ' start')
-        threadLock.acquire()            #ロックを取得する
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-built_in">print</span> (<span class="hljs-string">'Thread:'</span> + self.name + <span class="hljs-string">' start'</span>)
+        threadLock.acquire()            <span class="hljs-comment">#ロックを取得する</span>
         plusminus(self.name, self.counter, self.loop)
-        threadLock.release()            #ロックを解除する
-def plusminus(threadName, num, loop):
-    while loop:
-        global sumup
-        time.sleep(1)
-        sumup= sumup + int(num)
-        loop -=1
-        print('%s: sum is %d' % (threadName, sumup))
-sumup=0
+        threadLock.release()            <span class="hljs-comment">#ロックを解除する</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">plusminus</span>(<span class="hljs-params">threadName, num, loop</span>):</span>
+    <span class="hljs-keyword">while</span> loop:
+        <span class="hljs-keyword">global</span> sumup
+        time.sleep(<span class="hljs-number">1</span>)
+        sumup= sumup + <span class="hljs-built_in">int</span>(num)
+        loop -=<span class="hljs-number">1</span>
+        print(<span class="hljs-string">'%s: sum is %d'</span> % (threadName, sumup))
+sumup=<span class="hljs-number">0</span>
 threadLock = threading.Lock()
 threads = []
-thread1 = CustomizedThread('Thread-1', 1, 2)
-thread2 = CustomizedThread('Thread-2', -1, 2)
+thread1 = CustomizedThread(<span class="hljs-string">'Thread-1'</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+thread2 = CustomizedThread(<span class="hljs-string">'Thread-2'</span>, -<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
 thread1.start()
 thread2.start()
 thread1.join()
 thread2.join()
-print ("threads end")</code></pre>
+<span class="hljs-built_in">print</span> (<span class="hljs-string">"threads end"</span>)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">Thread:Thread-1 start
-Thread:Thread-2 start
-Thread-1: sum is 1
-Thread-1: sum is 2
-Thread-2: sum is 1
-Thread-2: sum is 0
+<pre><code class="python">Thread:Thread-<span class="hljs-number">1</span> start
+Thread:Thread-<span class="hljs-number">2</span> start
+Thread-<span class="hljs-number">1</span>: <span class="hljs-built_in">sum</span> <span class="hljs-keyword">is</span> <span class="hljs-number">1</span>
+Thread-<span class="hljs-number">1</span>: <span class="hljs-built_in">sum</span> <span class="hljs-keyword">is</span> <span class="hljs-number">2</span>
+Thread-<span class="hljs-number">2</span>: <span class="hljs-built_in">sum</span> <span class="hljs-keyword">is</span> <span class="hljs-number">1</span>
+Thread-<span class="hljs-number">2</span>: <span class="hljs-built_in">sum</span> <span class="hljs-keyword">is</span> <span class="hljs-number">0</span>
 threads end</code></pre>
 <p>しかし実際には、ロックが追加されたため、同じメソッドを使用する2つのスレッドが同時に実行されませんでした。</p>
 </body></html>

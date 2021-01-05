@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>webpack.config.js</title>
     </head>
     <body><h1 id="webpackconfigjs">webpack.config.js</h1>
@@ -11,46 +14,46 @@
 entryは、webpackがビルドする際に開始点となるjsファイルを設定します。
 outputは、ビルドファイルの設定。どこにどのようなファイルを出力すればよいか設定します。</p>
 <p>webpack.config.jsファイル：</p>
-<pre><code class="language-js">module.exports = {
-  // 開始点となるjsファイルの設定
-  entry: `./src/index.js`,
+<pre><code class="js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-comment">// 開始点となるjsファイルの設定</span>
+  <span class="hljs-attr">entry</span>: <span class="hljs-string">`./src/index.js`</span>,
 
-  // ファイルの出力設定
-  output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/dist`,
-    // 出力ファイル名
-    filename: "main.js"
+  <span class="hljs-comment">// ファイルの出力設定</span>
+  <span class="hljs-attr">output</span>: {
+    <span class="hljs-comment">//  出力ファイルのディレクトリ名</span>
+    <span class="hljs-attr">path</span>: <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/dist`</span>,
+    <span class="hljs-comment">// 出力ファイル名</span>
+    <span class="hljs-attr">filename</span>: <span class="hljs-string">"main.js"</span>
   }
 };</code></pre>
 <h2 id="その他の設定">その他の設定</h2>
 <h3 id="mode">mode</h3>
 <p>modeは、modeはどのように最適化するかを指定できるものでdevelopmentで開発用（ソースマップを有効にする）、productionで本番用（JavaSciptのコードを圧縮する）、noneで最適化しない。を指定できます。デフォルトはproductionです。</p>
-<pre><code class="language-js">module.exports = {
+<pre><code class="js"><span class="hljs-built_in">module</span>.exports = {
 ...
-  mode: "development"
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">"development"</span>
 ...
 };</code></pre>
 <h3 id="devtool">devtool</h3>
 <p>devtoolは、ソースマッピングのスタイルを選択して、デバッグプロセスを強化します。指定可能な値はstringとfalseです。</p>
-<pre><code class="language-js">module.exports = {
+<pre><code class="js"><span class="hljs-built_in">module</span>.exports = {
 ...
-  devtool: 'cheap-module-eval-source-map',
+  <span class="hljs-attr">devtool</span>: <span class="hljs-string">'cheap-module-eval-source-map'</span>,
 ...
 }</code></pre>
 <h3 id="target">target</h3>
 <p>targetは、特定の環境をターゲットにするようにwebpackに指示してくれます。</p>
-<pre><code class="language-js">module.exports = {
+<pre><code class="js"><span class="hljs-built_in">module</span>.exports = {
 ...
-  target: 'node',
+  <span class="hljs-attr">target</span>: <span class="hljs-string">'node'</span>,
 ...
 }</code></pre>
 <h3 id="module">module</h3>
 <p>moduleは、特定の環境をターゲットにするようにwebpackに指示してくれます。以下の例では、'node'と設定しているので、Node.jsのような環境で使用するためにコンパイルしてます。</p>
-<pre><code class="language-js">...
-module.exports = {
+<pre><code class="js">...
+<span class="hljs-built_in">module</span>.exports = {
 ...
-  target: 'node',
+  <span class="hljs-attr">target</span>: <span class="hljs-string">'node'</span>,
 ...
 }</code></pre>
 <p>この他にも色々な設定があるので、気になる人は公式ドキュメントを参照してみてください。<a href="https://webpack.js.org/concepts/">https://webpack.js.org/concepts/</a></p>

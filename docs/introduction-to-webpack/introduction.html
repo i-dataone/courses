@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>webpackの紹介</title>
     </head>
     <body><h1 id="webpackの紹介">webpackの紹介</h1>
@@ -23,10 +26,10 @@
 <p>Node.jsをインストールしていない人は公式サイトからインストールをしておきましょう。（バージョン13以上）<a href="https://nodejs.org/ja/">https://nodejs.org/ja/</a></p>
 <p>次にCommandLineでwebpackのインストールを行います。</p>
 <p>コンテンツのファイル一式が保存されるフォルダを任意の場所に作成し、CommandLineからcdコマンドでその場所に移動します。</p>
-<pre><code class="language-shell">cd C:¥Users¥MyName¥myproject  #myprojectは仮名です</code></pre>
+<pre><code class="shell">cd C:¥Users¥MyName¥myproject  #myprojectは仮名です</code></pre>
 <p>プロジェクトの設定情報が記述されたpackage.jsonファイルを生成します。</p>
-<pre><code class="language-shell">npm init -y</code></pre>
+<pre><code class="shell">npm init -y</code></pre>
 <p>npm経由でWebpackとwebpack-cliをインストールします。</p>
-<pre><code class="language-shell">npm i -D webpack webpack-cli</code></pre>
+<pre><code class="shell">npm i -D webpack webpack-cli</code></pre>
 <p>以上で、webpackのインストールは完了です。</p>
 </body></html>

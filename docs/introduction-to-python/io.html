@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>I/O処理</title>
     </head>
     <body><h1 id="io処理">I/O処理</h1>
@@ -8,7 +11,7 @@
 <h2 id="ファイルの読み書き">ファイルの読み書き</h2>
 <p>Pythonはopen()関数でファイルを開き、ファイルオブジェクトを作成します。そして関連する関数でこのオブジェクトを呼び出して読み取りと書き込みを行います。
 構文は次のようになります：</p>
-<pre><code class="language-python">fileobject = open(name (, mode, buffering))</code></pre>
+<pre><code class="python">fileobject = <span class="hljs-built_in">open</span>(name (, mode, buffering))</code></pre>
 <p>nameは読み取りたいファイルのパスを表します。modeはファイルのアクセスモードで、読み取り専用、書き込み、追加などがあります。 デフォルトのモードは読み取り専用です。bufferingはバッファのサイズを指定することです。
 一般的なアクセスモードは次のようになります：</p>
 <table>
@@ -40,54 +43,54 @@
 </tr>
 </tbody></table>
 <p>例としてファイルを読み取るreadfile.pyを作成します。ファイルのパスはコマンドラインの入力から取得されます。</p>
-<pre><code class="language-python">import sys
-def openfile():
+<pre><code class="python"><span class="hljs-keyword">import</span> sys
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">openfile</span>():</span>
     args = sys.argv
-    f = open(args[0], 'r')
+    f = <span class="hljs-built_in">open</span>(args[<span class="hljs-number">0</span>], <span class="hljs-string">'r'</span>)
     print(f.read())
     f.close()
-if __name__=='__main__':
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">'__main__'</span>:
     openfile()</code></pre>
 <p>コマンドラインにはこのように入力します。</p>
-<pre><code class="language-shell">python readfile.py /Users/python/test.txt</code></pre>
+<pre><code class="shell">python readfile.py /Users/python/test.txt</code></pre>
 <p>sys.argv関数は.pyの後ろのパラメータをリストに入れます。パラメータはスペースで区切られます。この例の場合には<code>/Users/python/test.txt</code>パスのファイルを<code>open()</code>関数で開きます。<code>read()</code>を呼び出して、ファイルの内容全体を読み取ります。内容をメモリに読み取り、strオブジェクトで表します。ファイルオブジェクトはOSのリソースを占有するため、使用後に<code>close()</code>でファイルを閉じる必要があります。
 ファイルの読み書き中にIOエラーが発生する可能性があります。エラーが発生すると次のclose()は呼び出されません。 withはエラーの有無に関係なくファイルを正しく閉じることができます。</p>
-<pre><code class="language-python">import sys
-def openfile():
+<pre><code class="python"><span class="hljs-keyword">import</span> sys
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">openfile</span>():</span>
     args = sys.argv
-    with open(args[0], 'r') as f:
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(args[<span class="hljs-number">0</span>], <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> f:
         print(f.read())
-if __name__=='__main__':
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">'__main__'</span>:
     openfile()</code></pre>
 <p><code>write()</code>を使用してファイルを書き込みます。入力は文字列型でなければなりません。</p>
-<pre><code class="language-python">with open('/Users/python/test.txt', 'w') as f:
-    f.write('Test text')</code></pre>
+<pre><code class="python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'/Users/python/test.txt'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<span class="hljs-string">'Test text'</span>)</code></pre>
 <p>上記の基本的な関数以外には、Pythonのioモジュールは複数のストリーミングインターフェイスを提供します。ファイルの読み書きに限らずメモリに直接読み書きすることもできます。</p>
 <p>例えばメモリ内の文字列を読み書きます：</p>
-<pre><code class="language-python">from io import StringIO
+<pre><code class="python"><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> StringIO
 f = StringIO()
-f.write('Hello')</code></pre>
+f.write(<span class="hljs-string">'Hello'</span>)</code></pre>
 <p>読み取ります：</p>
-<pre><code class="language-python">from io import StringIO
-f = StringIO('Hello')
+<pre><code class="python"><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> StringIO
+f = StringIO(<span class="hljs-string">'Hello'</span>)
 s = f.readline()</code></pre>
 <p>バイナリデータを操作する場合はBytesIOを使用します。</p>
-<pre><code class="language-python">from io import BytesIO
+<pre><code class="python"><span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> BytesIO
 f = BytesIO()
-f.write('バイナリ'.encode('utf-8'))</code></pre>
+f.write(<span class="hljs-string">'バイナリ'</span>.encode(<span class="hljs-string">'utf-8'</span>))</code></pre>
 <p>書き込まれるのはUTF-8エンコードされたバイトです。</p>
 <h2 id="ファイルとディレクトリを操作する">ファイルとディレクトリを操作する</h2>
 <p>ファイルとディレクトリを操作する関数はosモジュールとos.pathモ​​ジュールに配置されます。
 例：</p>
-<pre><code class="language-python">import os
-path = os.path.abspath('.')     #現在の.pyファイルの絶対パスを取得します。
-a = os.path.join(path, 'testdir')   #現在のパスとフォルダ名を組み合わせます。
-b = os.path.split('/Users/python/testdir/test.txt') #パスを分けます。
+<pre><code class="python"><span class="hljs-keyword">import</span> os
+path = os.path.abspath(<span class="hljs-string">'.'</span>)     <span class="hljs-comment">#現在の.pyファイルの絶対パスを取得します。</span>
+a = os.path.join(path, <span class="hljs-string">'testdir'</span>)   <span class="hljs-comment">#現在のパスとフォルダ名を組み合わせます。</span>
+b = os.path.split(<span class="hljs-string">'/Users/python/testdir/test.txt'</span>) <span class="hljs-comment">#パスを分けます。</span>
 print(a)
 print(b)</code></pre>
 <p>Output:</p>
-<pre><code class="language-python">/Users/python/testdir
-('/Users/python/testdir', 'test.txt')</code></pre>
+<pre><code class="python">/Users/python/testdir
+(<span class="hljs-string">'/Users/python/testdir'</span>, <span class="hljs-string">'test.txt'</span>)</code></pre>
 <p>2つのパスを1つに結合するときは文字列を直接に連結せず、異なるOSのパス区切り文字を正しく処理できる<code>os.path.join()</code>関数を使ってください。<code>split()</code>関数はパスを自動的に2つの部分に分割できます。後者の部分は最後のディレクトリまたはファイル名です。</p>
 <p>他の常用的な方法は次のようになります。</p>
 <table>
@@ -117,12 +120,12 @@ print(b)</code></pre>
 <h2 id="データシリアライズ">データシリアライズ</h2>
 <p>前の節はファイルにテキストの書き込みを説明しました。より複雑なPythonオブジェクトをディスクに書き込む場合、データをシリアル化する必要があります。Pythonはシリアル化のpickleモジュールを提供します。
 例：</p>
-<pre><code class="language-python">import pickle
-list1 = [1, 2, 3]
+<pre><code class="python"><span class="hljs-keyword">import</span> pickle
+list1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
 pickle.dumps(list1)
-with open('/Users/python/test.txt', 'wb') as f:
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'/Users/python/test.txt'</span>, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
     pickle.dump(list1, f)</code></pre>
 <p>オブジェクトをディスクからメモリに読み取る場合は、pklファイルをバイトに読み取り、pickle.loads()関数を使用してオブジェクトを逆シリアル化できます。</p>
-<pre><code class="language-python">with open('/Users/python/test.txt', 'rb') as f:
+<pre><code class="python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'/Users/python/test.txt'</span>, <span class="hljs-string">'rb'</span>) <span class="hljs-keyword">as</span> f:
     d = pickle.load(f)</code></pre>
 </body></html>

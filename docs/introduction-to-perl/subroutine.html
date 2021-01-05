@@ -1,6 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>サブルーチン</title>
     </head>
     <body><h1 id="サブルーチン">サブルーチン</h1>
@@ -8,18 +11,18 @@
 <p>Perlサブルーチンはユーザーが定義する関数です。サブルーチンは繰り返されるコードを減らし、プログラムを読みやすくすることができます。</p>
 <h2 id="サブルーチンの定義">サブルーチンの定義</h2>
 <p>サブルーチンはプログラムのどこにでも置くことが可能で、書き方は以下の通りです：</p>
-<pre><code class="language-Perl"> sub サブルーチン名{
+<pre><code class="Perl"> <span class="hljs-function"><span class="hljs-keyword">sub</span> サブルーチン名</span>{
    処理;
  }</code></pre>
 <h2 id="サブルーチンの呼び出し">サブルーチンの呼び出し</h2>
 <p>サブルーチンを呼び出しの書き方は以下の通りです：</p>
-<pre><code class="language-Perl"> サブルーチン名;</code></pre>
+<pre><code class="Perl"> サブルーチン名;</code></pre>
 <p>です。
 バージョンPerl 5.0以上のサブルーチンの呼び出し方は以下の通りです：</p>
-<pre><code class="language-Perl"> &amp;サブルーチン名;</code></pre>
+<pre><code class="Perl"> &amp;サブルーチン名;</code></pre>
 <p>例：</p>
-<pre><code class="language-Perl">sub Number{
- print"1234567\n"
+<pre><code class="Perl"><span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">Number</span></span>{
+ <span class="hljs-keyword">print</span><span class="hljs-string">"1234567\n"</span>
 }
 
 Number();</code></pre>
@@ -28,37 +31,37 @@ Number();</code></pre>
 <p>となります。</p>
 <h2 id="サブルーチンの引数">サブルーチンの引数</h2>
 <p>サブルーチンを呼び出す時、値を渡して、サブルーチンで処理します。ここの値は<strong>引数</strong>といいます。引数は配列<code>@_</code>に格納されています。書き方は以下の通りです。</p>
-<pre><code class="language-Perl">&amp;サブルーチン名(引数a, 引数b, ...);
-sub サブルーチン名{
+<pre><code class="Perl">&amp;サブルーチン名(引数a, 引数b, ...);
+<span class="hljs-function"><span class="hljs-keyword">sub</span> サブルーチン名</span>{
   処理;
 }</code></pre>
 <h2 id="サブルーチンの戻り値">サブルーチンの戻り値</h2>
 <p>サブルーチンは、他のプログラミング言語と同様に、<code>return</code>命令を使って関数値を返すことができます。<code>return</code>命令を使ってない場合、サブルーチンの最後の命令が戻り値として使用されます。</p>
 <p>例えば</p>
-<pre><code class="language-Perl">
-sub add{
-    # ここで引数を@_で格納します。
-  my ($a, $b) = @_;
+<pre><code class="Perl">
+<span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">add</span></span>{
+    <span class="hljs-comment"># ここで引数を@_で格納します。</span>
+  <span class="hljs-keyword">my</span> ($a, $b) = @_;
 
   $a + $b;
 }
-# ここで10と20は引数です。
-my $sum = &amp;add(10, 20);
-print "$sum\n";</code></pre>
+<span class="hljs-comment"># ここで10と20は引数です。</span>
+<span class="hljs-keyword">my</span> $sum = &amp;add(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+<span class="hljs-keyword">print</span> <span class="hljs-string">"$sum\n"</span>;</code></pre>
 <p>と実行すると、結果は</p>
 <p><code>30</code></p>
 <p>となります。</p>
 <h2 id="return文">return文</h2>
 <p>前に書いた通り、<code>return</code>命令を使って関数値を返すことができます。ゆえに、まえの命令は以下のように書けます。</p>
-<pre><code class="language-Perl">
-sub add{
+<pre><code class="Perl">
+<span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">add</span></span>{
 
-  my ($a, $b) = @_;
+  <span class="hljs-keyword">my</span> ($a, $b) = @_;
 
-  return $a + $b;
+  <span class="hljs-keyword">return</span> $a + $b;
 }
-my $sum = &amp;add(10, 20);
-print "$sum\n";</code></pre>
+<span class="hljs-keyword">my</span> $sum = &amp;add(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+<span class="hljs-keyword">print</span> <span class="hljs-string">"$sum\n"</span>;</code></pre>
 <p>これを実行すると、結果</p>
 <p><code>30</code></p>
 <p>となります。</p>
@@ -67,25 +70,25 @@ print "$sum\n";</code></pre>
 したがって、サブルーチンの最初の引数は<code>$ _ [0]</code>、2番目の引数は<code>$ _ [1]</code>となります。
 引数がスカラー型か配列型かに関係なく、ユーザーが引数をサブルーチンに渡すとき、perlはデフォルトで参照によりパ引数を呼び出します。
 よって、まえの命令は以下のように書けます。</p>
-<pre><code class="language-Perl">
-sub add{
-  $_[0]+$_[1];  
+<pre><code class="Perl">
+<span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">add</span></span>{
+  $_[<span class="hljs-number">0</span>]+$_[<span class="hljs-number">1</span>];  
 }
-my $sum = &amp;add(10, 20);
-print "$sum\n";</code></pre>
+<span class="hljs-keyword">my</span> $sum = &amp;add(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+<span class="hljs-keyword">print</span> <span class="hljs-string">"$sum\n"</span>;</code></pre>
 <p>これを実行すると、結果は</p>
 <p><code>30</code></p>
 <p>となります。</p>
 <h3 id="サブルーチンにリストを渡す">サブルーチンにリストを渡す</h3>
 <p>スカラーおよび配列パラメーターを渡す場合は、リストを最後の引数に配置する必要です。</p>
 <p>例：</p>
-<pre><code class="language-Perl">
-sub List{
-   my @list = @_;
-   print "リストは : @list\n";
+<pre><code class="Perl">
+<span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">List</span></span>{
+   <span class="hljs-keyword">my</span> @list = @_;
+   <span class="hljs-keyword">print</span> <span class="hljs-string">"リストは : @list\n"</span>;
 }
-$a = 5;
-@b = (1, 2, 3, 4);
+$a = <span class="hljs-number">5</span>;
+@b = (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
 
 List($a, @b);</code></pre>
 <p>これを実行すると、結果は</p>
@@ -94,17 +97,17 @@ List($a, @b);</code></pre>
 <h3 id="サブルーチンにハッシュを渡す">サブルーチンにハッシュを渡す</h3>
 <p>ハッシュをサブルーチンに渡すと、ハッシュは@_にコピーされて、ハッシュはキーと値の組み合わせのリストに展開されます。</p>
 <p>例：</p>
-<pre><code class="language-Perl">sub Hash{
-   my (%hash) = @_;
-   foreach my $key ( keys %hash ){
-      my $value = $hash{$key};
-      print "$key : $value\n";
+<pre><code class="Perl"><span class="hljs-function"><span class="hljs-keyword">sub</span> <span class="hljs-title">Hash</span></span>{
+   <span class="hljs-keyword">my</span> (%hash) = @_;
+   <span class="hljs-keyword">foreach</span> <span class="hljs-keyword">my</span> $key ( <span class="hljs-keyword">keys</span> %hash ){
+      <span class="hljs-keyword">my</span> $value = $hash{$key};
+      <span class="hljs-keyword">print</span> <span class="hljs-string">"$key : $value\n"</span>;
    }
 }
-%hash = ('name' = 'Tom', 'age' = 18);
+%hash = (<span class="hljs-string">'name'</span> = <span class="hljs-string">'Tom'</span>, <span class="hljs-string">'age'</span> = <span class="hljs-number">18</span>);
 
 Hash(%hash);</code></pre>
 <p>これを実行すると、結果は</p>
-<pre><code class="language-name">age : 18</code></pre>
+<pre><code class="name">age : 18</code></pre>
 <p>となります。</p>
 </body></html>

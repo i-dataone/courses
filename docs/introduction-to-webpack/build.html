@@ -1,19 +1,22 @@
 <!DOCTYPE html><html lang="ja"><head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
         <title>ビルド</title>
     </head>
     <body><h1 id="ビルド">ビルド</h1>
 <h2 id="ファイルの準備">ファイルの準備</h2>
 <p>プロジェクトフォルダの配下にsrcフォルダを作成し、試しにモジュール（index.jsとsub.js）を作成します。</p>
 <p>index.js：</p>
-<pre><code class="language-js">//sub.js ファイルを読み込む。
-import { hello } from "./sub"; 
+<pre><code class="js"><span class="hljs-comment">//sub.js ファイルを読み込む。</span>
+<span class="hljs-keyword">import</span> { hello } <span class="hljs-keyword">from</span> <span class="hljs-string">"./sub"</span>; 
 hello();</code></pre>
 <p>sub.js：</p>
-<pre><code class="language-js">//hello関数
-export function hello() {
-  alert("hello！");
+<pre><code class="js"><span class="hljs-comment">//hello関数</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{
+  alert(<span class="hljs-string">"hello！"</span>);
 }</code></pre>
 <h2 id="packagejsonをカスタマイズ">package.jsonをカスタマイズ</h2>
 <p>モジュールはこのままだと、古いブラウザでは表示されません。
@@ -21,20 +24,20 @@ export function hello() {
 <p>package.jsonファイルのscriptsにwebpackのビルドコマンドを追加します。
 （package.jsonファイルには最低限scriptsとdevDependencies指定が記述されてあれば使えます。mainやauthorなどは消してしまっても問題ありません。）</p>
 <p>package.json：</p>
-<pre><code class="language-json">{
-  "scripts": {
-    "build": "webpack"
+<pre><code class="json">{
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"webpack"</span>
   },
-  "devDependencies": {
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"^5.0.0"</span>,
+    <span class="hljs-attr">"webpack-cli"</span>: <span class="hljs-string">"^4.0.0"</span>
   },
-  "private": true
+  <span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>
 }</code></pre>
 <h2 id="ビルド-1">ビルド</h2>
 <p>前述でpackage.jsonファイルに追記をしたことにより、<code>npm run build</code>とCommandLineで入力することで、内部的にwebpackが呼び出されて、index.js内で必要なsub.jsが統合され、distフォルダーのなかにmain.jsとして出力されます。</p>
 <p>main.js：</p>
-<pre><code class="language-js">(()=&gt;{"use strict";alert("hello！")})();</code></pre>
+<pre><code class="js">(<span class="hljs-function">()=&gt;</span>{<span class="hljs-string">"use strict"</span>;alert(<span class="hljs-string">"hello！"</span>)})();</code></pre>
 <p>出力されたmain.jsをHTMLで読み込むと、バンドルされたコードが実行されます。
 npx webpackコマンドでビルドするという方法もありますが、実際の開発ではnpm scriptsを使う方が便利なので、説明は割愛します。</p>
 </body></html>
